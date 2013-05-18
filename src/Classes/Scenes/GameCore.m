@@ -79,7 +79,7 @@
     UIImage *image = [UIImage imageWithCGImage:outputRef];
     free(pixels);
     return image;
-//    [image release];
+//    [image release];  
 }
 
 - (void)onImageTouched:(SPTouchEvent *)event
