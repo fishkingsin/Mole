@@ -74,16 +74,16 @@
     
      scenesToCreate = @[[NameInput class],
                         [FacePick class],
-                        [GameCore class],];
+                        [GameCore class]];
     
     
     int targetIndex = 2;
     // create an instance of that class and add it to the display tree.
     _currentScene = [[[scenesToCreate[targetIndex] class] alloc] init];
     _currentScene.name = NSStringFromClass(scenesToCreate[targetIndex]);
-//    _currentScene.y = _offsetY;
-    _contents.visible = YES;
-    [self addChild:_currentScene];
+    _contents.visible = NO;
+    [self addChild:_currentScene];  
+
     
     [self addEventListener:@selector(onSceneClosing:) atObject:self
                    forType:EVENT_TYPE_SCENE_CLOSING];
@@ -201,10 +201,6 @@
 //        _contents.visible = NO;
         [self addChild:_currentScene];
     }
-}
-- (void)render:(SPRenderSupport *)support
-{
-//    NSLog(@"Rendering ");
 }
 
 @end
