@@ -8,6 +8,6 @@
 
 #import "Scene.h"
 
-@interface NameInput : Scene
+@interface NameInput : Scene 
 
 @end

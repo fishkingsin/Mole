@@ -6,8 +6,8 @@
 //
 //
 
-#import "SPSprite.h"
+#import "Scene.h"
 
-@interface FacePick : SPSprite
+@interface FacePick : Scene
 
 @end

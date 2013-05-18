@@ -4,7 +4,10 @@
 //
 
 #import "Game.h" 
-
+#import "Scene.h"
+#import "NameInput.h"
+#import "FacePick.h"
+#import "GameCore.h"
 // --- private interface ---------------------------------------------------------------------------
 
 @interface Game ()
@@ -12,7 +15,8 @@
 - (void)setup;
 - (void)onImageTouched:(SPTouchEvent *)event;
 - (void)onResize:(SPResizeEvent *)event;
-
+- (void)onButtonTriggered:(SPEvent *)event;
+- (void)onSceneClosing:(SPEvent *)event;
 @end
 
 
@@ -20,7 +24,9 @@
 
 @implementation Game
 {
+    Scene *_currentScene;
     SPSprite *_contents;
+    NSArray *scenesToCreate;
 }
 
 - (id)init
@@ -62,37 +68,52 @@
 
     _contents = [SPSprite sprite];
     [self addChild:_contents];
-
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
     [_contents addChild:background];
-    
-    NSString *text = @"To find out how to create your own game out of this scaffold, "
-                     @"have a look at the 'First Steps' section of the Sparrow website!";
-    
-    SPTextField *textField = [[SPTextField alloc] initWithWidth:280 height:80 text:text];
-    textField.x = (background.width - textField.width) / 2;
-    textField.y = (background.height / 2) - 135;
-    [_contents addChild:textField];
 
-    SPImage *image = [[SPImage alloc] initWithTexture:[Media atlasTexture:@"sparrow"]];
-    image.pivotX = (int)image.width  / 2;
-    image.pivotY = (int)image.height / 2;
-    image.x = background.width  / 2;
-    image.y = background.height / 2 + 40;
-    [_contents addChild:image];
+    
+     scenesToCreate = @[[NameInput class],
+                        [FacePick class],
+                        [GameCore class],];
+    
+    
+    int targetIndex = 2;
+    // create an instance of that class and add it to the display tree.
+    _currentScene = [[[scenesToCreate[targetIndex] class] alloc] init];
+    _currentScene.name = NSStringFromClass(scenesToCreate[targetIndex]);
+//    _currentScene.y = _offsetY;
+    _contents.visible = YES;
+    [self addChild:_currentScene];
+    
+    [self addEventListener:@selector(onSceneClosing:) atObject:self
+                   forType:EVENT_TYPE_SCENE_CLOSING];
+//    NSString *text = @"To find out how to create your own game out of this scaffold, "
+//                     @"have a look at the 'First Steps' section of the Sparrow website!";
+//    
+//    SPTextField *textField = [[SPTextField alloc] initWithWidth:280 height:80 text:text];
+//    textField.x = (background.width - textField.width) / 2;
+//    textField.y = (background.height / 2) - 135;
+//    [_contents addChild:textField];
+//
+//    SPImage *image = [[SPImage alloc] initWithTexture:[Media atlasTexture:@"sparrow"]];
+//    image.pivotX = (int)image.width  / 2;
+//    image.pivotY = (int)image.height / 2;
+//    image.x = background.width  / 2;
+//    image.y = background.height / 2 + 40;
+//    [_contents addChild:image];
     
     [self updateLocations];
     
     // play a sound when the image is touched
-    [image addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-    
-    // and animate it a little
-    SPTween *tween = [SPTween tweenWithTarget:image time:1.5 transition:SP_TRANSITION_EASE_IN_OUT];
-    [tween animateProperty:@"y" targetValue:image.y + 30];
-    [tween animateProperty:@"rotation" targetValue:0.1];
-    tween.repeatCount = 0; // repeat indefinitely
-    tween.reverse = YES;
-    [Sparrow.juggler addObject:tween];
+//    [image addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+//    
+//    // and animate it a little
+//    SPTween *tween = [SPTween tweenWithTarget:image time:1.5 transition:SP_TRANSITION_EASE_IN_OUT];
+//    [tween animateProperty:@"y" targetValue:image.y + 30];
+//    [tween animateProperty:@"rotation" targetValue:0.1];
+//    tween.repeatCount = 0; // repeat indefinitely
+//    tween.reverse = YES;
+//    [Sparrow.juggler addObject:tween];
     
 
     // The controller autorotates the game to all supported device orientations. 
@@ -137,6 +158,53 @@
           event.isPortrait ? @"portrait" : @"landscape");
     
     [self updateLocations];
+}
+
+- (void)onButtonTriggered:(SPEvent *)event
+{
+    
+//    if (_currentScene) return;
+//    
+//    // the class name of the scene is saved in the "name" property of the button.
+    SPButton *button = (SPButton *)event.target;
+    NSLog(@"onButtonTriggered %@", button.name);
+    
+//    Class sceneClass = NSClassFromString(button.name);
+//    
+//    // create an instance of that class and add it to the display tree.
+//    _currentScene = [[sceneClass alloc] init];
+//    _currentScene.y = _offsetY;
+//    _mainMenu.visible = NO;
+//    [self addChild:_currentScene];
+}
+
+- (void)onSceneClosing:(SPEvent *)event
+{
+    NSLog(@"onSceneClosing %@",_currentScene.name);
+    if([_currentScene.name isEqualToString: NSStringFromClass(scenesToCreate[0])])
+    {
+        [_currentScene removeFromParent];
+        _currentScene = nil;
+        _currentScene = [[[scenesToCreate[1] class] alloc] init];
+            _currentScene.name = NSStringFromClass(scenesToCreate[1]);
+//        _contents.visible = NO;
+        [self addChild:_currentScene];
+    
+        
+    }
+    else if([_currentScene.name isEqualToString:  NSStringFromClass(scenesToCreate[1])])
+    {
+        [_currentScene removeFromParent];
+        _currentScene = nil;
+        _currentScene = [[[scenesToCreate[0] class] alloc] init];
+            _currentScene.name = NSStringFromClass(scenesToCreate[0]);
+//        _contents.visible = NO;
+        [self addChild:_currentScene];
+    }
+}
+- (void)render:(SPRenderSupport *)support
+{
+//    NSLog(@"Rendering ");
 }
 
 @end

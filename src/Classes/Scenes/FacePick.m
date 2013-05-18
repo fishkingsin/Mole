@@ -7,7 +7,103 @@
 //
 
 #import "FacePick.h"
-
+@interface FacePick ()
+- (void)onImageTouched:(SPTouchEvent *)event;
+- (void)onButtonTriggered:(SPEvent *)event;
+@end
 @implementation FacePick
+{
+    SPSprite *_contents;
+    NSArray *thumbnailImages;
+    float _offsetY;
+}
+- (id)init
+{
+    if ((self = [super init]))
+    {
+        [self setup];
+    }
+    return self;
+}
 
+- (void)dealloc
+{
+
+}
+
+- (void)setup
+{
+    _contents = [SPSprite sprite];
+    [self addChild:_contents];
+        
+    
+    thumbnailImages = [NSArray arrayWithObjects:
+                       @"tse_holy-tricky_female.png",
+                       [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
+                       @"ks_holy-tricky_female.png",
+                       [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_female_thumb.png"],
+                       @"tse_holy-tricky_female.png",
+                       [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
+                       @"ks_holy-tricky_female.png",
+                       [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_female_thumb.png"],
+                       @"tse_holy-tricky_female.png",
+                       [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
+                       @"ks_holy-tricky_female.png",
+                       [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_female_thumb.png"],
+                       @"tse_holy-tricky_female.png",
+                       [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
+                       @"ks_holy-tricky_female.png",
+                       [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_female_thumb.png"], nil];
+    int index = 0;
+    int count = 0;
+
+    while (index < thumbnailImages.count)
+    {
+        NSString *faceName = thumbnailImages[index++];
+        SPTexture * image = thumbnailImages[index++];
+
+        
+        SPButton *button = [SPButton buttonWithUpState: image];
+        button.x = (count % 3)*105;
+        button.y = (count / 3) * 105;
+        button.name = faceName;
+        
+        
+        [button addEventListener:@selector(onButtonTriggered:) atObject:self
+                         forType:SP_EVENT_TYPE_TRIGGERED];
+        // play a sound when the image is touched
+        [button addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+        
+        [_contents addChild:button];
+        ++count;
+    }
+    
+
+    
+    
+    [self updateLocations];
+    
+}
+- (void)updateLocations
+{
+    int gameWidth  = Sparrow.stage.width;
+    int gameHeight = Sparrow.stage.height;
+    
+    _contents.x = (int) (gameWidth  - _contents.width)  / 2;
+    _contents.y = (int) (gameHeight - _contents.height) / 2;
+}
+
+- (void)onImageTouched:(SPTouchEvent *)event
+{
+    NSSet *touches = [event touchesWithTarget:self andPhase:SPTouchPhaseEnded];
+    if ([touches anyObject]) [Media playSound:@"sound.caf"];
+}
+
+- (void)onButtonTriggered:(SPEvent *)event
+{
+    
+    SPButton *button = (SPButton *)event.target;
+    NSLog(@"onButtonTriggered %@", button.name);
+    
+}
 @end
