@@ -87,7 +87,7 @@
     
     _currentScene.name = NSStringFromClass(scenesToCreate[targetIndex]);
     //    _contents.visible = NO;
-    [self addChild:_currentScene];
+    [_contents addChild:_currentScene];
     
     
     [self addEventListener:@selector(onSceneClosing:) atObject:self
@@ -180,7 +180,7 @@
     //    _currentScene = [[sceneClass alloc] init];
     //    _currentScene.y = _offsetY;
     //    _mainMenu.visible = NO;
-    //    [self addChild:_currentScene];
+    //    [_contents addChild:_currentScene];
 }
 
 - (void)onSceneClosing:(SPEvent *)event
@@ -195,7 +195,7 @@
         _currentScene = [[[scenesToCreate[FACE_PICK] class] alloc] init];
         _currentScene.name = NSStringFromClass(scenesToCreate[FACE_PICK]);
         //        _contents.visible = NO;
-        [self addChild:_currentScene];
+        [_contents addChild:_currentScene];
         
         
     }
@@ -207,7 +207,7 @@
         _currentScene.name = NSStringFromClass(scenesToCreate[FACE_PICK]);
         
         
-        [self addChild:_currentScene];
+        [_contents addChild:_currentScene];
         
     }
     else if([_currentScene.name isEqualToString:  NSStringFromClass(scenesToCreate[FACE_PICK])])
@@ -220,7 +220,7 @@
             _currentScene = nil;
             _currentScene = [[[scenesToCreate[NAME_INPUT] class] alloc] init];
             _currentScene.name = NSStringFromClass(scenesToCreate[NAME_INPUT]);
-            [self addChild:_currentScene];
+            [_contents addChild:_currentScene];
         }
         else{
             NSLog(@"FacePick target : %@",[_scene faceFile] );
@@ -234,7 +234,7 @@
 //            [gameCore setFaceFile:[_scene faceFile]];
             
             
-            [self addChild:_currentScene];
+            [_contents addChild:_currentScene];
         }
     }
 }

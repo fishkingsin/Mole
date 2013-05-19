@@ -14,7 +14,7 @@
 @end
 @implementation FacePick
 {
-    SPSprite *_contents;
+//    SPSprite *self;
     NSArray *_thumbnailImages;
     float _offsetY;
         NSString *_faceFile;
@@ -39,8 +39,7 @@
 
 - (void)setup
 {
-    _contents = [SPSprite sprite];
-    [self addChild:_contents];
+
     
     _faceFile = nil;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -95,24 +94,12 @@
         // play a sound when the image is touched
         [button addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
         
-        [_contents addChild:button];
+        [self addChild:button];
         ++count;
     }
     
+}
 
-    
-    
-    [self updateLocations];
-    
-}
-- (void)updateLocations
-{
-    int gameWidth  = Sparrow.stage.width;
-    int gameHeight = Sparrow.stage.height;
-    
-    _contents.x = (int) (gameWidth  - _contents.width)  / 2;
-    _contents.y = (int) (gameHeight - _contents.height) / 2;
-}
 
 - (void)onImageTouched:(SPTouchEvent *)event
 {

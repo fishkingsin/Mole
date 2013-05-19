@@ -16,7 +16,7 @@
 @end
 @implementation GameCore
 {
-    SPSprite *_contents;
+//    SPSprite *_contents;
     SPSprite *_face;
     SPSprite *_mole;
 
@@ -40,11 +40,7 @@
 
 - (void)setup
 {
-    _contents = [SPSprite sprite];
-    [self addChild:_contents];
     
-    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
-    [_contents addChild:background];
     
     _face = [SPSprite sprite];
     
@@ -60,8 +56,8 @@
     [_face addChild:spImage];
 
     
-    [_contents addChild:_face];
-    NSLog(@"GameCore Init!!!");
+    [self addChild:_face];
+//    NSLog(@"GameCore Init!!!");
 //    [spImage addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
     _mole = [SPSprite sprite];
@@ -109,56 +105,73 @@
     _userNameTF.color = 0x000000;
     [self addChild:_userNameTF];
     
-    [self updateLocations];
-    
 }
 
-- (void)updateLocations
-{
-    int gameWidth  = Sparrow.stage.width;
-    int gameHeight = Sparrow.stage.height;
-    
-    _contents.x = (int) (gameWidth  - _contents.width)  / 2;
-    _contents.y = (int) (gameHeight - _contents.height) / 2;
-}
 // callback for CGDataProviderCreateWithData
 void releaseData(void *info, const void *data, size_t dataSize) {
 	//	NSLog(@"releaseData\n");
 	free((void*)data);		// free the
 }
 - (UIImage *)screenshot :(SPRectangle*)rectangle{
-
+	int myWidth = 640;
+	int myHeight = 960;
+    int myX = 0;
+	int myY = 0;
     
-    int width  = rectangle.width;
-	int height = rectangle.height;
-	
-	NSInteger myDataLength = width * height * 4;
-	GLubyte *buffer = (GLubyte *) malloc(myDataLength);
-	GLubyte *bufferFlipped = (GLubyte *) malloc(myDataLength);
-	glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
-	for(int y = 0; y <height; y++) {
-		for(int x = 0; x <width * 4; x++) {
-			bufferFlipped[((height - 1 - y) * width * 4 + x)] = buffer[(y * 4 * width + x)];
-		}
-	}
-	free(buffer);	// free original buffer
-	
-	CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, bufferFlipped, myDataLength, releaseData);
-	CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
-	CGImageRef imageRef = CGImageCreate(width, height, 8, 32, 4 * width, colorSpaceRef, kCGBitmapByteOrderDefault, provider, NULL, NO, kCGRenderingIntentDefault);
-	
-	CGColorSpaceRelease(colorSpaceRef);
-	CGDataProviderRelease(provider);
+    NSInteger myDataLength = myWidth * myHeight * 4;
+    NSMutableData * buffer= [NSMutableData dataWithLength :myDataLength];
     
-    UIImage * image = [UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef);
+	glReadPixels(myX, myY, myWidth, myHeight, GL_RGBA, GL_UNSIGNED_BYTE, [buffer mutableBytes]);
     
-    NSData * imageData = UIImagePNGRepresentation(image);
-    UIImage * imageLossless = [UIImage imageWithData:imageData];
-    return imageLossless;
-    UIImageWriteToSavedPhotosAlbum(image, nil, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+	CGDataProviderRef ref = CGDataProviderCreateWithData(NULL, [buffer mutableBytes], myDataLength, NULL);
+	CGImageRef iref = CGImageCreate(myWidth,myHeight,8,32,myWidth*4,CGColorSpaceCreateDeviceRGB(),
+									kCGBitmapByteOrderDefault,ref,NULL, true, kCGRenderingIntentDefault);
+	uint32_t* pixels = (uint32_t *)malloc(myDataLength);
+	CGContextRef context = CGBitmapContextCreate(pixels, myWidth, myHeight, 8, myWidth*4, CGImageGetColorSpace(iref),
+												 kCGImageAlphaNoneSkipFirst | kCGBitmapByteOrder32Big);
+	CGContextTranslateCTM(context, 0.0, myHeight);
+	CGContextScaleCTM(context, 1.0, -1.0);
+	CGContextDrawImage(context, CGRectMake(0.0, 0.0, myWidth, myHeight), iref);
+	CGImageRef outputRef = CGBitmapContextCreateImage(context);
+	UIImage *image = [UIImage imageWithCGImage:outputRef];
+	free(pixels);
+	return image;
 //    [image release];
 }
+
+//- (UIImage *)screenshot :(SPRectangle*)rectangle{
+//
+//    
+//    int width  = rectangle.width;
+//	int height = rectangle.height;
+//	
+//	NSInteger myDataLength = width * height * 4;
+//	GLubyte *buffer = (GLubyte *) malloc(myDataLength);
+//	GLubyte *bufferFlipped = (GLubyte *) malloc(myDataLength);
+//	glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
+//	for(int y = 0; y <height; y++) {
+//		for(int x = 0; x <width * 4; x++) {
+//			bufferFlipped[((height - 1 - y) * width * 4 + x)] = buffer[(y * 4 * width + x)];
+//		}
+//	}
+//	free(buffer);	// free original buffer
+//	
+//	CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, bufferFlipped, myDataLength, releaseData);
+//	CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
+//	CGImageRef imageRef = CGImageCreate(width, height, 8, 32, 4 * width, colorSpaceRef, kCGBitmapByteOrderDefault, provider, NULL, NO, kCGRenderingIntentDefault);
+//	
+//	CGColorSpaceRelease(colorSpaceRef);
+//	CGDataProviderRelease(provider);
+//    
+//    UIImage * image = [UIImage imageWithCGImage:imageRef];
+//    CGImageRelease(imageRef);
+//    
+//    NSData * imageData = UIImagePNGRepresentation(image);
+//    UIImage * imageLossless = [UIImage imageWithData:imageData];
+//    return imageLossless;
+//    UIImageWriteToSavedPhotosAlbum(image, nil, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+////    [image release];
+//}
 // callback for UIImageWriteToSavedPhotosAlbum
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
 	NSLog(@"Save finished");

@@ -24,8 +24,8 @@
         SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"button_back.png"];
         
         _backButton = [[SPButton alloc] initWithUpState:buttonTexture text:@"back"];
-        _backButton.x = CENTER_X - _backButton.width / 2.0f;
-        _backButton.y = GAME_HEIGHT - _backButton.height + 1;
+        _backButton.x = Sparrow.stage.width*0.5 - _backButton.width / 2.0f;
+        _backButton.y = Sparrow.stage.height - _backButton.height + 1;
         _backButton.name = @"back";
         [_backButton addEventListener:@selector(onBackButtonTriggered:) atObject:self
                               forType:SP_EVENT_TYPE_TRIGGERED];
