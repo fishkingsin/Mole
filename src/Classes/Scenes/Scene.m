@@ -8,6 +8,7 @@
 
 #import "Scene.h"
 @interface Scene ()
+
 @end
 @implementation Scene
 {
@@ -24,9 +25,12 @@
         _backButton = [[SPButton alloc] initWithUpState:buttonTexture text:@"back"];
         _backButton.x = CENTER_X - _backButton.width / 2.0f;
         _backButton.y = GAME_HEIGHT - _backButton.height + 1;
+        _backButton.name = @"back";
         [_backButton addEventListener:@selector(onBackButtonTriggered:) atObject:self
                               forType:SP_EVENT_TYPE_TRIGGERED];
         [self addChild:_backButton];
+        [self addEventListener:@selector(onSceneClosing:) atObject:self
+                       forType:EVENT_TYPE_SCENE_CLOSING];
     }
     return self;
 }
@@ -37,4 +41,8 @@
     [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
 }
 
+- (void)onSceneClosing:(SPEvent *)event
+{
+    [self removeEventListenersAtObject:self forType:EVENT_TYPE_SCENE_CLOSING];
+}
 @end

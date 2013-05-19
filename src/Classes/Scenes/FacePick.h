@@ -10,4 +10,5 @@
 
 @interface FacePick : Scene
 
+@property (nonatomic, strong) NSString* faceFile;
 @end

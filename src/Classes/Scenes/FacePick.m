@@ -10,13 +10,18 @@
 @interface FacePick ()
 - (void)onImageTouched:(SPTouchEvent *)event;
 - (void)onButtonTriggered:(SPEvent *)event;
+
 @end
 @implementation FacePick
 {
     SPSprite *_contents;
-    NSArray *thumbnailImages;
+    NSArray *_thumbnailImages;
     float _offsetY;
+        NSString *_faceFile;
+    SPButton *conifirmButton;
+    
 }
+@synthesize faceFile = _faceFile;
 - (id)init
 {
     if ((self = [super init]))
@@ -36,8 +41,8 @@
     _contents = [SPSprite sprite];
     [self addChild:_contents];
         
-    
-    thumbnailImages = [NSArray arrayWithObjects:
+    _faceFile = nil;
+    _thumbnailImages = [NSArray arrayWithObjects:
                        @"tse_holy-tricky_female.png",
                        [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
                        @"ks_holy-tricky_female.png",
@@ -53,14 +58,17 @@
                        @"tse_holy-tricky_female.png",
                        [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
                        @"ks_holy-tricky_female.png",
-                       [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_female_thumb.png"], nil];
+                       [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_female_thumb.png"],
+                       @"tse_holy-tricky_female.png",
+                       [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
+                       nil];
     int index = 0;
     int count = 0;
 
-    while (index < thumbnailImages.count)
+    while (index < _thumbnailImages.count)
     {
-        NSString *faceName = thumbnailImages[index++];
-        SPTexture * image = thumbnailImages[index++];
+        NSString *faceName = _thumbnailImages[index++];
+        SPTexture * image = _thumbnailImages[index++];
 
         
         SPButton *button = [SPButton buttonWithUpState: image];
@@ -104,6 +112,11 @@
     
     SPButton *button = (SPButton *)event.target;
     NSLog(@"onButtonTriggered %@", button.name);
-    
+    _faceFile=button.name;
+    [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
+}
+- (NSString*) getTargetFace
+{
+    return _faceFile;
 }
 @end

@@ -16,7 +16,11 @@
 @implementation GameCore
 {
     SPSprite *_contents;
+    SPSprite *_face;
 
+    SPButton *_confirmButton;
+    SPButton *_fbButton;
+    SPButton *_saveButton;
 }
 - (id)init
 {
@@ -39,17 +43,55 @@
     
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
     [_contents addChild:background];
-
-    SPImage * spImage = [[SPImage alloc] initWithContentsOfFile:@"ks_holy-tricky_female_thumb.png"];
-
-    spImage.x = 0;
-    spImage.y = 0;
-
-    [_contents addChild:spImage];
+    
+    _face = [SPSprite sprite];
+    
+    [_contents addChild:_face];
     NSLog(@"GameCore Init!!!");
-    [spImage addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+//    [spImage addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    
+   
+    
+    // to find out how to react to touch events have a look at the TouchSheet class!
+    // It's part of the demo.
+    for(int i = 0 ; i< 10 ; i++)
+    {
+        
+     SPImage *sparrow = [SPImage imageWithContentsOfFile:@"mole01.png"];
+        TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:sparrow];
+        sheet.x = Sparrow.stage.width-50;
+        sheet.y = Sparrow.stage.height-(300)+(i*30);
+    
+        [self addChild:sheet];
+    }
+    
+    _confirmButton = [self createButton:@"Confirm" :@"button_short.png"];
+    _confirmButton.x = 20;
+    _confirmButton.y = _confirmButton.height;
+    [self addChild:_confirmButton];
+
+    _fbButton = [self createButton:@"Facebook" :@"button_short.png"];
+    _fbButton.x = 20;
+    _fbButton.y = _confirmButton.y + _fbButton.height;
+    [self addChild:_fbButton];
+    
+    _saveButton = [self createButton:@"Save" :@"button_short.png"];
+    _saveButton.x = 20;
+    _saveButton.y = _fbButton.y + _saveButton.height;
+    [self addChild:_saveButton];
+    
+    [self addChild: [self childByName:@"back"]];
+    
     [self updateLocations];
     
+}
+-(void)setFaceFile : (NSString*)fileName
+{
+    SPImage * spImage = [[SPImage alloc] initWithContentsOfFile:fileName];
+    
+    spImage.x = 0;
+    spImage.y = 0;
+    [_face addChild:spImage];
 }
 - (void)updateLocations
 {
@@ -100,7 +142,6 @@
         [vc setInitialText:@"testing"];
         SPImage * image = (SPImage*)event.target;
         UIImage * img = [self screenshot: image];
-//      UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil);
         [vc addImage: img];
         // Present Compose View Controller
         [Sparrow.currentController presentViewController:vc animated:YES completion:nil];
@@ -110,6 +151,21 @@
         [alertView show];
     }
 }
+-(SPButton*) createButton:(NSString*) _text : (NSString*)filePath
+{
+    SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:filePath];
+    
+    SPButton *newButton = [[SPButton alloc] initWithUpState:buttonTexture text:_text];
 
-//}
+    newButton.name = _text;
+    newButton.enabled = YES;
+    
+    [newButton addEventListener:@selector(onButtonTriggered:) atObject:self
+                        forType:SP_EVENT_TYPE_TRIGGERED];
+    return newButton;
+}
+- (void)onButtonTriggered:(SPEvent *)event
+{
+    
+}
 @end

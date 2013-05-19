@@ -14,5 +14,6 @@
 // when that button was hit. All scenes inherit from this class.
 
 @interface Scene : SPSprite
-
+- (void)onBackButtonTriggered:(SPEvent *)event;
+- (void)onSceneClosing:(SPEvent *)event;
 @end

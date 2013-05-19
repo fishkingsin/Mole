@@ -8,12 +8,20 @@
 
 #import "NameInput.h"
 @interface NameInput ()<UITextFieldDelegate>
+
 @end
 
 @implementation NameInput
 {
     UITextField *_textField;
+    SPButton *_okButton;
+    NSString *_yourName;
+    float startX;
+    float startY;
 }
+
+@synthesize textField = _textField ;
+@synthesize yourName = _yourName;
 
 - (id)init
 {
@@ -27,7 +35,7 @@
 
 - (void)dealloc
 {
-    if(_textField!=nil)
+    if(_textField!=nil) 
     {
         [_textField removeFromSuperview];
     }
@@ -35,14 +43,33 @@
 
 - (void)setup
 {
-    _textField = [[UITextField alloc] initWithFrame:CGRectMake(20, 20, 160, 25)];
+    startY = CENTER_Y-CENTER_Y*0.3;
+    _textField = [[UITextField alloc] initWithFrame:CGRectMake(CENTER_X-80,startY-12.5, 160, 25)];
     _textField.borderStyle = UITextBorderStyleRoundedRect;
+    _textField.returnKeyType = UIReturnKeyDone;
+    _textField.clearButtonMode = UITextFieldViewModeAlways;
     _textField.delegate = self;
     [Sparrow.currentController.view addSubview:_textField];
     
+    
+    SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"button_normal.png"];
+    
+    _okButton = [[SPButton alloc] initWithUpState:buttonTexture text:@"OK"];
+    _okButton.x = CENTER_X - _okButton.width / 2.0f;
+    _okButton.y = startY - _okButton.height / 2.0f+30;
+    _okButton.name = @"ok";
+    _okButton.enabled = NO;
+    [_okButton addEventListener:@selector(onOkButtonTriggered:) atObject:self
+                          forType:SP_EVENT_TYPE_TRIGGERED];
+    [self addChild:_okButton];
+    
 
 }
-
+- (BOOL)textFieldShouldClear:(UITextField *)textField;               // called when clear button
+{
+    textField.text =@"";
+    _okButton.enabled = NO;
+}
 
 //implement UITextfield Mothod
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -52,10 +79,25 @@
 #pragma unused(textField)
     assert( (textField == _textField ) );
     [textField resignFirstResponder];
-    NSLog(@"textFieldShouldReturn");
-    [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
+    NSLog(@"textFieldShouldReturn %@",[textField text]);
+//    [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
+    _okButton.enabled = YES;
     return NO;
 }
-
+- (void)onOkButtonTriggered:(SPEvent *)event
+{
+    [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
+}
+- (void)onBackButtonTriggered:(SPEvent *)event
+{
+    [super onBackButtonTriggered:event];
+//    [_backButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
+}
+- (void)onSceneClosing:(SPEvent *)event
+{
+    [_okButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    [super onSceneClosing:event];
+}
 
 @end

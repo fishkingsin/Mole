@@ -8,6 +8,11 @@
 
 #import "Scene.h"
 
-@interface NameInput : Scene 
+@interface NameInput : Scene
+{
+    
+}
+@property (nonatomic, strong) UITextField* textField;
+@property (nonatomic, strong) NSString* yourName;
 
 @end
