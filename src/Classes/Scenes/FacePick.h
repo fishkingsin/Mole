@@ -11,4 +11,5 @@
 @interface FacePick : Scene
 
 @property (nonatomic, strong) NSString* faceFile;
+//@property (nonatomic, strong) SPTextField *userNameTF;
 @end

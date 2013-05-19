@@ -19,9 +19,10 @@
     float _offsetY;
         NSString *_faceFile;
     SPButton *conifirmButton;
-    
+
 }
 @synthesize faceFile = _faceFile;
+
 - (id)init
 {
     if ((self = [super init]))
@@ -40,8 +41,20 @@
 {
     _contents = [SPSprite sprite];
     [self addChild:_contents];
-        
+    
     _faceFile = nil;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *name = [defaults objectForKey:@"UserName"];
+    SPTextField * _userNameTF = [SPTextField textFieldWithWidth:100 height:25
+                                                     text:name];
+    _userNameTF.x = 20;
+    _userNameTF.y = 20;
+    _userNameTF.hAlign = SPHAlignLeft;
+    _userNameTF.vAlign = SPVAlignTop;
+    _userNameTF.border = NO;
+    _userNameTF.color = 0x000000;
+    [self addChild:_userNameTF];
+    
     _thumbnailImages = [NSArray arrayWithObjects:
                        @"tse_holy-tricky_female.png",
                        [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
@@ -113,6 +126,11 @@
     SPButton *button = (SPButton *)event.target;
     NSLog(@"onButtonTriggered %@", button.name);
     _faceFile=button.name;
+    NSString* faceFile = button.name;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:faceFile forKey:@"TargetFaceFile"];
+    [defaults synchronize];
+
     [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
 }
 - (NSString*) getTargetFace

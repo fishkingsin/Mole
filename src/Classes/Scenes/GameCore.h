@@ -9,5 +9,5 @@
 #import "Scene.h"
 #import "TouchSheet.h"
 @interface GameCore : Scene
--(void)setFaceFile : (NSString*)fileName;
+//-(void)setFaceFile : (NSString*)fileName;
 @end

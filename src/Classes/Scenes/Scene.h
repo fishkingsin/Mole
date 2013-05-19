@@ -16,4 +16,7 @@
 @interface Scene : SPSprite
 - (void)onBackButtonTriggered:(SPEvent *)event;
 - (void)onSceneClosing:(SPEvent *)event;
+
+//added backbutton sync
+@property(nonatomic,strong)SPButton *backButton;
 @end

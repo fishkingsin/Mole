@@ -15,13 +15,13 @@
 {
     UITextField *_textField;
     SPButton *_okButton;
-    NSString *_yourName;
+//    NSString *_yourName;
     float startX;
     float startY;
 }
 
 @synthesize textField = _textField ;
-@synthesize yourName = _yourName;
+//@synthesize yourName = _yourName;
 
 - (id)init
 {
@@ -49,6 +49,11 @@
     _textField.returnKeyType = UIReturnKeyDone;
     _textField.clearButtonMode = UITextFieldViewModeAlways;
     _textField.delegate = self;
+    //read the last save user name
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *name = [defaults objectForKey:@"UserName"];
+    [_textField setText:name];
+    
     [Sparrow.currentController.view addSubview:_textField];
     
     
@@ -58,7 +63,10 @@
     _okButton.x = CENTER_X - _okButton.width / 2.0f;
     _okButton.y = startY - _okButton.height / 2.0f+30;
     _okButton.name = @"ok";
-    _okButton.enabled = NO;
+    if([_textField.text isEqualToString:@""])
+    {
+        _okButton.enabled = NO;
+    }
     [_okButton addEventListener:@selector(onOkButtonTriggered:) atObject:self
                           forType:SP_EVENT_TYPE_TRIGGERED];
     [self addChild:_okButton];
@@ -69,6 +77,7 @@
 {
     textField.text =@"";
     _okButton.enabled = NO;
+    return YES;
 }
 
 //implement UITextfield Mothod
@@ -86,6 +95,12 @@
 }
 - (void)onOkButtonTriggered:(SPEvent *)event
 {
+    [Media playSound:@"sound.caf"];
+    NSString* name = _textField.text;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:name forKey:@"UserName"];
+    [defaults synchronize];
+    NSLog(@"Data saved");
     [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
 }
 - (void)onBackButtonTriggered:(SPEvent *)event

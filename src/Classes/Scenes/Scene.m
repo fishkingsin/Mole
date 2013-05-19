@@ -14,7 +14,8 @@
 {
     SPButton *_backButton;
 }
-
+@synthesize backButton = _backButton;
+//added backbutton sync
 - (id)init
 {
     if ((self = [super init]))
@@ -37,6 +38,8 @@
 
 - (void)onBackButtonTriggered:(SPEvent *)event
 {
+    
+    [Media playSound:@"sound.caf"];
     [_backButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
 }
