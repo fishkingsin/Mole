@@ -24,6 +24,7 @@
     SPButton *conifirmButton;
     SPButton *maleButton;
     SPButton *femaleButton;
+    UIScrollView *scroll;
 
 }
 @synthesize faceFile = _faceFile;
@@ -39,7 +40,10 @@
 
 - (void)dealloc
 {
-
+    for (UIView *view in scroll.subviews) {
+        [view removeFromSuperview];
+    }
+    if(scroll!=nil)[scroll removeFromSuperview];
 }
 
 - (void)setup
@@ -78,74 +82,158 @@
     
 //    [maleButton addEventListener:@selector(onMaleTriggered::) atObject:self
 //                        forType:SP_EVENT_TYPE_TRIGGERED];
-    _maleThumbnailImages = [NSArray arrayWithObjects:
-                              @"ks_holy-tricky_male.png",
-                            [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_male_thumb.png"],
-                            @"ks_holy-tricky_male.png",
-                            [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_male_thumb.png"],
-                            @"ks_holy-tricky_male.png",
-                            [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_male_thumb.png"],
-                            @"ks_holy-tricky_male.png",
-                            [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_male_thumb.png"],
-                            @"ks_holy-tricky_male.png",
-                            [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_male_thumb.png"],
-                            @"ks_holy-tricky_male.png",
-                            [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_male_thumb.png"],
-                            nil];
+//    _maleThumbnailImages = [NSArray arrayWithObjects:
+//                              @"ks_holy-tricky_male.png",
+//                            [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_male_thumb.png"],
+//                            @"ks_holy-tricky_male.png",
+//                            [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_male_thumb.png"],
+//                            @"ks_holy-tricky_male.png",
+//                            [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_male_thumb.png"],
+//                            @"ks_holy-tricky_male.png",
+//                            [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_male_thumb.png"],
+//                            @"ks_holy-tricky_male.png",
+//                            [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_male_thumb.png"],
+//                            @"ks_holy-tricky_male.png",
+//                            [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_male_thumb.png"],
+//                            nil];
 
-    
+    _maleThumbnailImages = [NSArray arrayWithObjects:
+                            @"ks_holy-tricky_male.png",
+                            @"ks_holy-tricky_male_thumb.png",
+                            @"ks_holy-tricky_male.png",
+                            @"ks_holy-tricky_male_thumb.png",
+                            @"ks_holy-tricky_male.png",
+                            @"ks_holy-tricky_male_thumb.png",
+                            @"ks_holy-tricky_male.png",
+                            @"ks_holy-tricky_male_thumb.png",
+                            @"ks_holy-tricky_male.png",
+                            @"ks_holy-tricky_male_thumb.png",
+                            @"ks_holy-tricky_male.png",
+                            @"ks_holy-tricky_male_thumb.png",
+                            nil];
+//    _femaleThumbnailImages = [NSArray arrayWithObjects:
+//                       @"tse_holy-tricky_female.png",
+//                       [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
+//                       @"ks_holy-tricky_female.png",
+//                       [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_female_thumb.png"],
+//                       @"tse_holy-tricky_female.png",
+//                       [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
+//                       @"ks_holy-tricky_female.png",
+//                       [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_female_thumb.png"],
+//                       @"tse_holy-tricky_female.png",
+//                       [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
+//                       @"ks_holy-tricky_female.png",
+//                       [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_female_thumb.png"],
+//                       @"tse_holy-tricky_female.png",
+//                       [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
+//                       @"ks_holy-tricky_female.png",
+//                       [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_female_thumb.png"],
+//                       @"tse_holy-tricky_female.png",
+//                       [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
+//                       nil];
     _femaleThumbnailImages = [NSArray arrayWithObjects:
-                       @"tse_holy-tricky_female.png",
-                       [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
-                       @"ks_holy-tricky_female.png",
-                       [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_female_thumb.png"],
-                       @"tse_holy-tricky_female.png",
-                       [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
-                       @"ks_holy-tricky_female.png",
-                       [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_female_thumb.png"],
-                       @"tse_holy-tricky_female.png",
-                       [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
-                       @"ks_holy-tricky_female.png",
-                       [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_female_thumb.png"],
-                       @"tse_holy-tricky_female.png",
-                       [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
-                       @"ks_holy-tricky_female.png",
-                       [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_female_thumb.png"],
-                       @"tse_holy-tricky_female.png",
-                       [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
-                       nil];
+                              @"tse_holy-tricky_female.png",
+                              @"tse_holy-tricky_female_thumb.png",
+                              @"ks_holy-tricky_female.png",
+                              @"ks_holy-tricky_female_thumb.png",
+                              @"tse_holy-tricky_female.png",
+                              @"tse_holy-tricky_female_thumb.png",
+                              @"ks_holy-tricky_female.png",
+                              @"ks_holy-tricky_female_thumb.png",
+                              @"tse_holy-tricky_female.png",
+                              @"tse_holy-tricky_female_thumb.png",
+                              @"ks_holy-tricky_female.png",
+                              @"ks_holy-tricky_female_thumb.png",
+                              @"tse_holy-tricky_female.png",
+                              @"tse_holy-tricky_female_thumb.png",
+                              @"ks_holy-tricky_female.png",
+                              @"ks_holy-tricky_female_thumb.png",
+                              @"tse_holy-tricky_female.png",
+                              @"tse_holy-tricky_female_thumb.png",
+                              nil];
+
     
     /*
      it is going ot change it to Scroll View
      */
     int index = 0;
     int count = 0;
-    float offSetX = (Sparrow.stage.width-315)*0.5;
-    float offSetY = (Sparrow.stage.height-315)*0.5;
-    while (index < _maleThumbnailImages.count)
+    float offSetX = (Sparrow.stage.width-310)*0.5;
+    float offSetY = (Sparrow.stage.height-310)*0.5;
+//    while (index < _maleThumbnailImages.count)
+//    {
+//        NSString *faceName = _maleThumbnailImages[index++];
+//        SPTexture * image = _maleThumbnailImages[index++];
+//
+//        
+//        SPButton *button = [SPButton buttonWithUpState: image];
+//        button.x = offSetX+(count % 3)*105;
+//        button.y = offSetY+(count / 3) * 105;
+//        button.name = faceName;
+//        
+//        
+//        [button addEventListener:@selector(onButtonTriggered:) atObject:self
+//                         forType:SP_EVENT_TYPE_TRIGGERED];
+//        // play a sound when the image is touched
+//        [button addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+//        
+//        [self addChild:button];
+//        ++count;
+//    }
+    
+    
+    scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(offSetX, offSetY, 310, 310)];
+    scroll.pagingEnabled = YES;
+    NSInteger numberOfViews = 3;
+//    for (int i = 0; i < _maleThumbnailImages.count; i++) {
+    while (index < _femaleThumbnailImages.count)
     {
-        NSString *faceName = _maleThumbnailImages[index++];
-        SPTexture * image = _maleThumbnailImages[index++];
 
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [button addTarget:self
+                   action:@selector(onFaceClicked:)
+         forControlEvents:UIControlEventTouchDown];
+//        [button setTitle:@"Show View" forState:UIControlStateNormal];
+        button.frame = CGRectMake((count % 3)*105, (count / 3) * 105, 100, 100);
         
-        SPButton *button = [SPButton buttonWithUpState: image];
-        button.x = offSetX+(count % 3)*105;
-        button.y = offSetY+(count / 3) * 105;
-        button.name = faceName;
+
+        NSString *faceName = _femaleThumbnailImages[index++];
+        [button setTitle:faceName forState:UIControlStateNormal];
+        [button addSubview:
+         [[UIImageView alloc]initWithImage:
+          [UIImage imageNamed:_femaleThumbnailImages[index++]]]];
         
-        
-        [button addEventListener:@selector(onButtonTriggered:) atObject:self
-                         forType:SP_EVENT_TYPE_TRIGGERED];
-        // play a sound when the image is touched
-        [button addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-        
-        [self addChild:button];
+        [scroll addSubview:button];
         ++count;
+//        CGFloat yOrigin = i * Sparrow.currentController.view.frame.size.width;
+//        UIView *awesomeView = [[UIView alloc] initWithFrame:CGRectMake(0, yOrigin, Sparrow.currentController.view.frame.size.width, Sparrow.currentController.view.frame.size.height)];
+//        awesomeView.backgroundColor = [UIColor colorWithRed:0.5/i green:0.5 blue:0.5 alpha:1];
+//        [scroll addSubview:awesomeView];
+//        [awesomeView release];
     }
+
+    scroll.contentSize = CGSizeMake(310, 105*(_maleThumbnailImages.count/3));
+    [Sparrow.currentController.view addSubview:scroll];
+//    [scroll release];
     
 }
 
-
+- (void) onFaceClicked: (id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    NSLog(@"Button image value %@",[button titleForState:UIControlStateNormal ]);
+    [Media playSound:@"sound.caf"];
+    
+//    SPButton *button = (SPButton *)event.target;
+//    NSLog(@"onButtonTriggered %@", button.name);
+    _faceFile=[button titleForState:UIControlStateNormal ];
+    NSString* faceFile = [button titleForState:UIControlStateNormal ];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:faceFile forKey:@"TargetFaceFile"];
+    [defaults synchronize];
+    
+    [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
+}
 - (void)onImageTouched:(SPTouchEvent *)event
 {
     NSSet *touches = [event touchesWithTarget:self andPhase:SPTouchPhaseEnded];
