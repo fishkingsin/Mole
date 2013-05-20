@@ -16,13 +16,16 @@
 @end
 @implementation GameCore
 {
-//    SPSprite *_contents;
+    //    SPSprite *_contents;
     SPSprite *_face;
     SPSprite *_mole;
-
+    
     SPButton *_confirmButton;
     SPButton *_fbButton;
     SPButton *_saveButton;
+    BOOL _canCapScreen;
+    BOOL _canPostFB;
+    
 }
 - (id)init
 {
@@ -54,11 +57,11 @@
     spImage.x = 0;
     spImage.y = 0;
     [_face addChild:spImage];
-
+    
     
     [self addChild:_face];
-//    NSLog(@"GameCore Init!!!");
-//    [spImage addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    //    NSLog(@"GameCore Init!!!");
+    //    [spImage addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
     _mole = [SPSprite sprite];
     [_face addChild:_mole];
@@ -71,7 +74,7 @@
         TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:sparrow];
         sheet.x = Sparrow.stage.width-50;
         sheet.y = Sparrow.stage.height-(300)+(i*30);
-    
+        
         [_mole addChild:sheet];
     }
     
@@ -79,7 +82,7 @@
     _confirmButton.x = 20;
     _confirmButton.y = _confirmButton.height;
     [self addChild:_confirmButton];
-
+    
     _fbButton = [self createButton:@"Facebook" :@"button_short.png"];
     _fbButton.x = 20;
     _fbButton.enabled = NO;
@@ -94,7 +97,7 @@
     
     [self addChild: [self childByName:@"back"]];
     
-
+    
     SPTextField * _userNameTF = [SPTextField textFieldWithWidth:100 height:25
                                                            text:name];
     _userNameTF.x = 20;
@@ -104,6 +107,7 @@
     _userNameTF.border = NO;
     _userNameTF.color = 0x000000;
     [self addChild:_userNameTF];
+    _canCapScreen = _canPostFB = NO;
     
 }
 
@@ -136,15 +140,15 @@ void releaseData(void *info, const void *data, size_t dataSize) {
 	UIImage *image = [UIImage imageWithCGImage:outputRef];
 	free(pixels);
 	return image;
-//    [image release];
+    //    [image release];
 }
 
 //- (UIImage *)screenshot :(SPRectangle*)rectangle{
 //
-//    
+//
 //    int width  = rectangle.width;
 //	int height = rectangle.height;
-//	
+//
 //	NSInteger myDataLength = width * height * 4;
 //	GLubyte *buffer = (GLubyte *) malloc(myDataLength);
 //	GLubyte *bufferFlipped = (GLubyte *) malloc(myDataLength);
@@ -155,17 +159,17 @@ void releaseData(void *info, const void *data, size_t dataSize) {
 //		}
 //	}
 //	free(buffer);	// free original buffer
-//	
+//
 //	CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, bufferFlipped, myDataLength, releaseData);
 //	CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
 //	CGImageRef imageRef = CGImageCreate(width, height, 8, 32, 4 * width, colorSpaceRef, kCGBitmapByteOrderDefault, provider, NULL, NO, kCGRenderingIntentDefault);
-//	
+//
 //	CGColorSpaceRelease(colorSpaceRef);
 //	CGDataProviderRelease(provider);
-//    
+//
 //    UIImage * image = [UIImage imageWithCGImage:imageRef];
 //    CGImageRelease(imageRef);
-//    
+//
 //    NSData * imageData = UIImagePNGRepresentation(image);
 //    UIImage * imageLossless = [UIImage imageWithData:imageData];
 //    return imageLossless;
@@ -180,18 +184,22 @@ void releaseData(void *info, const void *data, size_t dataSize) {
 
 - (void)postFacebook
 {
-//    NSSet *touches = [event touchesWithTarget:self andPhase:SPTouchPhaseEnded];
-//    if ([touches anyObject]) [Media playSound:@"sound.caf"];
-
+    //    NSSet *touches = [event touchesWithTarget:self andPhase:SPTouchPhaseEnded];
+    //    if ([touches anyObject]) [Media playSound:@"sound.caf"];
+    
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
         // Initialize Compose View Controller
         SLComposeViewController *vc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
         // Configure Compose View Controller
-        [vc setInitialText:@"testing"];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSString *name = [defaults objectForKey:@"UserName"];
+        NSString *content = [[NSString alloc] initWithFormat:@"%@ : %@",name,@"bla bla bla bla bla bla bla bla bla bla \nbla bla bla bla bla bla bla bla " ];
+        [vc setInitialText:content];
         UIImage * img = [self screenshot:[[SPRectangle alloc] initWithX:
                                           0 y:0
-                                          width:GAME_WIDTH height:GAME_HEIGHT]];
+                                                                  width:GAME_WIDTH height:GAME_HEIGHT]];
         [vc addImage: img];
+//        [name release];
         // Present Compose View Controller
         [Sparrow.currentController presentViewController:vc animated:YES completion:nil];
     } else {
@@ -205,7 +213,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:filePath];
     
     SPButton *newButton = [[SPButton alloc] initWithUpState:buttonTexture text:_text];
-
+    
     newButton.name = _text;
     newButton.enabled = YES;
     
@@ -225,38 +233,25 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         
     }else if([button.name isEqualToString:@"Facebook"])
     {
-        _confirmButton.visible = NO;
-        _fbButton.visible = NO;
-        _saveButton.visible = NO;
-        [self backButton].visible = NO;
+        [self removeChild: _confirmButton];
+        [self removeChild: _fbButton];
+        [self removeChild: _saveButton];
+        [self removeChild: [self backButton]];
         
         [self flatten];
-                //refresh the screen when widget is invisable
-        [self postFacebook];
-        
-        _confirmButton.visible = YES;
-        _fbButton.visible = YES;
-        _saveButton.visible = YES;
-        [self backButton].visible = YES;
+        //allow render loop do scapscreeen function
+        _canPostFB = YES;
     }else if([button.name isEqualToString:@"Save"])
     {
-        _confirmButton.visible = NO;
-        _fbButton.visible = NO;
-        _saveButton.visible = NO;
-        [self backButton].visible = NO;
+        [self removeChild: _confirmButton];
+        [self removeChild: _fbButton];
+        [self removeChild: _saveButton];
+        [self removeChild: [self backButton]];
         
-        //refresh the screen when widget is invisable
+
         [self flatten];
-        
-        UIImage * img = [self screenshot :[[SPRectangle alloc] initWithX:
-                                           0 y:0
-                                           width:GAME_WIDTH height:GAME_HEIGHT]];
-        UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil);
-        
-        _confirmButton.visible = YES;
-        _fbButton.visible = YES;
-        _saveButton.visible = YES;
-        [self backButton].visible = YES;
+        //allow render loop do scapscreeen function
+        _canCapScreen = YES;
     }
     
 }
@@ -277,5 +272,29 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         TouchSheet *sheet = (TouchSheet *)[_mole childAtIndex:i];
         NSLog(@"TouchSheet : %i at %f %f",i,sheet.x,sheet.y);
     }
+}
+- (void)render:(SPRenderSupport*)support
+{
+ 
+    if (_canCapScreen || _canPostFB) {
+        if(_canPostFB)
+        {
+            [self postFacebook];
+        }else{
+            UIImage * img = [self screenshot :[[SPRectangle alloc] initWithX:
+                                               0 y:0 width:GAME_WIDTH height:GAME_HEIGHT]];
+            UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil);
+        }
+        _canCapScreen = NO;
+        _canPostFB = NO;
+        [self addChild: _confirmButton];
+        [self addChild: _fbButton];
+        [self addChild: _saveButton];
+        [self addChild: [self backButton]];
+        //should use unflatten here
+        //dont know why
+        [self unflatten];
+    }
+       [super render:support];
 }
 @end
