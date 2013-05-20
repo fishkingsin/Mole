@@ -114,6 +114,10 @@
                        @"tse_holy-tricky_female.png",
                        [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
                        nil];
+    
+    /*
+     it is going ot change it to Scroll View
+     */
     int index = 0;
     int count = 0;
     float offSetX = (Sparrow.stage.width-315)*0.5;
