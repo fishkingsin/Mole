@@ -230,7 +230,7 @@
             _currentScene = [[[scenesToCreate[GAME_CORE] class] alloc] init];
             _currentScene.name = NSStringFromClass(scenesToCreate[GAME_CORE]);
             //        _contents.visible = NO;
-            GameCore*gameCore =  (GameCore*)_currentScene;
+//            GameCore*gameCore =  (GameCore*)_currentScene;
 //            [gameCore setFaceFile:[_scene faceFile]];
             
             
