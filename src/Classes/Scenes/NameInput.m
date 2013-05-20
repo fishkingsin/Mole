@@ -90,7 +90,10 @@
     [textField resignFirstResponder];
     NSLog(@"textFieldShouldReturn %@",[textField text]);
 //    [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
-    _okButton.enabled = YES;
+    if(![textField.text isEqualToString:@""])
+    {
+        _okButton.enabled = YES;
+    }
     return NO;
 }
 - (void)onOkButtonTriggered:(SPEvent *)event
