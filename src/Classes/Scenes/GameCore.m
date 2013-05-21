@@ -61,9 +61,7 @@
     
     
     [self addChild:_face];
-    //    NSLog(@"GameCore Init!!!");
-    //    [spImage addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-    
+
     _mole = [SPSprite sprite];
     [_face addChild:_mole];
     // to find out how to react to touch events have a look at the TouchSheet class!
