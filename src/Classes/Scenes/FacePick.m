@@ -185,7 +185,7 @@
     scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(offSetX, offSetY, SCROLL_SIZE, SCROLL_SIZE)];
     scroll.pagingEnabled = YES;
     [self createScrollView:_femaleThumbnailImages];
-
+    
     [Sparrow.currentController.view addSubview:scroll];
     //    [scroll release];
     
@@ -197,7 +197,7 @@
     }
     int index = 0;
     int count = 0;
-
+    
     
     
     
@@ -222,7 +222,7 @@
             [scroll addSubview:button];
             ++count;
         }
-            scroll.contentSize = CGSizeMake(SCROLL_SIZE, 105*(array.count/3));
+        scroll.contentSize = CGSizeMake(SCROLL_SIZE, 105*(array.count/3));
     }
     else{
         NSLog(@"Error : Array is not even number length please check the array content");
@@ -235,8 +235,6 @@
     NSLog(@"Button image value %@",[button titleForState:UIControlStateNormal ]);
     [Media playSound:@"sound.caf"];
     
-    //    SPButton *button = (SPButton *)event.target;
-    //    NSLog(@"onButtonTriggered %@", button.name);
     _faceFile=[button titleForState:UIControlStateNormal ];
     NSString* faceFile = [button titleForState:UIControlStateNormal ];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -273,11 +271,13 @@
 {
     maleButton.enabled = NO;
     femaleButton.enabled = YES;
+    [self createScrollView:_femaleThumbnailImages];
 }
 - (void)onFemaleTriggered:(SPEvent *)event
 {
     maleButton.enabled = YES;
     femaleButton.enabled = NO;
+    [self createScrollView:_femaleThumbnailImages];
 }
 -(SPButton*) createButton:(NSString*) _text : (NSString*)filePath
 {
