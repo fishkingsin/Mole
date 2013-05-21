@@ -270,7 +270,8 @@ void releaseData(void *info, const void *data, size_t dataSize) {
 }
 - (void)render:(SPRenderSupport*)support
 {
- 
+    //should do super render before the cap screen
+     [super render:support];
     if (_canCapScreen || _canPostFB) {
         if(_canPostFB)
         {
@@ -290,7 +291,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         //dont know why
         [self unflatten];
     }
-       [super render:support];
+       
 }
 //- (NSString *) platformString{
 //    NSString *platform = [Sparrow.currentController.parentViewController platform];
