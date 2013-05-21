@@ -39,6 +39,10 @@
     {
         [_textField removeFromSuperview];
     }
+    if(_okButton!=nil)
+    {
+        [_okButton removeFromParent];
+    }
 }
 
 - (void)setup

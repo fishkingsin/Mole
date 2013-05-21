@@ -12,7 +12,7 @@
 
 @interface FacePick ()
 - (void)onImageTouched:(SPTouchEvent *)event;
-- (void)onButtonTriggered:(SPEvent *)event;
+//- (void)onButtonTriggered:(SPEvent *)event;
 - (void)onMaleTriggered:(SPEvent *)event;
 - (void)onFemaleTriggered:(SPEvent *)event;
 -(SPButton*) createButton:(NSString*) _text : (NSString*)filePath;
@@ -24,10 +24,10 @@
     NSArray *_maleThumbnailImages;
     float _offsetY;
     NSString *_faceFile;
-    SPButton *conifirmButton;
-    SPButton *maleButton;
-    SPButton *femaleButton;
-    UIScrollView *scroll;
+    SPButton *_conifirmButton;
+    SPButton *_maleButton;
+    SPButton *  _femaleButton;
+    UIScrollView *_scroll;
     
 }
 @synthesize faceFile = _faceFile;
@@ -43,10 +43,22 @@
 
 - (void)dealloc
 {
-    for (UIView *view in scroll.subviews) {
+    for (UIView *view in _scroll.subviews) {
         [view removeFromSuperview];
     }
-    if(scroll!=nil)[scroll removeFromSuperview];
+    if(_scroll!=nil)[_scroll removeFromSuperview];
+    if(_conifirmButton!=nil)
+    {
+        [_conifirmButton removeFromParent];
+    }
+    if(_maleButton!=nil)
+    {
+        [_maleButton removeFromParent];
+    }
+    if(_femaleButton!=nil)
+    {
+        [_femaleButton removeFromParent];
+    }
 }
 
 - (void)setup
@@ -67,23 +79,23 @@
     [self addChild:_userNameTF];
     
     
-    maleButton = [self createButton:@"Male" :@"button_short.png"];
-    maleButton.x = (Sparrow.stage.width-( maleButton.width*2))*0.5;
-    maleButton.y = 0;
-    maleButton.enabled = NO;
-    [maleButton addEventListener:@selector(onMaleTriggered:) atObject:self
+    _maleButton = [self createButton:@"Male" :@"button_short.png"];
+    _maleButton.x = (Sparrow.stage.width-( _maleButton.width*2))*0.5;
+    _maleButton.y = 0;
+    _maleButton.enabled = NO;
+    [_maleButton addEventListener:@selector(onMaleTriggered:) atObject:self
                          forType:SP_EVENT_TYPE_TRIGGERED];
-    [self addChild:maleButton];
+    [self addChild:_maleButton];
     
-    femaleButton = [self createButton:@"Female" :@"button_short.png" ];
-    femaleButton.x = (Sparrow.stage.width-( maleButton.width*2))*0.5+maleButton.width;
-    femaleButton.y = 0;
-    femaleButton.enabled = YES;
-    [femaleButton addEventListener:@selector(onFemaleTriggered:) atObject:self
+    _femaleButton = [self createButton:@"Female" :@"button_short.png" ];
+    _femaleButton.x = (Sparrow.stage.width-( _maleButton.width*2))*0.5+_maleButton.width;
+    _femaleButton.y = 0;
+    _femaleButton.enabled = YES;
+    [_femaleButton addEventListener:@selector(onFemaleTriggered:) atObject:self
                            forType:SP_EVENT_TYPE_TRIGGERED];
-    [self addChild:femaleButton];
+    [self addChild:_femaleButton];
     
-    //    [maleButton addEventListener:@selector(onMaleTriggered::) atObject:self
+    //    [_maleButton addEventListener:@selector(onMaleTriggered::) atObject:self
     //                        forType:SP_EVENT_TYPE_TRIGGERED];
     //    _maleThumbnailImages = [NSArray arrayWithObjects:
     //                              @"ks_holy-tricky_male.png",
@@ -100,21 +112,7 @@
     //                            [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_male_thumb.png"],
     //                            nil];
     
-    _maleThumbnailImages = [NSArray arrayWithObjects:
-                            @"ks_holy-tricky_male.png",
-                            @"ks_holy-tricky_male_thumb.png",
-                            @"ks_holy-tricky_male.png",
-                            @"ks_holy-tricky_male_thumb.png",
-                            @"ks_holy-tricky_male.png",
-                            @"ks_holy-tricky_male_thumb.png",
-                            @"ks_holy-tricky_male.png",
-                            @"ks_holy-tricky_male_thumb.png",
-                            @"ks_holy-tricky_male.png",
-                            @"ks_holy-tricky_male_thumb.png",
-                            @"ks_holy-tricky_male.png",
-                            @"ks_holy-tricky_male_thumb.png",
-                            nil];
-    //    _femaleThumbnailImages = [NSArray arrayWithObjects:
+        //    _femaleThumbnailImages = [NSArray arrayWithObjects:
     //                       @"tse_holy-tricky_female.png",
     //                       [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
     //                       @"ks_holy-tricky_female.png",
@@ -134,28 +132,6 @@
     //                       @"tse_holy-tricky_female.png",
     //                       [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
     //                       nil];
-    _femaleThumbnailImages = [NSArray arrayWithObjects:
-                              @"tse_holy-tricky_female.png",
-                              @"tse_holy-tricky_female_thumb.png",
-                              @"ks_holy-tricky_female.png",
-                              @"ks_holy-tricky_female_thumb.png",
-                              @"tse_holy-tricky_female.png",
-                              @"tse_holy-tricky_female_thumb.png",
-                              @"ks_holy-tricky_female.png",
-                              @"ks_holy-tricky_female_thumb.png",
-                              @"tse_holy-tricky_female.png",
-                              @"tse_holy-tricky_female_thumb.png",
-                              @"ks_holy-tricky_female.png",
-                              @"ks_holy-tricky_female_thumb.png",
-                              @"tse_holy-tricky_female.png",
-                              @"tse_holy-tricky_female_thumb.png",
-                              @"ks_holy-tricky_female.png",
-                              @"ks_holy-tricky_female_thumb.png",
-                              @"tse_holy-tricky_female.png",
-                              @"tse_holy-tricky_female_thumb.png",
-                              nil];
-    
-    
     /*
      it is going ot change it to Scroll View
      */
@@ -180,19 +156,63 @@
     //        [self addChild:button];
     //        ++count;
     //    }
+    _maleThumbnailImages = [NSArray arrayWithObjects:
+                            @"ks_holy-tricky_male.png",
+                            @"ks_holy-tricky_male_thumb.png",
+                            @"ks_holy-tricky_male.png",
+                            @"ks_holy-tricky_male_thumb.png",
+                            @"ks_holy-tricky_male.png",
+                            @"ks_holy-tricky_male_thumb.png",
+                            @"ks_holy-tricky_male.png",
+                            @"ks_holy-tricky_male_thumb.png",
+                            @"ks_holy-tricky_male.png",
+                            @"ks_holy-tricky_male_thumb.png",
+                            @"ks_holy-tricky_male.png",
+                            @"ks_holy-tricky_male_thumb.png",
+                            @"ks_holy-tricky_male.png",
+                            @"ks_holy-tricky_male_thumb.png",
+                            @"ks_holy-tricky_male.png",
+                            @"ks_holy-tricky_male_thumb.png",
+                            @"ks_holy-tricky_male.png",
+                            @"ks_holy-tricky_male_thumb.png",
+                            nil];
+
+    _femaleThumbnailImages = [NSArray arrayWithObjects:
+                              @"tse_holy-tricky_female.png",
+                              @"tse_holy-tricky_female_thumb.png",
+                              @"ks_holy-tricky_female.png",
+                              @"ks_holy-tricky_female_thumb.png",
+                              @"tse_holy-tricky_female.png",
+                              @"tse_holy-tricky_female_thumb.png",
+                              @"ks_holy-tricky_female.png",
+                              @"ks_holy-tricky_female_thumb.png",
+                              @"tse_holy-tricky_female.png",
+                              @"tse_holy-tricky_female_thumb.png",
+                              @"ks_holy-tricky_female.png",
+                              @"ks_holy-tricky_female_thumb.png",
+                              @"tse_holy-tricky_female.png",
+                              @"tse_holy-tricky_female_thumb.png",
+                              @"ks_holy-tricky_female.png",
+                              @"ks_holy-tricky_female_thumb.png",
+                              @"tse_holy-tricky_female.png",
+                              @"tse_holy-tricky_female_thumb.png",
+                              nil];
+    
+    
+    
     float offSetX = (Sparrow.stage.width-SCROLL_SIZE)*0.5;
     float offSetY = (Sparrow.stage.height-SCROLL_SIZE)*0.5;
-    scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(offSetX, offSetY, SCROLL_SIZE, SCROLL_SIZE)];
-    scroll.pagingEnabled = YES;
+    _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(offSetX, offSetY, SCROLL_SIZE, SCROLL_SIZE)];
+    _scroll.pagingEnabled = YES;
     [self createScrollView:_femaleThumbnailImages];
     
-    [Sparrow.currentController.view addSubview:scroll];
+    [Sparrow.currentController.view addSubview:_scroll];
     //    [scroll release];
     
 }
 -(void) createScrollView :(NSArray*)array
 {
-    for (UIView *view in scroll.subviews) {
+    for (UIView *view in _scroll.subviews) {
         [view removeFromSuperview];
     }
     int index = 0;
@@ -219,10 +239,10 @@
              [[UIImageView alloc]initWithImage:
               [UIImage imageNamed:array[index++]]]];
             
-            [scroll addSubview:button];
+            [_scroll addSubview:button];
             ++count;
         }
-        scroll.contentSize = CGSizeMake(SCROLL_SIZE, 105*(array.count/3));
+        _scroll.contentSize = CGSizeMake(SCROLL_SIZE, 105*(array.count/3));
     }
     else{
         NSLog(@"Error : Array is not even number length please check the array content");
@@ -237,11 +257,14 @@
     
     _faceFile=[button titleForState:UIControlStateNormal ];
     NSString* faceFile = [button titleForState:UIControlStateNormal ];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:faceFile forKey:@"TargetFaceFile"];
-    [defaults synchronize];
-    
-    [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
+    if(![faceFile isEqualToString:@""])
+    {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:faceFile forKey:@"TargetFaceFile"];
+        [defaults synchronize];
+        
+        [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
+    }
 }
 - (void)onImageTouched:(SPTouchEvent *)event
 {
@@ -249,19 +272,19 @@
     if ([touches anyObject]) [Media playSound:@"sound.caf"];
 }
 
-- (void)onButtonTriggered:(SPEvent *)event
-{
-    
-    SPButton *button = (SPButton *)event.target;
-    NSLog(@"onButtonTriggered %@", button.name);
-    _faceFile=button.name;
-    NSString* faceFile = button.name;
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:faceFile forKey:@"TargetFaceFile"];
-    [defaults synchronize];
-    
-    [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
-}
+//- (void)onButtonTriggered:(SPEvent *)event
+//{
+//    
+//    SPButton *button = (SPButton *)event.target;
+//    NSLog(@"onButtonTriggered %@", button.name);
+//    _faceFile=button.name;
+//    NSString* faceFile = button.name;
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    [defaults setObject:faceFile forKey:@"TargetFaceFile"];
+//    [defaults synchronize];
+//    
+//    [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
+//}
 - (NSString*) getTargetFace
 {
     return _faceFile;
@@ -269,14 +292,14 @@
 
 - (void)onMaleTriggered:(SPEvent *)event
 {
-    maleButton.enabled = NO;
-    femaleButton.enabled = YES;
+    _maleButton.enabled = NO;
+    _femaleButton.enabled = YES;
     [self createScrollView:_femaleThumbnailImages];
 }
 - (void)onFemaleTriggered:(SPEvent *)event
 {
-    maleButton.enabled = YES;
-    femaleButton.enabled = NO;
+    _maleButton.enabled = YES;
+    _femaleButton.enabled = NO;
     [self createScrollView:_femaleThumbnailImages];
 }
 -(SPButton*) createButton:(NSString*) _text : (NSString*)filePath
@@ -294,8 +317,8 @@
 - (void)onSceneClosing:(SPEvent *)event
 {
     
-    [femaleButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
-    [maleButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    [_femaleButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    [_maleButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
     [super onSceneClosing:event];
 }

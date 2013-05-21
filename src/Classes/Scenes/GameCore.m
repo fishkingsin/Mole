@@ -39,7 +39,26 @@
 
 - (void)dealloc
 {
-    
+    if(_confirmButton!=nil)
+    {
+        [_confirmButton removeFromParent];
+    }
+    if(_fbButton!=nil)
+    {
+        [_fbButton removeFromParent];
+    }
+    if(_confirmButton!=nil)
+    {
+        [_saveButton removeFromParent];
+    }
+    if(_face!=nil)
+    {
+        [_face removeFromParent];
+    }
+    if(_mole!=nil)
+    {
+        [_mole removeFromParent];
+    }
 }
 
 - (void)setup
