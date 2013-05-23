@@ -95,68 +95,19 @@
                            forType:SP_EVENT_TYPE_TRIGGERED];
     [self addChild:_femaleButton];
     
-    //    [_maleButton addEventListener:@selector(onMaleTriggered::) atObject:self
-    //                        forType:SP_EVENT_TYPE_TRIGGERED];
-    //    _maleThumbnailImages = [NSArray arrayWithObjects:
-    //                              @"ks_holy-tricky_male.png",
-    //                            [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_male_thumb.png"],
-    //                            @"ks_holy-tricky_male.png",
-    //                            [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_male_thumb.png"],
-    //                            @"ks_holy-tricky_male.png",
-    //                            [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_male_thumb.png"],
-    //                            @"ks_holy-tricky_male.png",
-    //                            [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_male_thumb.png"],
-    //                            @"ks_holy-tricky_male.png",
-    //                            [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_male_thumb.png"],
-    //                            @"ks_holy-tricky_male.png",
-    //                            [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_male_thumb.png"],
-    //                            nil];
-    
-        //    _femaleThumbnailImages = [NSArray arrayWithObjects:
-    //                       @"tse_holy-tricky_female.png",
-    //                       [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
-    //                       @"ks_holy-tricky_female.png",
-    //                       [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_female_thumb.png"],
-    //                       @"tse_holy-tricky_female.png",
-    //                       [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
-    //                       @"ks_holy-tricky_female.png",
-    //                       [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_female_thumb.png"],
-    //                       @"tse_holy-tricky_female.png",
-    //                       [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
-    //                       @"ks_holy-tricky_female.png",
-    //                       [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_female_thumb.png"],
-    //                       @"tse_holy-tricky_female.png",
-    //                       [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
-    //                       @"ks_holy-tricky_female.png",
-    //                       [SPTexture textureWithContentsOfFile:@"ks_holy-tricky_female_thumb.png"],
-    //                       @"tse_holy-tricky_female.png",
-    //                       [SPTexture textureWithContentsOfFile:@"tse_holy-tricky_female_thumb.png"],
-    //                       nil];
-    /*
-     it is going ot change it to Scroll View
-     */
-    
-    //    while (index < _maleThumbnailImages.count)
-    //    {
-    //        NSString *faceName = _maleThumbnailImages[index++];
-    //        SPTexture * image = _maleThumbnailImages[index++];
-    //
-    //
-    //        SPButton *button = [SPButton buttonWithUpState: image];
-    //        button.x = offSetX+(count % 3)*105;
-    //        button.y = offSetY+(count / 3) * 105;
-    //        button.name = faceName;
-    //
-    //
-    //        [button addEventListener:@selector(onButtonTriggered:) atObject:self
-    //                         forType:SP_EVENT_TYPE_TRIGGERED];
-    //        // play a sound when the image is touched
-    //        [button addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-    //
-    //        [self addChild:button];
-    //        ++count;
-    //    }
     _maleThumbnailImages = [NSArray arrayWithObjects:
+                            @"ks_holy-tricky_male.png",
+                            @"ks_holy-tricky_male_thumb.png",
+                            @"ks_holy-tricky_male.png",
+                            @"ks_holy-tricky_male_thumb.png",
+                            @"ks_holy-tricky_male.png",
+                            @"ks_holy-tricky_male_thumb.png",
+                            @"ks_holy-tricky_male.png",
+                            @"ks_holy-tricky_male_thumb.png",
+                            @"ks_holy-tricky_male.png",
+                            @"ks_holy-tricky_male_thumb.png",
+                            @"ks_holy-tricky_male.png",
+                            @"ks_holy-tricky_male_thumb.png",
                             @"ks_holy-tricky_male.png",
                             @"ks_holy-tricky_male_thumb.png",
                             @"ks_holy-tricky_male.png",
@@ -178,6 +129,14 @@
                             nil];
 
     _femaleThumbnailImages = [NSArray arrayWithObjects:
+                              @"tse_holy-tricky_female.png",
+                              @"tse_holy-tricky_female_thumb.png",
+                              @"ks_holy-tricky_female.png",
+                              @"ks_holy-tricky_female_thumb.png",
+                              @"tse_holy-tricky_female.png",
+                              @"tse_holy-tricky_female_thumb.png",
+                              @"ks_holy-tricky_female.png",
+                              @"ks_holy-tricky_female_thumb.png",
                               @"tse_holy-tricky_female.png",
                               @"tse_holy-tricky_female_thumb.png",
                               @"ks_holy-tricky_female.png",
