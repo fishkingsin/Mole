@@ -22,6 +22,7 @@
 - (void)onResize:(SPResizeEvent *)event;
 - (void)onButtonTriggered:(SPEvent *)event;
 - (void)onSceneClosing:(SPEvent *)event;
+- (void)onCreditClosing:(SPEvent *)event;
 @end
 
 
@@ -30,6 +31,7 @@
 @implementation Game
 {
     Scene *_currentScene;
+    CreditPage *_creditPage;
     SPSprite *_contents;
     SPSprite *_menu;
     NSArray *scenesToCreate;
@@ -94,9 +96,14 @@
     //    _contents.visible = NO;
     [_contents addChild:_currentScene];
     
+    _creditPage = [[CreditPage alloc]init];
+    [_contents addChild:_creditPage];
     
     [self addEventListener:@selector(onSceneClosing:) atObject:self
                    forType:EVENT_TYPE_SCENE_CLOSING];
+    [self addEventListener:@selector( onCreditClosing:) atObject:self
+                   forType:EVENT_TYPE_CREDIT_CLOSING];
+
     //    NSString *text = @"To find out how to create your own game out of this scaffold, "
     //                     @"have a look at the 'First Steps' section of the Sparrow website!";
     //
@@ -187,7 +194,11 @@
     //    _mainMenu.visible = NO;
     //    [_contents addChild:_currentScene];
 }
-
+- (void)onCreditClosing:(SPEvent *)event
+{
+    [_creditPage removeFromParent];
+    _creditPage = nil;
+}
 - (void)onSceneClosing:(SPEvent *)event
 {
     NSLog(@"onSceneClosing _currentScene.name : %@ , target : %@",_currentScene.name , event.target);

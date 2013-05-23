@@ -6,8 +6,8 @@
 //
 //
 
-#import "Scene.h"
-
-@interface CreditPage : Scene
+#import "SPSprite.h"
+#define EVENT_TYPE_CREDIT_CLOSING @"credit_closing"
+@interface CreditPage : SPSprite
 
 @end
