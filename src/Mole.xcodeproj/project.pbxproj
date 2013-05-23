@@ -65,6 +65,7 @@
 		E3A87558174678AA002410DD /* FacePick.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A87557174678AA002410DD /* FacePick.m */; };
 		E3A875FB1746A761002410DD /* NameInput.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A875FA1746A761002410DD /* NameInput.m */; };
 		E3BF4A46174789FB00D3D3CF /* TouchSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BF4A45174789FB00D3D3CF /* TouchSheet.m */; };
+		E3E450D9174E578F0009C270 /* CreditPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E450D8174E578F0009C270 /* CreditPage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +157,8 @@
 		E3BF4A45174789FB00D3D3CF /* TouchSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchSheet.m; sourceTree = "<group>"; };
 		E3BF4A47174798DF00D3D3CF /* RoundButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoundButton.h; sourceTree = "<group>"; };
 		E3BF4A48174798DF00D3D3CF /* RoundButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoundButton.m; sourceTree = "<group>"; };
+		E3E450D7174E578F0009C270 /* CreditPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditPage.h; sourceTree = "<group>"; };
+		E3E450D8174E578F0009C270 /* CreditPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditPage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -395,6 +398,8 @@
 				E3A8755417466A59002410DD /* Scene.m */,
 				E3A875F91746A761002410DD /* NameInput.h */,
 				E3A875FA1746A761002410DD /* NameInput.m */,
+				E3E450D7174E578F0009C270 /* CreditPage.h */,
+				E3E450D8174E578F0009C270 /* CreditPage.m */,
 				E3A87556174678AA002410DD /* FacePick.h */,
 				E3A87557174678AA002410DD /* FacePick.m */,
 				E376B96617473F53007D6BD8 /* GameCore.h */,
@@ -545,6 +550,7 @@
 				E3A875FB1746A761002410DD /* NameInput.m in Sources */,
 				E376B96817473F53007D6BD8 /* GameCore.m in Sources */,
 				E3BF4A46174789FB00D3D3CF /* TouchSheet.m in Sources */,
+				E3E450D9174E578F0009C270 /* CreditPage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
