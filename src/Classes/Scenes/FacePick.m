@@ -70,10 +70,10 @@
     NSString *name = [defaults objectForKey:@"UserName"];
     SPTextField * _userNameTF = [SPTextField textFieldWithWidth:100 height:25
                                                            text:name];
-    _userNameTF.x = 10;
-    _userNameTF.y = 10;
-    _userNameTF.hAlign = SPHAlignLeft;
-    _userNameTF.vAlign = SPVAlignTop;
+    _userNameTF.x = (Sparrow.stage.width*0.5)-(_userNameTF.width*0.5);
+    _userNameTF.y = 50;
+    _userNameTF.hAlign = SPHAlignCenter ;
+    _userNameTF.vAlign = SPVAlignCenter ;
     _userNameTF.border = NO;
     _userNameTF.color = 0x000000;
     [self addChild:_userNameTF];
@@ -82,7 +82,7 @@
     _maleButton = [self createButton:@"Male" :@"button_short.png"];
     _maleButton.x = (Sparrow.stage.width-( _maleButton.width*2))*0.5;
     _maleButton.y = 0;
-    _maleButton.enabled = NO;
+    _maleButton.enabled = YES;
     [_maleButton addEventListener:@selector(onMaleTriggered:) atObject:self
                          forType:SP_EVENT_TYPE_TRIGGERED];
     [self addChild:_maleButton];
@@ -90,7 +90,7 @@
     _femaleButton = [self createButton:@"Female" :@"button_short.png" ];
     _femaleButton.x = (Sparrow.stage.width-( _maleButton.width*2))*0.5+_maleButton.width;
     _femaleButton.y = 0;
-    _femaleButton.enabled = YES;
+    _femaleButton.enabled = NO;
     [_femaleButton addEventListener:@selector(onFemaleTriggered:) atObject:self
                            forType:SP_EVENT_TYPE_TRIGGERED];
     [self addChild:_femaleButton];
@@ -294,7 +294,7 @@
 {
     _maleButton.enabled = NO;
     _femaleButton.enabled = YES;
-    [self createScrollView:_femaleThumbnailImages];
+    [self createScrollView:_maleThumbnailImages];
 }
 - (void)onFemaleTriggered:(SPEvent *)event
 {
