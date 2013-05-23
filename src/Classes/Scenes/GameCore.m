@@ -119,13 +119,14 @@
     
     SPTextField * _userNameTF = [SPTextField textFieldWithWidth:100 height:25
                                                            text:name];
-    _userNameTF.x = 20;
-    _userNameTF.y = 20;
-    _userNameTF.hAlign = SPHAlignLeft;
-    _userNameTF.vAlign = SPVAlignTop;
+    _userNameTF.x = (Sparrow.stage.width*0.5)-(_userNameTF.width*0.5);
+    _userNameTF.y = 50;
+    _userNameTF.hAlign = SPHAlignCenter ;
+    _userNameTF.vAlign = SPVAlignCenter ;
     _userNameTF.border = NO;
     _userNameTF.color = 0x000000;
     [self addChild:_userNameTF];
+    
     _isConfirm = _canCapScreen = _canPostFB = NO;
     
     
