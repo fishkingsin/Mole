@@ -21,6 +21,8 @@
     SPSprite *_face;
     SPSprite *_mole;
     
+    SPSprite *_moleMenu;
+    
     SPButton *_confirmButton;
     SPButton *_fbButton;
     SPButton *_saveButton;
@@ -67,11 +69,18 @@
     
     
     _face = [SPSprite sprite];
-    
+    _moleMenu = [SPSprite sprite];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *fileName = [defaults objectForKey:@"TargetFaceFile"];
     NSString *name = [defaults objectForKey:@"UserName"];
     
+    /*
+     * _moleMenu add button
+     * minusbtn
+     * scroll
+     *
+     *
+     */
     
     SPImage * spImage = [[SPImage alloc] initWithContentsOfFile:fileName];
     
@@ -81,7 +90,7 @@
     
     
     [self addChild:_face];
-
+    
     _mole = [SPSprite sprite];
     [_face addChild:_mole];
     // to find out how to react to touch events have a look at the TouchSheet class!
@@ -91,8 +100,8 @@
         
         SPImage *sparrow = [SPImage imageWithContentsOfFile:@"mole01.png"];
         TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:sparrow];
-        sheet.x = Sparrow.stage.width-50;
-        sheet.y = Sparrow.stage.height-(300)+(i*30);
+        sheet.x = (i*30);
+        sheet.y = Sparrow.stage.height-50;
         
         [_mole addChild:sheet];
     }
@@ -150,14 +159,14 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         myHeight = 480;
     }
     else if ([[self platformString] isEqualToString:@"iPhone 4"] ||
-        [[self platformString] isEqualToString:@"Verizon iPhone 4"] ||
-        [[self platformString] isEqualToString:@"iPhone 4S"])
+             [[self platformString] isEqualToString:@"Verizon iPhone 4"] ||
+             [[self platformString] isEqualToString:@"iPhone 4S"])
     {
         myWidth = 640;
         myHeight = 960;
     }
     else if ([[self platformString] isEqualToString:@"iPhone 5 (GSM)"] ||
-        [[self platformString] isEqualToString:@"iPhone 5 (GSM+CDMA)"])
+             [[self platformString] isEqualToString:@"iPhone 5 (GSM+CDMA)"])
     {
         myWidth = 640;
         myHeight = 960;
@@ -168,7 +177,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         myWidth = 640;
         myHeight = 960;
     }
-
+    
     
     NSInteger myDataLength = myWidth * myHeight * 4;
     NSMutableData * buffer= [NSMutableData dataWithLength :myDataLength];
@@ -209,15 +218,15 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         // Initialize Compose View Controller
         SLComposeViewController *vc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
         // Configure Compose View Controller
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            NSString *name = [defaults objectForKey:@"UserName"];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *name = [defaults objectForKey:@"UserName"];
         NSString *content = [[NSString alloc] initWithFormat:@"%@ : %@",name,@"bla bla bla bla bla bla bla bla bla bla \nbla bla bla bla bla bla bla bla " ];
         [vc setInitialText:content];
         UIImage * img = [self screenshot:[[SPRectangle alloc] initWithX:
                                           0 y:0
                                                                   width:GAME_WIDTH height:GAME_HEIGHT]];
         [vc addImage: img];
-//        [name release];
+        //        [name release];
         // Present Compose View Controller
         [Sparrow.currentController presentViewController:vc animated:YES completion:nil];
     } else {
@@ -266,7 +275,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         [self removeChild: _saveButton];
         [self removeChild: [self backButton]];
         
-
+        
         [self flatten];
         //allow render loop do scapscreeen function
         _canCapScreen = YES;
@@ -288,13 +297,13 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     for( int i = 0 ; i < numMole ; i++)
     {
         TouchSheet *sheet = (TouchSheet *)[_mole childAtIndex:i];
-        NSLog(@"TouchSheet : %i at %f %f",i,sheet.x,sheet.y);
+        NSLog(@"TouchSheet : %i at %f %f",i,sheet.x+sheet.width*0.5,sheet.y+sheet.height*0.5);
     }
 }
 - (void)render:(SPRenderSupport*)support
 {
     //should do super render before the cap screen
-     [super render:support];
+    [super render:support];
     if (_canCapScreen || _canPostFB) {
         if(_canPostFB)
         {
@@ -314,14 +323,14 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         //dont know why
         [self unflatten];
     }
-       
+    
 }
 - (NSString *) platformString{
     struct utsname systemInfo;
     uname(&systemInfo);
     NSString* platform =  [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
-//    NSLog(@"Current Devie Model %@",_platform);//[[UIDevice currentDevice] localizedModel]);
-//    NSString *platform = [Sparrow.currentController.parentViewController _platform];
+    //    NSLog(@"Current Devie Model %@",_platform);//[[UIDevice currentDevice] localizedModel]);
+    //    NSString *platform = [Sparrow.currentController.parentViewController _platform];
     if ([platform isEqualToString:@"iPhone1,1"])    return @"iPhone 1G";
     if ([platform isEqualToString:@"iPhone1,2"])    return @"iPhone 3G";
     if ([platform isEqualToString:@"iPhone2,1"])    return @"iPhone 3GS";
