@@ -8,6 +8,7 @@
 #import "NameInput.h"
 #import "FacePick.h"
 #import "GameCore.h"
+#import "CreditPage.h"
 //define scene array index
 #define NAME_INPUT 0
 #define FACE_PICK 1
@@ -30,6 +31,7 @@
 {
     Scene *_currentScene;
     SPSprite *_contents;
+    SPSprite *_menu;
     NSArray *scenesToCreate;
 }
 
@@ -70,15 +72,18 @@
     // The positions are updated when the device is rotated. To make that easy, we put all objects
     // in one sprite (_contents): it will simply be rotated to be upright when the device rotates.
     
-    _contents = [SPSprite sprite];
+    _contents   = [SPSprite sprite];
+    _menu       = [SPSprite sprite];
     [self addChild:_contents];
+    [self addChild:_menu];
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
     [_contents addChild:background];
     
     
     scenesToCreate = @[[NameInput class],
                        [FacePick class],
-                       [GameCore class]];
+                       [GameCore class],
+                       [CreditPage class]];
     
     
     int targetIndex = NAME_INPUT;
