@@ -7,7 +7,7 @@
 //
 
 #import "Scene.h"
-
+#define KEY_OK @"OK"
 @interface NameInput : Scene
 {
     

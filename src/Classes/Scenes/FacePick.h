@@ -7,7 +7,8 @@
 //
 
 #import "Scene.h"
-
+#define KEY_MALE @"Male"
+#define KEY_FEMALE @"Female"
 @interface FacePick : Scene
 
 @property (nonatomic, strong) NSString* faceFile;

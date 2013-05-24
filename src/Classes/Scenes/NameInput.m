@@ -63,10 +63,10 @@
     
     SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"button_normal.png"];
     
-    _okButton = [[SPButton alloc] initWithUpState:buttonTexture text:@"OK"];
+    _okButton = [[SPButton alloc] initWithUpState:buttonTexture text:NSLocalizedString(KEY_OK, nil)];
     _okButton.x = CENTER_X - _okButton.width / 2.0f;
     _okButton.y = startY - _okButton.height / 2.0f+30;
-    _okButton.name = @"ok";
+    _okButton.name = NSLocalizedString(KEY_OK, nil);
     if([_textField.text isEqualToString:@""])
     {
         _okButton.enabled = NO;

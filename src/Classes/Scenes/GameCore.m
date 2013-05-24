@@ -7,12 +7,7 @@
 //
 
 #import "GameCore.h"
-#include <sys/utsname.h>
-#import <Social/Social.h>
-#define  NUM_MOLE 10
-#define GAME_STATE_DRAGGING 0x10
-#define GAME_STATE_CONFIRMED 0x11
-#define GAME_STATE_END 0x12
+
 @interface GameCore ()
 -(void) postFacebook;
 - (void)onButtonTriggered:(SPEvent *)event;
@@ -81,7 +76,7 @@
     _moleMenu = [SPSprite sprite];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *fileName = [defaults objectForKey:@"TargetFaceFile"];
-    NSString *name = [defaults objectForKey:@"UserName"];
+//    NSString *name = [defaults objectForKey:@"UserName"];
     
     /*
      * _moleMenu add button
@@ -110,47 +105,47 @@
         SPImage *sparrow = [SPImage imageWithContentsOfFile:@"mole01.png"];
         TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:sparrow];
         sheet.x = (i*30)+30;
-        sheet.y = Sparrow.stage.height-10;
+        sheet.y = GAME_HEIGHT-30;
         
         [_mole addChild:sheet];
     }
     
-    _confirmButton = [self createButton:@"Confirm" :@"button_short.png"];
+    _confirmButton = [self createButton:NSLocalizedString(KEY_CONFIRM, nil) :@"button_short.png"];
     _confirmButton.x = 0;
     _confirmButton.y = 0;//_confirmButton.height;
     [self addChild:_confirmButton];
     
-    _fbButton = [self createButton:@"Facebook" :@"button_short.png"];
+    _fbButton = [self createButton:NSLocalizedString(KEY_FACEBOOK, nil) :@"button_short.png"];
     _fbButton.x = 0;
-    _fbButton.enabled = NO;
+    _fbButton.visible = NO;
     _fbButton.y = _confirmButton.y + _fbButton.height;
     [self addChild:_fbButton];
     
-    _saveButton = [self createButton:@"Save" :@"button_short.png"];
+    _saveButton = [self createButton:NSLocalizedString(KEY_SAVE, nil) :@"button_short.png"];
     _saveButton.x = 0;
-    _saveButton.enabled = NO;
+    _saveButton.visible = NO;
     _saveButton.y = _fbButton.y + _saveButton.height;
     [self addChild:_saveButton];
     
-    _cancelButton = [self createButton:@"Cancel" :@"button_short.png"];
+    _cancelButton = [self createButton:NSLocalizedString(KEY_CANCEL, nil) :@"button_short.png"];
     _cancelButton.x = 0;
-    _cancelButton.enabled = NO;
+    _cancelButton.visible = NO;
     _cancelButton.y = _saveButton.y + _saveButton.height;
     [self addChild:_cancelButton];
     
     
-    [self addChild: [self childByName:@"back"]];
+    [self addChild: [self childByName:NSLocalizedString(KEY_BACK, nil)]];
     
     
-    SPTextField * _userNameTF = [SPTextField textFieldWithWidth:100 height:25
-                                                           text:name];
-    _userNameTF.x = (Sparrow.stage.width*0.5)-(_userNameTF.width*0.5);
-    _userNameTF.y = 50;
-    _userNameTF.hAlign = SPHAlignCenter ;
-    _userNameTF.vAlign = SPVAlignCenter ;
-    _userNameTF.border = NO;
-    _userNameTF.color = 0x000000;
-    [self addChild:_userNameTF];
+//    SPTextField * _userNameTF = [SPTextField textFieldWithWidth:100 height:25
+//                                                           text:name];
+//    _userNameTF.x = (GAME_WIDTH*0.5)-(_userNameTF.width*0.5);
+//    _userNameTF.y = 50;
+//    _userNameTF.hAlign = SPHAlignCenter ;
+//    _userNameTF.vAlign = SPVAlignCenter ;
+//    _userNameTF.border = NO;
+//    _userNameTF.color = 0x000000;
+//    [self addChild:_userNameTF];
     
     _isConfirm = _canCapScreen = _canPostFB = NO;
     
@@ -164,6 +159,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
 }
 - (UIImage *)screenshot :(SPRectangle*)rectangle{
     
+    NSLog(@"Screenshot %@",[self platformString]);
 	int myWidth = 640;
 	int myHeight = 960;
     int myX = 0;
@@ -258,7 +254,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     SPButton *newButton = [[SPButton alloc] initWithUpState:buttonTexture text:_text];
     
     newButton.name = _text;
-    newButton.enabled = YES;
+    newButton.visible = YES;
     
     [newButton addEventListener:@selector(onButtonTriggered:) atObject:self
                         forType:SP_EVENT_TYPE_TRIGGERED];
@@ -268,31 +264,41 @@ void releaseData(void *info, const void *data, size_t dataSize) {
 {
     [Media playSound:@"sound.caf"];
     SPButton* button =  (SPButton*)event.target;
-    if([button.name isEqualToString:@"Confirm"])
+    if([button.name isEqualToString:NSLocalizedString(KEY_CONFIRM,nil)])
     {
         state = GAME_STATE_CONFIRMED;
         
-        _fbButton.enabled = YES;
-        _saveButton.enabled = YES;
+        _fbButton.visible = YES;
+        _saveButton.visible = YES;
+        _cancelButton.visible = YES;
+        _confirmButton.visible = NO;
         [self checkMolePosition];
         
-    }else if([button.name isEqualToString:@"Facebook"])
+    }else if([button.name isEqualToString:NSLocalizedString(KEY_CANCEL,nil)])
+    {
+        _fbButton.visible = NO;
+        _saveButton.visible = NO;
+        _cancelButton.visible = NO;
+        _confirmButton.visible = YES;
+        state = GAME_STATE_DRAGGING;
+    }else if([button.name isEqualToString:NSLocalizedString(KEY_FACEBOOK,nil)])
     {
         [self removeChild: _confirmButton];
         [self removeChild: _fbButton];
         [self removeChild: _saveButton];
+        [self removeChild: _cancelButton];
         [self removeChild: [self backButton]];
         
         [self flatten];
         //allow render loop do scapscreeen function
         _canPostFB = YES;
-    }else if([button.name isEqualToString:@"Save"])
+    }else if([button.name isEqualToString:NSLocalizedString(KEY_SAVE,nil)])
     {
         [self removeChild: _confirmButton];
         [self removeChild: _fbButton];
         [self removeChild: _saveButton];
         [self removeChild: [self backButton]];
-        
+        [self removeChild: _cancelButton];
         
         [self flatten];
         //allow render loop do scapscreeen function
@@ -315,8 +321,12 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     for( int i = 0 ; i < numMole ; i++)
     {
         TouchSheet *sheet = (TouchSheet *)[_mole childAtIndex:i];
+
         NSLog(@"TouchSheet : %i at %f %f",i,sheet.x+sheet.width*0.5,sheet.y+sheet.height*0.5);
     }
+    //collect data
+    //add scroll list
+    //
 }
 - (void)render:(SPRenderSupport*)support
 {
@@ -337,6 +347,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         [self addChild: _fbButton];
         [self addChild: _saveButton];
         [self addChild: [self backButton]];
+        [self addChild: _cancelButton];
         //should use unflatten here
         //dont know why
         [self unflatten];

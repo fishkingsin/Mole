@@ -7,7 +7,7 @@
 //
 
 #import "SPSprite.h"
-
+#define KEY_BACK @"Back"
 #define EVENT_TYPE_SCENE_CLOSING @"closing"
 
 // A scene is just a sprite with a back button that dispatches a "closing" event
