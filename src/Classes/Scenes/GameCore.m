@@ -100,8 +100,8 @@
         
         SPImage *sparrow = [SPImage imageWithContentsOfFile:@"mole01.png"];
         TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:sparrow];
-        sheet.x = (i*30);
-        sheet.y = Sparrow.stage.height-50;
+        sheet.x = (i*30)+30;
+        sheet.y = Sparrow.stage.height-10;
         
         [_mole addChild:sheet];
     }
