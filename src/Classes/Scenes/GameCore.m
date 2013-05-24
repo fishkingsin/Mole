@@ -10,6 +10,9 @@
 #include <sys/utsname.h>
 #import <Social/Social.h>
 #define  NUM_MOLE 10
+#define GAME_STATE_DRAGGING 0x10
+#define GAME_STATE_CONFIRMED 0x11
+#define GAME_STATE_END 0x12
 @interface GameCore ()
 -(void) postFacebook;
 - (void)onButtonTriggered:(SPEvent *)event;
@@ -26,9 +29,11 @@
     SPButton *_confirmButton;
     SPButton *_fbButton;
     SPButton *_saveButton;
+    SPButton *_cancelButton;
     BOOL _canCapScreen;
     BOOL _canPostFB;
     BOOL _isConfirm;
+    int state;
     
 }
 - (id)init
@@ -62,11 +67,15 @@
     {
         [_mole removeFromParent];
     }
+    if(_cancelButton!=nil)
+    {
+        [_cancelButton removeFromParent];
+    }
 }
 
 - (void)setup
 {
-    
+    state = GAME_STATE_DRAGGING;
     
     _face = [SPSprite sprite];
     _moleMenu = [SPSprite sprite];
@@ -107,21 +116,28 @@
     }
     
     _confirmButton = [self createButton:@"Confirm" :@"button_short.png"];
-    _confirmButton.x = 20;
-    _confirmButton.y = _confirmButton.height;
+    _confirmButton.x = 0;
+    _confirmButton.y = 0;//_confirmButton.height;
     [self addChild:_confirmButton];
     
     _fbButton = [self createButton:@"Facebook" :@"button_short.png"];
-    _fbButton.x = 20;
+    _fbButton.x = 0;
     _fbButton.enabled = NO;
     _fbButton.y = _confirmButton.y + _fbButton.height;
     [self addChild:_fbButton];
     
     _saveButton = [self createButton:@"Save" :@"button_short.png"];
-    _saveButton.x = 20;
+    _saveButton.x = 0;
     _saveButton.enabled = NO;
     _saveButton.y = _fbButton.y + _saveButton.height;
     [self addChild:_saveButton];
+    
+    _cancelButton = [self createButton:@"Cancel" :@"button_short.png"];
+    _cancelButton.x = 0;
+    _cancelButton.enabled = NO;
+    _cancelButton.y = _saveButton.y + _saveButton.height;
+    [self addChild:_cancelButton];
+    
     
     [self addChild: [self childByName:@"back"]];
     
@@ -254,6 +270,8 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     SPButton* button =  (SPButton*)event.target;
     if([button.name isEqualToString:@"Confirm"])
     {
+        state = GAME_STATE_CONFIRMED;
+        
         _fbButton.enabled = YES;
         _saveButton.enabled = YES;
         [self checkMolePosition];
