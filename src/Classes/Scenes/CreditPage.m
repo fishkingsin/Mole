@@ -39,30 +39,45 @@
 
 - (void)setup
 {
-    float offSetX = 0;//40;
+    int gameWidth  = Sparrow.stage.width;
+    int gameHeight = Sparrow.stage.height;
     
-    float offSetY = 0;//40;
-    float offSetWidth = offSetX*2;
-    float offSetHeight = offSetY*2;
-    _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(offSetX, offSetY, Sparrow.stage.width-offSetWidth, Sparrow.stage.height-offSetHeight)];
+    float offSetX = (int) (gameWidth  - GAME_WIDTH)  / 2;
+    float offSetY = (int) (gameHeight - GAME_HEIGHT) / 2;
+    
+    float offSetWidth = 0;
+    float offSetHeight = 0;
+    _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(offSetX, offSetY, GAME_WIDTH-offSetWidth, GAME_HEIGHT-offSetHeight)];
     [_scroll setBackgroundColor:[UIColor darkGrayColor]];
     _scroll.alpha = 0.7f;
     NSInteger numberOfViews = 3;
     for (int i = 0; i < numberOfViews; i++) {
-        CGFloat yOrigin = i * (Sparrow.stage.height-offSetWidth);
-        UIView *awesomeView = [[UIView alloc    ] initWithFrame:CGRectMake(0, yOrigin, Sparrow.stage.width-offSetWidth, Sparrow.stage.height-offSetHeight)];
+        CGFloat yOrigin = i * (GAME_HEIGHT-offSetWidth);
+        UIView *awesomeView = [[UIView alloc    ] initWithFrame:CGRectMake(0, yOrigin, GAME_WIDTH-offSetWidth, GAME_HEIGHT-offSetHeight)];
         awesomeView.backgroundColor = [UIColor colorWithRed:0.5/i green:0.5 blue:0.5 alpha:1];
         [_scroll addSubview:awesomeView];
 
     }
-    _scroll.contentSize = CGSizeMake(Sparrow.stage.width-offSetWidth, (Sparrow.stage.height-offSetHeight)*3);
+    _scroll.contentSize = CGSizeMake(GAME_WIDTH-offSetWidth, (GAME_HEIGHT-offSetHeight)*3);
     
     _scroll.pagingEnabled = YES;
 
     
     [Sparrow.currentController.view addSubview:_scroll];
     
-    _button = [[UIButton alloc] initWithFrame:CGRectMake(Sparrow.stage.width-offSetWidth-50, 0, 50, 50)];
+    CGRect textViewFrame = CGRectMake(_scroll.frame.origin.x,
+                                      _scroll.frame.origin.y+50,
+                                      _scroll.contentSize.width,
+                                      _scroll.contentSize.height-50);
+    UITextView *textView = [[UITextView alloc] initWithFrame:textViewFrame];
+    [textView setBackgroundColor:[UIColor whiteColor]];
+    [textView setEditable:NO];
+
+    textView.text = @"asfqwegjhwqilfhqliuwefghuil\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\n";
+//    textView.returnKeyType = UIReturnKeyDone;
+    [_scroll addSubview:textView];
+    
+    _button = [[UIButton alloc] initWithFrame:CGRectMake(GAME_WIDTH-offSetWidth-50, offSetY, 50, 50)];
     _button.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
     [_button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [Sparrow.currentController.view addSubview: _button];
@@ -71,8 +86,8 @@
 //    SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"button_back.png"];
 //    
 //    _backButton = [[SPButton alloc] initWithUpState:buttonTexture text:@"back"];
-//    _backButton.x = Sparrow.stage.width*0.5 - _backButton.width / 2.0f;
-//    _backButton.y = Sparrow.stage.height - _backButton.height + 1;
+//    _backButton.x = GAME_WIDTH*0.5 - _backButton.width / 2.0f;
+//    _backButton.y = GAME_HEIGHT - _backButton.height + 1;
 //    _backButton.name = @"back";
 //    [_backButton addEventListener:@selector(onBackButtonTriggered:) atObject:self
 //                          forType:SP_EVENT_TYPE_TRIGGERED];

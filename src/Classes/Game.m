@@ -83,8 +83,8 @@
     SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"button_back.png"];
     
     SPButton* _creditButton = [[SPButton alloc] initWithUpState:buttonTexture text:@"credit"];
-    _creditButton.x = Sparrow.stage.width - _creditButton.width;
-    _creditButton.y = Sparrow.stage.height - _creditButton.height;
+    _creditButton.x = GAME_WIDTH - _creditButton.width;
+    _creditButton.y = GAME_HEIGHT - _creditButton.height;
     _creditButton.name = @"credit";
     [_creditButton addEventListener:@selector(onCreditButtonTriggered:) atObject:self
                           forType:SP_EVENT_TYPE_TRIGGERED];

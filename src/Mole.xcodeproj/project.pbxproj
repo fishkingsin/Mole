@@ -74,6 +74,7 @@
 		E3A875FB1746A761002410DD /* NameInput.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A875FA1746A761002410DD /* NameInput.m */; };
 		E3BF4A46174789FB00D3D3CF /* TouchSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BF4A45174789FB00D3D3CF /* TouchSheet.m */; };
 		E3E450D9174E578F0009C270 /* CreditPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E450D8174E578F0009C270 /* CreditPage.m */; };
+		E3ED9FE0174FB58E003201C9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E3ED9FDE174FB58E003201C9 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,6 +176,9 @@
 		E3BF4A48174798DF00D3D3CF /* RoundButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoundButton.m; sourceTree = "<group>"; };
 		E3E450D7174E578F0009C270 /* CreditPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditPage.h; sourceTree = "<group>"; };
 		E3E450D8174E578F0009C270 /* CreditPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditPage.m; sourceTree = "<group>"; };
+		E3ED9FDF174FB58E003201C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		E3ED9FE3174FB941003201C9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		E3ED9FE4174FBBF1003201C9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +240,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				E3ED9FDD174FB58E003201C9 /* en.lproj */,
 				32CA4F630368D1EE00C91783 /* App-Prefix.pch */,
 				8D1107310486CEB800E47090 /* App-Info.plist */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
@@ -443,6 +448,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		E3ED9FDD174FB58E003201C9 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				E3ED9FDE174FB58E003201C9 /* Localizable.strings */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -480,6 +493,9 @@
 				Japanese,
 				French,
 				German,
+				en,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -563,6 +579,7 @@
 				E39271A3174F6D9B00525D77 /* lbt_holy-tricky_male_thumb@2x.png in Resources */,
 				E39271A4174F6D9B00525D77 /* tse_holy-tricky_female_thumb@2x.png in Resources */,
 				E39271A5174F6D9B00525D77 /* README.txt in Resources */,
+				E3ED9FE0174FB58E003201C9 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,6 +604,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E3ED9FDE174FB58E003201C9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E3ED9FDF174FB58E003201C9 /* en */,
+				E3ED9FE3174FB941003201C9 /* zh-Hans */,
+				E3ED9FE4174FBBF1003201C9 /* zh-Hant */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
