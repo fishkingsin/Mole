@@ -39,9 +39,9 @@
 
 - (void)setup
 {
-    float offSetX = 40;
+    float offSetX = 0;//40;
     
-    float offSetY = 40;
+    float offSetY = 0;//40;
     float offSetWidth = offSetX*2;
     float offSetHeight = offSetY*2;
     _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(offSetX, offSetY, Sparrow.stage.width-offSetWidth, Sparrow.stage.height-offSetHeight)];
@@ -50,7 +50,7 @@
     NSInteger numberOfViews = 3;
     for (int i = 0; i < numberOfViews; i++) {
         CGFloat yOrigin = i * (Sparrow.stage.height-offSetWidth);
-        UIView *awesomeView = [[UIView alloc] initWithFrame:CGRectMake(0, yOrigin, Sparrow.stage.width-offSetWidth, Sparrow.stage.height-offSetHeight)];
+        UIView *awesomeView = [[UIView alloc    ] initWithFrame:CGRectMake(0, yOrigin, Sparrow.stage.width-offSetWidth, Sparrow.stage.height-offSetHeight)];
         awesomeView.backgroundColor = [UIColor colorWithRed:0.5/i green:0.5 blue:0.5 alpha:1];
         [_scroll addSubview:awesomeView];
 
@@ -62,7 +62,7 @@
     
     [Sparrow.currentController.view addSubview:_scroll];
     
-    _button = [[UIButton alloc] initWithFrame:CGRectMake(Sparrow.stage.width-offSetHeight-50, 50, 50, 50)];
+    _button = [[UIButton alloc] initWithFrame:CGRectMake(Sparrow.stage.width-offSetWidth-50, 0, 50, 50)];
     _button.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
     [_button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [Sparrow.currentController.view addSubview: _button];
