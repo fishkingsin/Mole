@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/Game.m"
-         timestampString = "391016334.813836"
+         timestampString = "391055013.98977"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "271"
-         endingLineNumber = "271">
+         startingLineNumber = "286"
+         endingLineNumber = "286">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -90,6 +90,19 @@
          startingLineNumber = "226"
          endingLineNumber = "226"
          landmarkName = "-onFaceClicked:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Classes/Scenes/CreditPage.m"
+         timestampString = "391055239.908994"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "86"
+         endingLineNumber = "86"
+         landmarkName = "-buttonClick:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

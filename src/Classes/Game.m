@@ -23,6 +23,7 @@
 - (void)onButtonTriggered:(SPEvent *)event;
 - (void)onSceneClosing:(SPEvent *)event;
 - (void)onCreditClosing:(SPEvent *)event;
+- (void)onCreditButtonTriggered:(SPEvent *)event;
 @end
 
 
@@ -78,6 +79,17 @@
     _menu       = [SPSprite sprite];
     [self addChild:_contents];
     [self addChild:_menu];
+    
+    SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"button_back.png"];
+    
+    SPButton* _creditButton = [[SPButton alloc] initWithUpState:buttonTexture text:@"credit"];
+    _creditButton.x = Sparrow.stage.width - _creditButton.width;
+    _creditButton.y = Sparrow.stage.height - _creditButton.height;
+    _creditButton.name = @"credit";
+    [_creditButton addEventListener:@selector(onCreditButtonTriggered:) atObject:self
+                          forType:SP_EVENT_TYPE_TRIGGERED];
+    [_menu addChild:_creditButton];
+    
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
     [_contents addChild:background];
     
@@ -96,8 +108,7 @@
     //    _contents.visible = NO;
     [_contents addChild:_currentScene];
     
-    _creditPage = [[CreditPage alloc]init];
-    [_contents addChild:_creditPage];
+    
     
     [self addEventListener:@selector(onSceneClosing:) atObject:self
                    forType:EVENT_TYPE_SCENE_CLOSING];
@@ -176,7 +187,11 @@
     
     [self updateLocations];
 }
-
+- (void)onCreditButtonTriggered:(SPEvent *)event
+{
+    _creditPage = [[CreditPage alloc]init];
+    [_contents addChild:_creditPage];
+}
 - (void)onButtonTriggered:(SPEvent *)event
 {
     
