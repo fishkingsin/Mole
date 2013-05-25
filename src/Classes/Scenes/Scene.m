@@ -25,7 +25,7 @@
         
         _backButton = [[SPButton alloc] initWithUpState:buttonTexture text:KEY_BACK];
         _backButton.x = 0;
-        _backButton.y = GAME_HEIGHT - _backButton.height + 1;
+        _backButton.y = GAME_HEIGHT - _backButton.height ;
         _backButton.name = KEY_BACK;
         [_backButton addEventListener:@selector(onBackButtonTriggered:) atObject:self
                               forType:SP_EVENT_TYPE_TRIGGERED];

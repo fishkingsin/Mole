@@ -172,6 +172,8 @@
     
     _contents.x = (int) (gameWidth  - _contents.width)  / 2;
     _contents.y = (int) (gameHeight - _contents.height) / 2;
+    _menu.x = (int) (gameWidth  - _contents.width)  / 2;
+    _menu.y = (int) (gameHeight - _contents.height) / 2;
 }
 
 - (void)onImageTouched:(SPTouchEvent *)event
