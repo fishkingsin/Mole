@@ -12,5 +12,5 @@
 @interface TouchSheet : SPSprite
 
 - (id)initWithQuad:(SPQuad*)quad; // designated initializer
-
+@property(nonatomic,assign)BOOL enabled;
 @end

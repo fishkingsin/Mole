@@ -7,7 +7,8 @@
 //
 
 #import "GameCore.h"
-
+#import "MoleDescription.h"
+#define DEBUG
 @interface GameCore ()
 -(void) postFacebook;
 - (void)onButtonTriggered:(SPEvent *)event;
@@ -70,13 +71,15 @@
 
 - (void)setup
 {
+    
+    
     state = GAME_STATE_DRAGGING;
     
     _face = [SPSprite sprite];
     _moleMenu = [SPSprite sprite];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *fileName = [defaults objectForKey:@"TargetFaceFile"];
-//    NSString *name = [defaults objectForKey:@"UserName"];
+    //    NSString *name = [defaults objectForKey:@"UserName"];
     
     /*
      * _moleMenu add button
@@ -105,7 +108,7 @@
         SPImage *sparrow = [SPImage imageWithContentsOfFile:@"mole01.png"];
         TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:sparrow];
         sheet.x = (i*30)+30;
-        sheet.y = GAME_HEIGHT-30;
+        sheet.y = GAME_HEIGHT-80;
         
         [_mole addChild:sheet];
     }
@@ -137,19 +140,20 @@
     [self addChild: [self childByName:NSLocalizedString(KEY_BACK, nil)]];
     
     
-//    SPTextField * _userNameTF = [SPTextField textFieldWithWidth:100 height:25
-//                                                           text:name];
-//    _userNameTF.x = (GAME_WIDTH*0.5)-(_userNameTF.width*0.5);
-//    _userNameTF.y = 50;
-//    _userNameTF.hAlign = SPHAlignCenter ;
-//    _userNameTF.vAlign = SPVAlignCenter ;
-//    _userNameTF.border = NO;
-//    _userNameTF.color = 0x000000;
-//    [self addChild:_userNameTF];
+    //    SPTextField * _userNameTF = [SPTextField textFieldWithWidth:100 height:25
+    //                                                           text:name];
+    //    _userNameTF.x = (GAME_WIDTH*0.5)-(_userNameTF.width*0.5);
+    //    _userNameTF.y = 50;
+    //    _userNameTF.hAlign = SPHAlignCenter ;
+    //    _userNameTF.vAlign = SPVAlignCenter ;
+    //    _userNameTF.border = NO;
+    //    _userNameTF.color = 0x000000;
+    //    [self addChild:_userNameTF];
     
     _isConfirm = _canCapScreen = _canPostFB = NO;
     
-    
+    [self loadDescription];
+    [self addChild:_moleMenu];
 }
 
 // callback for CGDataProviderCreateWithData
@@ -280,6 +284,13 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         _saveButton.visible = NO;
         _cancelButton.visible = NO;
         _confirmButton.visible = YES;
+        int numMole = [_mole numChildren];
+        for( int i = 0 ; i < numMole ; i++)
+        {
+            TouchSheet *sheet = (TouchSheet *)[_mole childAtIndex:i];
+            sheet.enabled = NO;
+            [sheet removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+        }
         state = GAME_STATE_DRAGGING;
     }else if([button.name isEqualToString:NSLocalizedString(KEY_FACEBOOK,nil)])
     {
@@ -318,15 +329,28 @@ void releaseData(void *info, const void *data, size_t dataSize) {
 {
     int numMole = [_mole numChildren];
     NSLog(@"checkMolePosition : %i",numMole);
+    //    load plist by facename
+    //    NSString *description =  [defaults objectForKey:@"UserName"];;
     for( int i = 0 ; i < numMole ; i++)
     {
         TouchSheet *sheet = (TouchSheet *)[_mole childAtIndex:i];
-
+        sheet.enabled = NO;
         NSLog(@"TouchSheet : %i at %f %f",i,sheet.x+sheet.width*0.5,sheet.y+sheet.height*0.5);
+//        if(sheet inside <5 distance )
+//        [newButton addEventListener:@selector(onButtonTriggered:) atObject:selfforType:SP_EVENT_TYPE_TRIGGERED];
+
+        
+        //        if(match plist )
+        //        {
+        //
+        //            description = [fileName stringByAppendingString:@".png"];
+        //        }
     }
-    //collect data
-    //add scroll list
-    //
+    //    push description to scrool view and text field
+    //    store description for facebook
+    //    collect data
+    //    add scroll list
+    
 }
 - (void)render:(SPRenderSupport*)support
 {
@@ -390,5 +414,42 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     if ([platform isEqualToString:@"i386"])         return @"Simulator";
     if ([platform isEqualToString:@"x86_64"])       return @"Simulator";
     return platform;
+}
+
+-(void) loadDescription
+{
+    NSString *errorDesc = nil;
+	NSPropertyListFormat format;
+	NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"deafult_description" ofType:@"plist"];
+	NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
+    
+    //load config.plist
+	NSArray *appPropertyList = (NSArray *)[NSPropertyListSerialization
+                                           propertyListFromData:plistXML
+                                           mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                           format:&format errorDescription:&errorDesc];
+    
+    if (!appPropertyList) {
+		NSLog(@"%@",errorDesc);
+        //		[errorDesc release];
+        
+	}
+    NSArray *data = [[NSArray alloc] initWithArray: [appPropertyList valueForKey:@"items"]];
+    //retrieve items properties from plist which is array of Dictionary
+    for(int i=0;i<[data count];i++){
+        NSString *name = [[data objectAtIndex:i] valueForKey:@"name"];
+        NSString *description = [[data objectAtIndex:i] valueForKey:@"description"];
+        NSDictionary *position = [[data objectAtIndex:i] valueForKey:@"position"];
+        //        CGRect rect = CGRectMake([[position valueForKey:@"x"] integerValue],[[position valueForKey:@"y"] integerValue], 100,100);
+#ifdef DEBUG
+        NSLog(@"name : %@ \ndescription : %@ \nposition :%@\n",name,description,position);
+#endif
+        MoleDescription *myDescription = [[MoleDescription alloc ]initWithName:name description:description];
+        myDescription.x = [[position valueForKey:@"x"] integerValue];
+        myDescription.y = [[position valueForKey:@"y"] integerValue];
+        [_moleMenu addChild:myDescription];
+
+    }
+    
 }
 @end

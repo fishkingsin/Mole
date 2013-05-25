@@ -69,6 +69,8 @@
 		E39271A3174F6D9B00525D77 /* lbt_holy-tricky_male_thumb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E392717F174F6D9B00525D77 /* lbt_holy-tricky_male_thumb@2x.png */; };
 		E39271A4174F6D9B00525D77 /* tse_holy-tricky_female_thumb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3927180174F6D9B00525D77 /* tse_holy-tricky_female_thumb@2x.png */; };
 		E39271A5174F6D9B00525D77 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = E3927182174F6D9B00525D77 /* README.txt */; };
+		E3A019C31750751D00D722FC /* deafult_description.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3A019C21750751D00D722FC /* deafult_description.plist */; };
+		E3A019C817507D6100D722FC /* MoleDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A019C717507D6100D722FC /* MoleDescription.m */; };
 		E3A8755517466A59002410DD /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A8755417466A59002410DD /* Scene.m */; };
 		E3A87558174678AA002410DD /* FacePick.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A87557174678AA002410DD /* FacePick.m */; };
 		E3A875FB1746A761002410DD /* NameInput.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A875FA1746A761002410DD /* NameInput.m */; };
@@ -164,6 +166,9 @@
 		E392717F174F6D9B00525D77 /* lbt_holy-tricky_male_thumb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lbt_holy-tricky_male_thumb@2x.png"; sourceTree = "<group>"; };
 		E3927180174F6D9B00525D77 /* tse_holy-tricky_female_thumb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tse_holy-tricky_female_thumb@2x.png"; sourceTree = "<group>"; };
 		E3927182174F6D9B00525D77 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		E3A019C21750751D00D722FC /* deafult_description.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = deafult_description.plist; path = ../media/graphics/deafult_description.plist; sourceTree = "<group>"; };
+		E3A019C617507D6100D722FC /* MoleDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoleDescription.h; sourceTree = "<group>"; };
+		E3A019C717507D6100D722FC /* MoleDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoleDescription.m; sourceTree = "<group>"; };
 		E3A8755317466A59002410DD /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		E3A8755417466A59002410DD /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
 		E3A87556174678AA002410DD /* FacePick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacePick.h; sourceTree = "<group>"; };
@@ -251,6 +256,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E3A019C21750751D00D722FC /* deafult_description.plist */,
 				E3927158174F6D9B00525D77 /* graphics */,
 				DE0C71121624180300357F6E /* system */,
 				DE4F80D914E1541400655D44 /* audio */,
@@ -444,6 +450,8 @@
 				E3BF4A48174798DF00D3D3CF /* RoundButton.m */,
 				E3BF4A44174789FB00D3D3CF /* TouchSheet.h */,
 				E3BF4A45174789FB00D3D3CF /* TouchSheet.m */,
+				E3A019C617507D6100D722FC /* MoleDescription.h */,
+				E3A019C717507D6100D722FC /* MoleDescription.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -580,6 +588,7 @@
 				E39271A4174F6D9B00525D77 /* tse_holy-tricky_female_thumb@2x.png in Resources */,
 				E39271A5174F6D9B00525D77 /* README.txt in Resources */,
 				E3ED9FE0174FB58E003201C9 /* Localizable.strings in Resources */,
+				E3A019C31750751D00D722FC /* deafult_description.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +609,7 @@
 				E376B96817473F53007D6BD8 /* GameCore.m in Sources */,
 				E3BF4A46174789FB00D3D3CF /* TouchSheet.m in Sources */,
 				E3E450D9174E578F0009C270 /* CreditPage.m in Sources */,
+				E3A019C817507D6100D722FC /* MoleDescription.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
