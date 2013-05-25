@@ -12,6 +12,6 @@
 
 - (id)initWithName:(NSString*)name description:(NSString*)description;
 
-//@property (nonatomic) NSString* name;
-//@property (nonatomic) NSString* description;;
+@property (nonatomic) NSString* name;
+@property (nonatomic) NSString* myText;;
 @end
