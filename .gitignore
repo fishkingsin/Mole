@@ -8,3 +8,7 @@ src/.DS_Store
 *.xcuserstate
 
 src/Mole.xcodeproj/project.xcworkspace/xcuserdata/jameskong.xcuserdatad/UserInterfaceState.xcuserstate
+
+src/Mole.xcodeproj/xcuserdata/ninewest.xcuserdatad/xcschemes/xcschememanagement.plist
+
+src/Mole.xcodeproj/xcuserdata/ninewest.xcuserdatad/xcschemes/Mole.xcscheme
