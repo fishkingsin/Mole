@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #include <sys/utsname.h>
 #import <Social/Social.h>
-
+#define SQ(x) ((x)*(x))
 #define KEY_CONFIRM @"Confirm"
 #define KEY_FACEBOOK @"Facebook"
 #define KEY_SAVE @"Save"

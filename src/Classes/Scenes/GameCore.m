@@ -8,7 +8,7 @@
 
 #import "GameCore.h"
 #import "MoleDescription.h"
-#define DEBUG
+//#define DEBUG
 @interface GameCore ()
 -(void) postFacebook;
 - (void)onButtonTriggered:(SPEvent *)event;
@@ -153,7 +153,9 @@
     _isConfirm = _canCapScreen = _canPostFB = NO;
     
     [self loadDescription];
+    
     [self addChild:_moleMenu];
+
 }
 
 // callback for CGDataProviderCreateWithData
@@ -276,6 +278,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         _saveButton.visible = YES;
         _cancelButton.visible = YES;
         _confirmButton.visible = NO;
+        
         [self checkMolePosition];
         
     }else if([button.name isEqualToString:NSLocalizedString(KEY_CANCEL,nil)])
@@ -284,12 +287,20 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         _saveButton.visible = NO;
         _cancelButton.visible = NO;
         _confirmButton.visible = YES;
+        
+        
         int numMole = [_mole numChildren];
         for( int i = 0 ; i < numMole ; i++)
         {
             TouchSheet *sheet = (TouchSheet *)[_mole childAtIndex:i];
-            sheet.enabled = NO;
+            sheet.enabled = YES;
             [sheet removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+        }
+        int numChildren = [_moleMenu numChildren];
+        for( int j = 0 ; j < numChildren ; j++)
+        {
+            MoleDescription *description = (MoleDescription*)[_moleMenu childAtIndex:j];
+            description.visible = NO;
         }
         state = GAME_STATE_DRAGGING;
     }else if([button.name isEqualToString:NSLocalizedString(KEY_FACEBOOK,nil)])
@@ -336,6 +347,36 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         TouchSheet *sheet = (TouchSheet *)[_mole childAtIndex:i];
         sheet.enabled = NO;
         NSLog(@"TouchSheet : %i at %f %f",i,sheet.x+sheet.width*0.5,sheet.y+sheet.height*0.5);
+        int numChildren = [_moleMenu numChildren];
+        float shortest = 9999;
+        for( int j = 0 ; j < numChildren ; j++)
+        {
+            {
+                
+                MoleDescription *description = (MoleDescription*)[_moleMenu childAtIndex:j];
+                SPRectangle *bounds1 = sheet.bounds;
+                SPRectangle *bounds2 = description.bounds;
+                
+                if ([bounds1 intersectsRectangle:bounds2])
+                {
+#ifdef DEBUG
+                    NSLog(@"name : %@ \ndescription : %@",description.name,description.myText);
+#endif
+                    SPPoint *p1 = [SPPoint pointWithX:sheet.x+sheet.width*0.5 y:sheet.y+sheet.height*0.5];
+                    SPPoint *p2 = [SPPoint pointWithX:description.x+description.width*0.5 y:description.y+description.height*0.5];
+                    
+                    float distance = [SPPoint distanceFromPoint:p1 toPoint:p2];
+                    if(abs(distance)<shortest)
+                    {
+                        shortest = distance;
+                        NSLog(@"name : %@ \ndescription : %@ is closest",description.name,description.myText);
+                    
+                    
+                    description.visible = YES;
+                    }
+                }
+            }
+        }
 //        if(sheet inside <5 distance )
 //        [newButton addEventListener:@selector(onButtonTriggered:) atObject:selfforType:SP_EVENT_TYPE_TRIGGERED];
 
@@ -442,11 +483,12 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         NSDictionary *position = [[data objectAtIndex:i] valueForKey:@"position"];
         //        CGRect rect = CGRectMake([[position valueForKey:@"x"] integerValue],[[position valueForKey:@"y"] integerValue], 100,100);
 #ifdef DEBUG
-        NSLog(@"name : %@ \ndescription : %@ \nposition :%@\n",name,description,position);
+        NSLog(@"name : %@ \ndescription : %@ \nposition : %@ ",name,description,position);
 #endif
         MoleDescription *myDescription = [[MoleDescription alloc ]initWithName:name description:description];
         myDescription.x = [[position valueForKey:@"x"] integerValue];
         myDescription.y = [[position valueForKey:@"y"] integerValue];
+        myDescription.visible = NO;
         [_moleMenu addChild:myDescription];
 
     }
