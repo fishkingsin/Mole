@@ -32,6 +32,7 @@
     BOOL _canPostFB;
     BOOL _isConfirm;
     int state;
+    NSString *currentDescription;
     
 }
 - (id)init
@@ -78,7 +79,7 @@
 - (void)setup
 {
     
-    
+    currentDescription = @"";
     state = GAME_STATE_DRAGGING;
     
     _face = [SPSprite sprite];
@@ -125,6 +126,7 @@
     _minuButton = [self createButton:@"-" :@"button_short.png"];
     _minuButton.x = GAME_WIDTH-_minuButton.width;
     _minuButton.y = _addButton.height;
+    _minuButton.enabled = NO;
     [self addChild:_minuButton];
     
     _confirmButton = [self createButton:NSLocalizedString(KEY_CONFIRM, nil) :@"button_short.png"];
@@ -252,7 +254,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         // Configure Compose View Controller
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *name = [defaults objectForKey:@"UserName"];
-        NSString *content = [[NSString alloc] initWithFormat:@"%@ : %@",name,@"bla bla bla bla bla bla bla bla bla bla \nbla bla bla bla bla bla bla bla " ];
+        NSString *content = [[NSString alloc] initWithFormat:@"%@ : %@",name,currentDescription];
         [vc setInitialText:content];
         UIImage * img = [self screenshot:[[SPRectangle alloc] initWithX:
                                           0 y:0
@@ -299,7 +301,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     }
     else if([button.name isEqualToString:@"+"])
     {
-        
+
         if([_mole numChildren] < NUM_MOLE)
         {
             SPImage *sparrow = [SPImage imageWithContentsOfFile:@"mole01.png"];
@@ -307,8 +309,17 @@ void releaseData(void *info, const void *data, size_t dataSize) {
             sheet.x = GAME_WIDTH*0.5-sparrow.width*0.5;
             sheet.y = GAME_HEIGHT*0.5-sparrow.height*0.5;
 
-        [_mole addChild:sheet];
+            [_mole addChild:sheet];
         }
+        else
+        {
+            button.enabled = NO;
+        }
+        if([_mole numChildren] >0)
+        {
+            _minuButton.enabled=YES;
+        }
+
     }
     else if([button.name isEqualToString:@"-"])
     {
@@ -317,6 +328,17 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         {
 
             [_mole removeChildAtIndex:[_mole numChildren]-1];
+            if([_mole numChildren] == 0)
+            {
+                
+                _minuButton.enabled = NO;
+                
+            }
+        }
+        
+        if([_mole numChildren] < NUM_MOLE)
+        {
+            _addButton.enabled = YES;
         }
     }
     else if([button.name isEqualToString:NSLocalizedString(KEY_CANCEL,nil)])
@@ -381,13 +403,34 @@ void releaseData(void *info, const void *data, size_t dataSize) {
 {
     int numMole = [_mole numChildren];
     NSLog(@"checkMolePosition : %i",numMole);
+    NSString *errorDesc = nil;
+	NSPropertyListFormat format;
+	NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"descriptions" ofType:@"plist"];
+	NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
+    
+    //load config.plist
+	NSArray *appPropertyList = (NSArray *)[NSPropertyListSerialization
+                                           propertyListFromData:plistXML
+                                           mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                           format:&format errorDescription:&errorDesc];
+    
+    if (!appPropertyList) {
+		NSLog(@"%@",errorDesc);
+        //		[errorDesc release];
+        
+	}
+    NSArray *data = [[NSArray alloc] initWithArray: [appPropertyList valueForKey:@"items"]];
+//    currentDescription = @"";
+    //retrieve items properties from plist which is array of Dictionary
+    
+//    load plist descriptions
     //    load plist by facename
-    //    NSString *description =  [defaults objectForKey:@"UserName"];;
+    //    NSString *name =  [defaults objectForKey:@"UserName"];;
     for( int i = 0 ; i < numMole ; i++)
     {
         TouchSheet *sheet = (TouchSheet *)[_mole childAtIndex:i];
         sheet.enabled = NO;
-        NSLog(@"TouchSheet : %i at %f %f",i,sheet.x+sheet.width*0.5,sheet.y+sheet.height*0.5);
+//        NSLog(@"TouchSheet : %i at %f %f",i,sheet.x+sheet.width*0.5,sheet.y+sheet.height*0.5);
         int numChildren = [_moleMenu numChildren];
         float shortest = 9999;
         for( int j = 0 ; j < numChildren ; j++)
@@ -400,9 +443,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
                 
                 if ([bounds1 intersectsRectangle:bounds2])
                 {
-#ifdef DEBUG
-                    NSLog(@"name : %@ \ndescription : %@",description.name,description.myText);
-#endif
+
                     SPPoint *p1 = [SPPoint pointWithX:sheet.x+sheet.width*0.5 y:sheet.y+sheet.height*0.5];
                     SPPoint *p2 = [SPPoint pointWithX:description.x y:description.y];
                     
@@ -410,24 +451,28 @@ void releaseData(void *info, const void *data, size_t dataSize) {
                     if(abs(distance)<shortest)
                     {
                         shortest = distance;
-                        NSLog(@"name : %@ is closest",description.name);//;//,description.myText);
+//                        NSLog(@"name : %@ is closest",description.name);//;//,description.myText);
                     
-                    
-                    description.visible = YES;
+                        for(int k=0;k<[data count];k++){
+                            
+                            NSString *name = [[data objectAtIndex:k] valueForKey:@"name"];
+                            if([description.name isEqualToString:name])
+                            {
+                                NSString * _description = [[data objectAtIndex:k] valueForKey:@"description"];
+                                NSLog(@"%i %@",i,_description);
+                                currentDescription = [currentDescription stringByAppendingString:_description];
+                                currentDescription = [currentDescription stringByAppendingString:@"\n"];
+
+                            }
+                        }
+//                        description.visible = YES;
                     }
                 }
             }
         }
-//        if(sheet inside <5 distance )
-//        [newButton addEventListener:@selector(onButtonTriggered:) atObject:selfforType:SP_EVENT_TYPE_TRIGGERED];
-
         
-        //        if(match plist )
-        //        {
-        //
-        //            description = [fileName stringByAppendingString:@".png"];
-        //        }
     }
+    NSLog(@"currentDescription %@",currentDescription);
     //    push description to scrool view and text field
     //    store description for facebook
     //    collect data
