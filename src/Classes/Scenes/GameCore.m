@@ -26,6 +26,8 @@
     SPButton *_fbButton;
     SPButton *_saveButton;
     SPButton *_cancelButton;
+    SPButton *_addButton;
+    SPButton *_minuButton;
     BOOL _canCapScreen;
     BOOL _canPostFB;
     BOOL _isConfirm;
@@ -67,6 +69,10 @@
     {
         [_cancelButton removeFromParent];
     }
+    if(_addButton!=nil)
+    {
+        [_addButton removeFromParent];
+    }
 }
 
 - (void)setup
@@ -102,16 +108,24 @@
     [_face addChild:_mole];
     // to find out how to react to touch events have a look at the TouchSheet class!
     // It's part of the demo.
-    for(int i = 0 ; i< NUM_MOLE ; i++)
-    {
-        
-        SPImage *sparrow = [SPImage imageWithContentsOfFile:@"mole01.png"];
-        TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:sparrow];
-        sheet.x = (i*30)+30;
-        sheet.y = GAME_HEIGHT-80;
-        
-        [_mole addChild:sheet];
-    }
+//    for(int i = 0 ; i< NUM_MOLE ; i++)
+//    {
+//        
+//        SPImage *sparrow = [SPImage imageWithContentsOfFile:@"mole01.png"];
+//        TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:sparrow];
+//        sheet.x = (i*30)+30;
+//        sheet.y = GAME_HEIGHT-80;
+//        
+//        [_mole addChild:sheet];
+//    }
+    _addButton = [self createButton:@"+" :@"button_short.png"];
+    _addButton.x = GAME_WIDTH-_addButton.width;
+    _addButton.y = 0;//_confirmButton.height;
+    [self addChild:_addButton];
+    _minuButton = [self createButton:@"-" :@"button_short.png"];
+    _minuButton.x = GAME_WIDTH-_minuButton.width;
+    _minuButton.y = _addButton.height;
+    [self addChild:_minuButton];
     
     _confirmButton = [self createButton:NSLocalizedString(KEY_CONFIRM, nil) :@"button_short.png"];
     _confirmButton.x = 0;
@@ -278,16 +292,41 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         _saveButton.visible = YES;
         _cancelButton.visible = YES;
         _confirmButton.visible = NO;
-        
+        _addButton.visible = NO;
+        _minuButton.visible = NO;
         [self checkMolePosition];
         
-    }else if([button.name isEqualToString:NSLocalizedString(KEY_CANCEL,nil)])
+    }
+    else if([button.name isEqualToString:@"+"])
+    {
+        
+        if([_mole numChildren] < NUM_MOLE)
+        {
+            SPImage *sparrow = [SPImage imageWithContentsOfFile:@"mole01.png"];
+            TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:sparrow];
+            sheet.x = GAME_WIDTH*0.5-sparrow.width*0.5;
+            sheet.y = GAME_HEIGHT*0.5-sparrow.height*0.5;
+
+        [_mole addChild:sheet];
+        }
+    }
+    else if([button.name isEqualToString:@"-"])
+    {
+        
+        if([_mole numChildren] > 0 )
+        {
+
+            [_mole removeChildAtIndex:[_mole numChildren]-1];
+        }
+    }
+    else if([button.name isEqualToString:NSLocalizedString(KEY_CANCEL,nil)])
     {
         _fbButton.visible = NO;
         _saveButton.visible = NO;
         _cancelButton.visible = NO;
         _confirmButton.visible = YES;
-        
+        _addButton.visible = YES;
+        _minuButton.visible = YES;
         
         int numMole = [_mole numChildren];
         for( int i = 0 ; i < numMole ; i++)
@@ -310,7 +349,8 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         [self removeChild: _saveButton];
         [self removeChild: _cancelButton];
         [self removeChild: [self backButton]];
-        
+        [self removeChild: _addButton];
+        [self removeChild: _minuButton];
         [self flatten];
         //allow render loop do scapscreeen function
         _canPostFB = YES;
@@ -321,7 +361,8 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         [self removeChild: _saveButton];
         [self removeChild: [self backButton]];
         [self removeChild: _cancelButton];
-        
+        [self removeChild: _addButton];
+        [self removeChild: _minuButton];
         [self flatten];
         //allow render loop do scapscreeen function
         _canCapScreen = YES;
@@ -363,13 +404,13 @@ void releaseData(void *info, const void *data, size_t dataSize) {
                     NSLog(@"name : %@ \ndescription : %@",description.name,description.myText);
 #endif
                     SPPoint *p1 = [SPPoint pointWithX:sheet.x+sheet.width*0.5 y:sheet.y+sheet.height*0.5];
-                    SPPoint *p2 = [SPPoint pointWithX:description.x+description.width*0.5 y:description.y+description.height*0.5];
+                    SPPoint *p2 = [SPPoint pointWithX:description.x y:description.y];
                     
                     float distance = [SPPoint distanceFromPoint:p1 toPoint:p2];
                     if(abs(distance)<shortest)
                     {
                         shortest = distance;
-                        NSLog(@"name : %@ \ndescription : %@ is closest",description.name,description.myText);
+                        NSLog(@"name : %@ is closest",description.name);//;//,description.myText);
                     
                     
                     description.visible = YES;
@@ -413,6 +454,8 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         [self addChild: _saveButton];
         [self addChild: [self backButton]];
         [self addChild: _cancelButton];
+        [self addChild:_addButton];
+        [self addChild:_minuButton];
         //should use unflatten here
         //dont know why
         [self unflatten];
@@ -479,13 +522,13 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     //retrieve items properties from plist which is array of Dictionary
     for(int i=0;i<[data count];i++){
         NSString *name = [[data objectAtIndex:i] valueForKey:@"name"];
-        NSString *description = [[data objectAtIndex:i] valueForKey:@"description"];
+//        NSString *description = [[data objectAtIndex:i] valueForKey:@"description"];
         NSDictionary *position = [[data objectAtIndex:i] valueForKey:@"position"];
         //        CGRect rect = CGRectMake([[position valueForKey:@"x"] integerValue],[[position valueForKey:@"y"] integerValue], 100,100);
 #ifdef DEBUG
         NSLog(@"name : %@ \ndescription : %@ \nposition : %@ ",name,description,position);
 #endif
-        MoleDescription *myDescription = [[MoleDescription alloc ]initWithName:name description:description];
+        MoleDescription *myDescription = [[MoleDescription alloc ]initWithName:name ];//description:description];
         myDescription.x = [[position valueForKey:@"x"] integerValue];
         myDescription.y = [[position valueForKey:@"y"] integerValue];
         myDescription.visible = NO;

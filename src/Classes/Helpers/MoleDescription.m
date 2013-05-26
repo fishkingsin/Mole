@@ -14,11 +14,11 @@
 @implementation MoleDescription
 {
     NSString* _name;
-    NSString* _myText;
+//    NSString* _myText;
 }
 
 @synthesize name = _name;
-@synthesize myText = _myText;
+//@synthesize myText = _myText;
 - (id)init
 {
     // the designated initializer of the base class should always be overridden -- we do that here.
@@ -26,12 +26,12 @@
 //    return [self initWithQuad:quad];
     return [super init];
 }
-- (id)initWithName:(NSString*)name description:(NSString*)description
+- (id)initWithName:(NSString*)name //description:(NSString*)description
 {
     if ((self = [super init]))
     {
         _name = name;
-        _myText = description;
+//        _myText = description;
         SPTextField *colorTF = [SPTextField textFieldWithWidth:30 height:20
                                                           text:_name];
         colorTF.x = 0;

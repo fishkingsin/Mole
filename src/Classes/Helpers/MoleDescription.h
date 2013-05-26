@@ -10,8 +10,8 @@
 #import "Sparrow.h"
 @interface MoleDescription : SPSprite
 
-- (id)initWithName:(NSString*)name description:(NSString*)description;
+- (id)initWithName:(NSString*)name ;//description:(NSString*)description;
 
 @property (nonatomic) NSString* name;
-@property (nonatomic) NSString* myText;;
+//@property (nonatomic) NSString* myText;;
 @end
