@@ -155,23 +155,6 @@
     _confirmButton.y = 0;//_confirmButton.height;
     [self addChild:_confirmButton];
     
-    _fbButton = [self createButton:NSLocalizedString(KEY_FACEBOOK, nil) :@"button_short.png"];
-    _fbButton.x = 0;
-    _fbButton.visible = NO;
-    _fbButton.y = _confirmButton.y + _fbButton.height;
-    [self addChild:_fbButton];
-    
-    _saveButton = [self createButton:NSLocalizedString(KEY_SAVE, nil) :@"button_short.png"];
-    _saveButton.x = 0;
-    _saveButton.visible = NO;
-    _saveButton.y = _fbButton.y + _saveButton.height;
-    [self addChild:_saveButton];
-    
-    _cancelButton = [self createButton:NSLocalizedString(KEY_CANCEL, nil) :@"button_short.png"];
-    _cancelButton.x = 0;
-    _cancelButton.visible = NO;
-    _cancelButton.y = _saveButton.y + _saveButton.height;
-    [self addChild:_cancelButton];
     
     
     [self addChild: [self childByName:NSLocalizedString(KEY_BACK, nil)]];
@@ -191,6 +174,25 @@
     _userDescTF.color = 0xFFFFFF;
     
     [textFieldContainer addChild:_userDescTF];
+    
+    _fbButton = [self createButton:NSLocalizedString(KEY_FACEBOOK, nil) :@"button_short.png"];
+    _fbButton.x = 0;
+    _fbButton.visible = YES;
+    _fbButton.y = textFieldContainer.height - _fbButton.height;
+    [textFieldContainer addChild:_fbButton];
+    
+    _saveButton = [self createButton:NSLocalizedString(KEY_SAVE, nil) :@"button_short.png"];
+    _saveButton.x = _fbButton.width;
+    _saveButton.visible = YES;
+    _saveButton.y =textFieldContainer.height - _saveButton.height;
+    [textFieldContainer addChild:_saveButton];
+    
+    _cancelButton = [self createButton:NSLocalizedString(KEY_CANCEL, nil) :@"button_short.png"];
+    _cancelButton.x = _fbButton.width+_saveButton.width;
+    _cancelButton.visible = YES;
+    _cancelButton.y = textFieldContainer.height - _saveButton.height;
+    [textFieldContainer addChild:_cancelButton];
+
     
     _isConfirm = _canCapScreen = _canPostFB = NO;
     
@@ -316,9 +318,9 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     {
         state = GAME_STATE_CONFIRMED;
         
-        _fbButton.visible = YES;
-        _saveButton.visible = YES;
-        _cancelButton.visible = YES;
+//        _fbButton.visible = YES;
+//        _saveButton.visible = YES;
+//        _cancelButton.visible = YES;
         _confirmButton.visible = NO;
         _addButton.visible = NO;
         _minuButton.visible = NO;
@@ -369,9 +371,9 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     }
     else if([button.name isEqualToString:NSLocalizedString(KEY_CANCEL,nil)])
     {
-        _fbButton.visible = NO;
-        _saveButton.visible = NO;
-        _cancelButton.visible = NO;
+//        _fbButton.visible = NO;
+//        _saveButton.visible = NO;
+//        _cancelButton.visible = NO;
         _confirmButton.visible = YES;
         _addButton.visible = YES;
         _minuButton.visible = YES;
@@ -394,9 +396,9 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     }else if([button.name isEqualToString:NSLocalizedString(KEY_FACEBOOK,nil)])
     {
         [self removeChild: _confirmButton];
-        [self removeChild: _fbButton];
-        [self removeChild: _saveButton];
-        [self removeChild: _cancelButton];
+//        [self removeChild: _fbButton];
+//        [self removeChild: _saveButton];
+//        [self removeChild: _cancelButton];
         [self removeChild: [self backButton]];
         [self removeChild: _addButton];
         [self removeChild: _minuButton];
@@ -407,10 +409,10 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     }else if([button.name isEqualToString:NSLocalizedString(KEY_SAVE,nil)])
     {
         [self removeChild: _confirmButton];
-        [self removeChild: _fbButton];
-        [self removeChild: _saveButton];
+//        [self removeChild: _fbButton];
+//        [self removeChild: _saveButton];
         [self removeChild: [self backButton]];
-        [self removeChild: _cancelButton];
+//        [self removeChild: _cancelButton];
         [self removeChild: _addButton];
         [self removeChild: _minuButton];
         [self removeChild:textFieldContainer];
@@ -535,10 +537,10 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         _canCapScreen = NO;
         _canPostFB = NO;
         [self addChild: _confirmButton];
-        [self addChild: _fbButton];
-        [self addChild: _saveButton];
+//        [self addChild: _fbButton];
+//        [self addChild: _saveButton];
         [self addChild: [self backButton]];
-        [self addChild: _cancelButton];
+//        [self addChild: _cancelButton];
         [self addChild:_addButton];
         [self addChild:_minuButton];
         [self addChild:textFieldContainer];
