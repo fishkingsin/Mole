@@ -8,7 +8,7 @@
 
 #import "GameCore.h"
 #import "MoleDescription.h"
-#define DEBUG
+//#define DEBUG
 @interface GameCore ()
 -(void) postFacebook;
 - (void)onButtonTriggered:(SPEvent *)event;
