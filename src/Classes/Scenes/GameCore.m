@@ -8,7 +8,7 @@
 
 #import "GameCore.h"
 #import "MoleDescription.h"
-//#define DEBUG
+#define DEBUG
 @interface GameCore ()
 -(void) postFacebook;
 - (void)onButtonTriggered:(SPEvent *)event;
@@ -109,16 +109,16 @@
     [_face addChild:_mole];
     // to find out how to react to touch events have a look at the TouchSheet class!
     // It's part of the demo.
-//    for(int i = 0 ; i< NUM_MOLE ; i++)
-//    {
-//        
-//        SPImage *sparrow = [SPImage imageWithContentsOfFile:@"mole01.png"];
-//        TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:sparrow];
-//        sheet.x = (i*30)+30;
-//        sheet.y = GAME_HEIGHT-80;
-//        
-//        [_mole addChild:sheet];
-//    }
+    //    for(int i = 0 ; i< NUM_MOLE ; i++)
+    //    {
+    //
+    //        SPImage *sparrow = [SPImage imageWithContentsOfFile:@"mole01.png"];
+    //        TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:sparrow];
+    //        sheet.x = (i*30)+30;
+    //        sheet.y = GAME_HEIGHT-80;
+    //
+    //        [_mole addChild:sheet];
+    //    }
     _addButton = [self createButton:@"+" :@"button_short.png"];
     _addButton.x = GAME_WIDTH-_addButton.width;
     _addButton.y = 0;//_confirmButton.height;
@@ -171,7 +171,7 @@
     [self loadDescription];
     
     [self addChild:_moleMenu];
-
+    
 }
 
 // callback for CGDataProviderCreateWithData
@@ -301,14 +301,14 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     }
     else if([button.name isEqualToString:@"+"])
     {
-
+        
         if([_mole numChildren] < NUM_MOLE)
         {
             SPImage *sparrow = [SPImage imageWithContentsOfFile:@"mole01.png"];
             TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:sparrow];
-            sheet.x = GAME_WIDTH*0.5-sparrow.width*0.5;
-            sheet.y = GAME_HEIGHT*0.5-sparrow.height*0.5;
-
+            sheet.x = GAME_WIDTH*0.5;
+            sheet.y = GAME_HEIGHT*0.5;
+            
             [_mole addChild:sheet];
         }
         else
@@ -319,14 +319,14 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         {
             _minuButton.enabled=YES;
         }
-
+        
     }
     else if([button.name isEqualToString:@"-"])
     {
         
         if([_mole numChildren] > 0 )
         {
-
+            
             [_mole removeChildAtIndex:[_mole numChildren]-1];
             if([_mole numChildren] == 0)
             {
@@ -420,63 +420,71 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         
 	}
     NSArray *data = [[NSArray alloc] initWithArray: [appPropertyList valueForKey:@"items"]];
-//    currentDescription = @"";
+    //    currentDescription = @"";
     //retrieve items properties from plist which is array of Dictionary
     
-//    load plist descriptions
+    //    load plist descriptions
     //    load plist by facename
     //    NSString *name =  [defaults objectForKey:@"UserName"];;
+    int numTargetHit = 0;
     for( int i = 0 ; i < numMole ; i++)
     {
         TouchSheet *sheet = (TouchSheet *)[_mole childAtIndex:i];
         sheet.enabled = NO;
-//        NSLog(@"TouchSheet : %i at %f %f",i,sheet.x+sheet.width*0.5,sheet.y+sheet.height*0.5);
         int numChildren = [_moleMenu numChildren];
         float shortest = 9999;
+        int index = -1;
         for( int j = 0 ; j < numChildren ; j++)
         {
+            
+            MoleDescription *description = (MoleDescription*)[_moleMenu childAtIndex:j];
+            SPRectangle *bounds1 = sheet.bounds;
+            SPRectangle *bounds2 = description.bounds;
+            
+            if ([bounds1 intersectsRectangle:bounds2])
             {
                 
-                MoleDescription *description = (MoleDescription*)[_moleMenu childAtIndex:j];
-                SPRectangle *bounds1 = sheet.bounds;
-                SPRectangle *bounds2 = description.bounds;
+                SPPoint *p1 = [SPPoint pointWithX:sheet.x+sheet.width*0.5 y:sheet.y+sheet.height*0.5];
+                SPPoint *p2 = [SPPoint pointWithX:description.x y:description.y];
                 
-                if ([bounds1 intersectsRectangle:bounds2])
+                float distance = [SPPoint distanceFromPoint:p1 toPoint:p2];
+                if(abs(distance)<shortest)
                 {
-
-                    SPPoint *p1 = [SPPoint pointWithX:sheet.x+sheet.width*0.5 y:sheet.y+sheet.height*0.5];
-                    SPPoint *p2 = [SPPoint pointWithX:description.x y:description.y];
+                    shortest = distance;
+                    index = j ;
                     
-                    float distance = [SPPoint distanceFromPoint:p1 toPoint:p2];
-                    if(abs(distance)<shortest)
-                    {
-                        shortest = distance;
-//                        NSLog(@"name : %@ is closest",description.name);//;//,description.myText);
-                    
-                        for(int k=0;k<[data count];k++){
-                            
-                            NSString *name = [[data objectAtIndex:k] valueForKey:@"name"];
-                            if([description.name isEqualToString:name])
-                            {
-                                NSString * _description = [[data objectAtIndex:k] valueForKey:@"description"];
-                                NSLog(@"%i %@",i,_description);
-                                currentDescription = [currentDescription stringByAppendingString:_description];
-                                currentDescription = [currentDescription stringByAppendingString:@"\n"];
-
-                            }
-                        }
-//                        description.visible = YES;
-                    }
                 }
             }
+            
+        }
+        if(index!=-1)
+        {
+            numTargetHit++;
+            NSString * _description = [[data objectAtIndex:index] valueForKey:@"description"];
+            
+            MoleDescription *description = (MoleDescription*)[_moleMenu childAtIndex:index];
+#ifdef DEBUG
+            description.visible = YES;
+            
+            NSLog(@"%i %@",i,_description);
+#endif
+            NSRange range = [currentDescription rangeOfString : _description];
+            
+            if (range.location == NSNotFound) {
+                
+                currentDescription = [currentDescription stringByAppendingString:_description];
+                currentDescription = [currentDescription stringByAppendingString:@"\n"];
+                
+            }
+            
+
         }
         
     }
-    NSLog(@"currentDescription %@",currentDescription);
-    //    push description to scrool view and text field
-    //    store description for facebook
-    //    collect data
-    //    add scroll list
+    #ifdef DEBUG
+    NSLog(@"currentDescription :\n%@",currentDescription);
+#endif
+
     
 }
 - (void)render:(SPRenderSupport*)support
@@ -567,18 +575,18 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     //retrieve items properties from plist which is array of Dictionary
     for(int i=0;i<[data count];i++){
         NSString *name = [[data objectAtIndex:i] valueForKey:@"name"];
-//        NSString *description = [[data objectAtIndex:i] valueForKey:@"description"];
+        //        NSString *description = [[data objectAtIndex:i] valueForKey:@"description"];
         NSDictionary *position = [[data objectAtIndex:i] valueForKey:@"position"];
         //        CGRect rect = CGRectMake([[position valueForKey:@"x"] integerValue],[[position valueForKey:@"y"] integerValue], 100,100);
 #ifdef DEBUG
-        NSLog(@"name : %@ \ndescription : %@ \nposition : %@ ",name,description,position);
+        NSLog(@"name : %@ \nposition : %@ ",name,position);
 #endif
         MoleDescription *myDescription = [[MoleDescription alloc ]initWithName:name ];//description:description];
         myDescription.x = [[position valueForKey:@"x"] integerValue];
         myDescription.y = [[position valueForKey:@"y"] integerValue];
         myDescription.visible = NO;
         [_moleMenu addChild:myDescription];
-
+        
     }
     
 }
