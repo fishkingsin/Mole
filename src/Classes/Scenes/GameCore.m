@@ -178,8 +178,7 @@
     
     
     _userDescTF = [SPTextField textFieldWithWidth:GAME_WIDTH-50 height:GAME_HEIGHT-50 text:@""];
-    _userDescTF.x = 25;
-    _userDescTF.y = 25;
+    
     _userDescTF.hAlign = SPHAlignLeft ;
     _userDescTF.vAlign = SPVAlignTop ;
     _userDescTF.border = YES;
@@ -187,6 +186,8 @@
     
     
     textFieldContainer = [SPSprite sprite];
+    textFieldContainer.x = 25;
+    textFieldContainer.y = 25;
     SPImage *textFieldBkgImage = [SPImage imageWithContentsOfFile:@"textfieldBackground.png"];
 
     [textFieldContainer addChild:textFieldBkgImage];
