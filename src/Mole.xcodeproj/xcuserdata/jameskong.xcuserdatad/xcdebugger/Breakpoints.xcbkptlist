@@ -32,11 +32,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/Scenes/FacePick.m"
-         timestampString = "391311965.229283"
+         timestampString = "391327702.285724"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "214"
-         endingLineNumber = "214"
+         startingLineNumber = "201"
+         endingLineNumber = "201"
          landmarkName = "-onFaceClicked:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -45,11 +45,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/Scenes/FacePick.m"
-         timestampString = "391311965.229283"
+         timestampString = "391327702.285724"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "195"
-         endingLineNumber = "195"
+         startingLineNumber = "182"
+         endingLineNumber = "182"
          landmarkName = "-createScrollView:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -84,11 +84,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/Scenes/FacePick.m"
-         timestampString = "391311965.229283"
+         timestampString = "391327702.285724"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "225"
-         endingLineNumber = "225"
+         startingLineNumber = "212"
+         endingLineNumber = "212"
          landmarkName = "-onFaceClicked:"
          landmarkType = "5">
       </FileBreakpoint>
