@@ -400,6 +400,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         [self removeChild: [self backButton]];
         [self removeChild: _addButton];
         [self removeChild: _minuButton];
+        [self removeChild:textFieldContainer];
         [self flatten];
         //allow render loop do scapscreeen function
         _canPostFB = YES;
@@ -412,6 +413,8 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         [self removeChild: _cancelButton];
         [self removeChild: _addButton];
         [self removeChild: _minuButton];
+        [self removeChild:textFieldContainer];
+
         [self flatten];
         //allow render loop do scapscreeen function
         _canCapScreen = YES;
@@ -538,6 +541,8 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         [self addChild: _cancelButton];
         [self addChild:_addButton];
         [self addChild:_minuButton];
+        [self addChild:textFieldContainer];
+
         //should use unflatten here
         //dont know why
         [self unflatten];
