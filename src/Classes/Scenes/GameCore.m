@@ -140,20 +140,21 @@
     //
     //        [_mole addChild:sheet];
     //    }
+    _confirmButton = [self createButton:NSLocalizedString(KEY_CONFIRM, nil) :@"button_short.png"];
+    _confirmButton.x = 41;
+    _confirmButton.y = GAME_HEIGHT-_confirmButton.height;
+    [self addChild:_confirmButton];
     _addButton = [self createButton:@"+" :@"button_short.png"];
-    _addButton.x = GAME_WIDTH-_addButton.width;
-    _addButton.y = 0;//_confirmButton.height;
+    _addButton.x = _confirmButton.x+_confirmButton.width;
+    _addButton.y = GAME_HEIGHT-_addButton.height;
     [self addChild:_addButton];
     _minuButton = [self createButton:@"-" :@"button_short.png"];
-    _minuButton.x = GAME_WIDTH-_minuButton.width;
-    _minuButton.y = _addButton.height;
+    _minuButton.x = _addButton.x+_addButton.width;
+    _minuButton.y = GAME_HEIGHT-_minuButton.height;
     _minuButton.enabled = NO;
     [self addChild:_minuButton];
     
-    _confirmButton = [self createButton:NSLocalizedString(KEY_CONFIRM, nil) :@"button_short.png"];
-    _confirmButton.x = 0;
-    _confirmButton.y = 0;//_confirmButton.height;
-    [self addChild:_confirmButton];
+    
     
     
     
@@ -321,9 +322,9 @@ void releaseData(void *info, const void *data, size_t dataSize) {
 //        _fbButton.visible = YES;
 //        _saveButton.visible = YES;
 //        _cancelButton.visible = YES;
-        _confirmButton.visible = NO;
-        _addButton.visible = NO;
-        _minuButton.visible = NO;
+        _confirmButton.enabled = NO;
+        _addButton.enabled = NO;
+        _minuButton.enabled = NO;
         [self checkMolePosition];
         
     }
@@ -374,9 +375,9 @@ void releaseData(void *info, const void *data, size_t dataSize) {
 //        _fbButton.visible = NO;
 //        _saveButton.visible = NO;
 //        _cancelButton.visible = NO;
-        _confirmButton.visible = YES;
-        _addButton.visible = YES;
-        _minuButton.visible = YES;
+        _confirmButton.enabled = YES;
+        _addButton.enabled = YES;
+        _minuButton.enabled = YES;
         
         int numMole = [_mole numChildren];
         for( int i = 0 ; i < numMole ; i++)
@@ -513,9 +514,10 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         }
         
     }
-    #ifdef DEBUG
+
     [_userDescTF setText:currentDescription];
     [self addChild:textFieldContainer];
+    #ifdef DEBUG
     NSLog(@"currentDescription :\n%@",currentDescription);
 #endif
 

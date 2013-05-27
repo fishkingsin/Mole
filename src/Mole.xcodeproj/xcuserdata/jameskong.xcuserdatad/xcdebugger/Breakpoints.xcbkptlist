@@ -102,7 +102,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "103"
          endingLineNumber = "103"
-         landmarkName = "-dealloc"
+         landmarkName = "-buttonClick:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
