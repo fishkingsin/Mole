@@ -46,21 +46,32 @@
 
 - (void)dealloc
 {
+    int numMole = [_mole numChildren];
+    for( int i = 0 ; i < numMole ; i++)
+    {
+        TouchSheet *sheet = (TouchSheet *)[_mole childAtIndex:i];
+        sheet.enabled = YES;
+        [sheet removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    }
     if(_confirmButton!=nil)
     {
         [_confirmButton removeFromParent];
+        [_confirmButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     }
     if(_fbButton!=nil)
     {
         [_fbButton removeFromParent];
+        [_fbButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     }
     if(_confirmButton!=nil)
     {
         [_saveButton removeFromParent];
+        [_saveButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     }
     if(_face!=nil)
     {
         [_face removeFromParent];
+        
     }
     if(_mole!=nil)
     {
@@ -69,10 +80,17 @@
     if(_cancelButton!=nil)
     {
         [_cancelButton removeFromParent];
+        [_cancelButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     }
     if(_addButton!=nil)
     {
         [_addButton removeFromParent];
+        [_addButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    }
+    if(_minuButton!=nil)
+    {
+        [_minuButton removeFromParent];
+        [_minuButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     }
 }
 

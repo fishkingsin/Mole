@@ -34,7 +34,9 @@
         [view removeFromSuperview];
     }
     if(_scroll!=nil)[_scroll removeFromSuperview];
-    if(_button!=nil)[_button removeFromSuperview];
+    if(_button!=nil){
+        [_button removeFromSuperview];
+    }
 }
 
 - (void)setup

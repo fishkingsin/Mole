@@ -54,10 +54,13 @@
     if(_maleButton!=nil)
     {
         [_maleButton removeFromParent];
+        [_maleButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+
     }
     if(_femaleButton!=nil)
     {
         [_femaleButton removeFromParent];
+        [_femaleButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     }
 }
 

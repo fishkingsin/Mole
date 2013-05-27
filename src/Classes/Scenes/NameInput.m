@@ -42,6 +42,7 @@
     if(_okButton!=nil)
     {
         [_okButton removeFromParent];
+        [_okButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     }
 }
 
