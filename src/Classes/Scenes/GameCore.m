@@ -176,21 +176,20 @@
     
     [self addChild: [self childByName:NSLocalizedString(KEY_BACK, nil)]];
     
-    
-    _userDescTF = [SPTextField textFieldWithWidth:GAME_WIDTH-50 height:GAME_HEIGHT-50 text:@""];
-    
-    _userDescTF.hAlign = SPHAlignLeft ;
-    _userDescTF.vAlign = SPVAlignTop ;
-    _userDescTF.border = YES;
-    _userDescTF.color = 0xFFFFFF;
-    
-    
     textFieldContainer = [SPSprite sprite];
     textFieldContainer.x = 25;
     textFieldContainer.y = 25;
     SPImage *textFieldBkgImage = [SPImage imageWithContentsOfFile:@"textfieldBackground.png"];
-
+    
     [textFieldContainer addChild:textFieldBkgImage];
+    
+    _userDescTF = [SPTextField textFieldWithWidth:textFieldContainer.width height:textFieldContainer.height text:@""];
+    
+    _userDescTF.hAlign = SPHAlignLeft ;
+    _userDescTF.vAlign = SPVAlignCenter ;
+    _userDescTF.border = NO;
+    _userDescTF.color = 0xFFFFFF;
+    
     [textFieldContainer addChild:_userDescTF];
     
     _isConfirm = _canCapScreen = _canPostFB = NO;
