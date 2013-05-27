@@ -34,6 +34,9 @@
     int state;
     NSString *currentDescription;
     
+    SPTextField * _userDescTF;
+    SPSprite *textFieldContainer;
+    
 }
 - (id)init
 {
@@ -174,15 +177,20 @@
     [self addChild: [self childByName:NSLocalizedString(KEY_BACK, nil)]];
     
     
-    //    SPTextField * _userNameTF = [SPTextField textFieldWithWidth:100 height:25
-    //                                                           text:name];
-    //    _userNameTF.x = (GAME_WIDTH*0.5)-(_userNameTF.width*0.5);
-    //    _userNameTF.y = 50;
-    //    _userNameTF.hAlign = SPHAlignCenter ;
-    //    _userNameTF.vAlign = SPVAlignCenter ;
-    //    _userNameTF.border = NO;
-    //    _userNameTF.color = 0x000000;
-    //    [self addChild:_userNameTF];
+    _userDescTF = [SPTextField textFieldWithWidth:GAME_WIDTH-50 height:GAME_HEIGHT-50 text:@""];
+    _userDescTF.x = 25;
+    _userDescTF.y = 25;
+    _userDescTF.hAlign = SPHAlignLeft ;
+    _userDescTF.vAlign = SPVAlignTop ;
+    _userDescTF.border = YES;
+    _userDescTF.color = 0xFFFFFF;
+    
+    
+    textFieldContainer = [SPSprite sprite];
+    SPImage *textFieldBkgImage = [SPImage imageWithContentsOfFile:@"textfieldBackground.png"];
+
+    [textFieldContainer addChild:textFieldBkgImage];
+    [textFieldContainer addChild:_userDescTF];
     
     _isConfirm = _canCapScreen = _canPostFB = NO;
     
@@ -381,6 +389,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
             MoleDescription *description = (MoleDescription*)[_moleMenu childAtIndex:j];
             description.visible = NO;
         }
+        [self removeChild:textFieldContainer];
         state = GAME_STATE_DRAGGING;
     }else if([button.name isEqualToString:NSLocalizedString(KEY_FACEBOOK,nil)])
     {
@@ -500,6 +509,8 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         
     }
     #ifdef DEBUG
+    [_userDescTF setText:currentDescription];
+    [self addChild:textFieldContainer];
     NSLog(@"currentDescription :\n%@",currentDescription);
 #endif
 
