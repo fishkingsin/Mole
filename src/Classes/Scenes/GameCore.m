@@ -317,16 +317,15 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     SPButton* button =  (SPButton*)event.target;
     if([button.name isEqualToString:NSLocalizedString(KEY_CONFIRM,nil)])
     {
-        state = GAME_STATE_CONFIRMED;
-        
-//        _fbButton.visible = YES;
-//        _saveButton.visible = YES;
-//        _cancelButton.visible = YES;
-        _confirmButton.enabled = NO;
-        _addButton.enabled = NO;
-        _minuButton.enabled = NO;
-        [self checkMolePosition];
-        
+        if([_mole numChildren] >0)
+       {
+            state = GAME_STATE_CONFIRMED;
+           
+            _confirmButton.enabled = NO;
+            _addButton.enabled = NO;
+            _minuButton.enabled = NO;
+            [self checkMolePosition];
+       }
     }
     else if([button.name isEqualToString:@"+"])
     {
