@@ -71,13 +71,7 @@
     [self addChild:[super backButton]];
     self.x = GAME_WIDTH;
     SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
-    //Delay the tween for two seconds, so that we can see the
-    //change in scenery.
-    
     [tween moveToX:0 y:0.0f];
-    
-    //Register the tween at the nearest juggler.
-    //(We will come back to jugglers later.)
     [Sparrow.juggler addObject:tween];
     
     
@@ -313,12 +307,9 @@
     
     return newButton;
 }
-- (void)onSceneClosing:(SPEvent *)event
+
+- (void)onBackButtonTriggered:(SPEvent *)event
 {
-    
-    [_femaleButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
-    [_maleButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
-    
     CGRect easeInFrame = _scroll.frame;
     easeInFrame.origin.x = GAME_WIDTH;
     [UIView animateWithDuration:0.5
@@ -331,8 +322,13 @@
                      completion:^(BOOL finished){
                          
                      }];
+    [super onBackButtonTriggered:event];
+}
+- (void)onSceneClosing:(SPEvent *)event
+{
     
-    
+    [_femaleButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    [_maleButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     [super onSceneClosing:event];
 }
 @end
