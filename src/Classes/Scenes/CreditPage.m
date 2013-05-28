@@ -67,12 +67,14 @@
     
     [Sparrow.currentController.view addSubview:_scroll];
     
+    
+    
     CGRect textViewFrame = CGRectMake(_scroll.frame.origin.x,
-                                      _scroll.frame.origin.y+50,
+                                      _scroll.frame.origin.y,
                                       _scroll.contentSize.width,
                                       _scroll.contentSize.height-50);
     UITextView *textView = [[UITextView alloc] initWithFrame:textViewFrame];
-    [textView setBackgroundColor:[UIColor whiteColor]];
+    [textView setBackgroundColor:[UIColor clearColor]];
     [textView setEditable:NO];
 
     textView.text = @"asfqwegjhwqilfhqliuwefghuil\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\nwbhefliu\n";
@@ -84,18 +86,23 @@
     [_button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [Sparrow.currentController.view addSubview: _button];
     
-    // create a button with the text "back" and display it at the bottom of the screen.
-//    SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"button_back.png"];
-//    
-//    _backButton = [[SPButton alloc] initWithUpState:buttonTexture text:@"back"];
-//    _backButton.x = GAME_WIDTH*0.5 - _backButton.width / 2.0f;
-//    _backButton.y = GAME_HEIGHT - _backButton.height + 1;
-//    _backButton.name = @"back";
-//    [_backButton addEventListener:@selector(onBackButtonTriggered:) atObject:self
-//                          forType:SP_EVENT_TYPE_TRIGGERED];
-//    [self addChild:_backButton];
-    [self addEventListener:@selector(onSceneClosing:) atObject:self
+       [self addEventListener:@selector(onSceneClosing:) atObject:self
                    forType:EVENT_TYPE_CREDIT_CLOSING];
+    
+    _scroll.frame = CGRectMake(0, -GAME_HEIGHT, gameWidth, gameHeight);
+    CGRect easeInFrame = _scroll.frame;
+    easeInFrame.origin.y = offSetY;
+    [UIView animateWithDuration:0.5
+                          delay:0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         _scroll.frame = easeInFrame;
+                         
+                     }
+                     completion:^(BOOL finished){
+                         
+                     }];
+
 }
 - (void)buttonClick:(id)sender
 {
