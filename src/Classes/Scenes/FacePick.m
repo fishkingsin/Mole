@@ -70,7 +70,7 @@
     [self addChild:background];
     [self addChild:[super backButton]];
     self.x = GAME_WIDTH;
-    SPTween *tween = [SPTween tweenWithTarget:self time:1.0f transition:SP_TRANSITION_LINEAR];
+    SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
     //Delay the tween for two seconds, so that we can see the
     //change in scenery.
     
@@ -166,7 +166,7 @@
     
     CGRect easeInFrame = _scroll.frame;
     easeInFrame.origin.x = offSetX;
-    [UIView animateWithDuration:1
+    [UIView animateWithDuration:0.5
                           delay:0
                         options: UIViewAnimationOptionCurveEaseInOut
                      animations:^{
@@ -192,7 +192,7 @@
     
     
     
-    
+    int row = 0;
     if(array.count%2==0)
     {
         while (index < array.count)
@@ -203,7 +203,10 @@
                        action:@selector(onFaceClicked:)
              forControlEvents:UIControlEventTouchDown];
             button.frame = CGRectMake((count % 3)*105, (count / 3) * 105, 100, 100);
-            
+            if(count%3==0)
+            {
+                row++;
+            }
             
             NSString *faceName = array[index++];
             [button setTitle:faceName forState:UIControlStateNormal];
@@ -214,7 +217,7 @@
             [_scroll addSubview:button];
             ++count;
         }
-        _scroll.contentSize = CGSizeMake(SCROLL_SIZE, 105*(array.count/3));
+        _scroll.contentSize = CGSizeMake(SCROLL_SIZE, 105*(row));
     }
     else{
         NSLog(@"Error : Array is not even number length please check the array content");
@@ -236,7 +239,7 @@
         [defaults synchronize];
         
         
-        SPTween *tween = [SPTween tweenWithTarget:self time:1.0f transition:SP_TRANSITION_LINEAR];
+        SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
         //Delay the tween for two seconds, so that we can see the
         //change in scenery.
         
@@ -248,7 +251,7 @@
         
         CGRect easeOutFrame = _scroll.frame;
         easeOutFrame.origin.x = -_scroll.frame.size.width;
-        [UIView animateWithDuration:1
+        [UIView animateWithDuration:0.5
                               delay:0
                             options: UIViewAnimationOptionCurveEaseInOut
                          animations:^{
@@ -316,6 +319,18 @@
     [_femaleButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     [_maleButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
+    CGRect easeInFrame = _scroll.frame;
+    easeInFrame.origin.x = GAME_WIDTH;
+    [UIView animateWithDuration:0.5
+                          delay:0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         _scroll.frame = easeInFrame;
+                         
+                     }
+                     completion:^(BOOL finished){
+                         
+                     }];
     
     
     [super onSceneClosing:event];

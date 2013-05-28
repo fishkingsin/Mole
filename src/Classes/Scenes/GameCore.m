@@ -494,7 +494,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
             numTargetHit++;
             NSString * _description = [[data objectAtIndex:index] valueForKey:@"description"];
             
-            MoleDescription *description = (MoleDescription*)[_moleMenu childAtIndex:index];
+//            MoleDescription *description = (MoleDescription*)[_moleMenu childAtIndex:index];
 #ifdef DEBUG
             description.visible = YES;
             

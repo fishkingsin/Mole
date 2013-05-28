@@ -44,7 +44,7 @@
     [Media playSound:@"sound.caf"];
     [_backButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
-    SPTween *tween = [SPTween tweenWithTarget:self time:1.0f transition:SP_TRANSITION_LINEAR];
+    SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
     //Delay the tween for two seconds, so that we can see the
     //change in scenery.
     

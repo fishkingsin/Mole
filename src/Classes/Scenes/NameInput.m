@@ -52,7 +52,7 @@
     [self addChild:background];
 
     self.x = GAME_WIDTH;
-    SPTween *tween = [SPTween tweenWithTarget:self time:1.0f transition:SP_TRANSITION_LINEAR];
+    SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
     //Delay the tween for two seconds, so that we can see the
     //change in scenery.
     
@@ -77,7 +77,7 @@
     
     CGRect easeInFrame = _textField.frame;
     easeInFrame.origin.x = CENTER_X-80;
-    [UIView animateWithDuration:1
+    [UIView animateWithDuration:0.5
                           delay:0
                         options: UIViewAnimationOptionCurveEaseInOut
                      animations:^{
@@ -138,7 +138,7 @@
     [defaults synchronize];
     NSLog(@"Data saved");
     
-    SPTween *tween = [SPTween tweenWithTarget:self time:1.0f transition:SP_TRANSITION_LINEAR];
+    SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
     //Delay the tween for two seconds, so that we can see the
     //change in scenery.
     
@@ -150,7 +150,7 @@
     
     CGRect easeOutFrame = _textField.frame;
     easeOutFrame.origin.x = 0-_textField.frame.size.width;
-    [UIView animateWithDuration:1
+    [UIView animateWithDuration:0.5
                           delay:0
                         options: UIViewAnimationOptionCurveEaseInOut
                      animations:^{
@@ -165,9 +165,22 @@
 }
 - (void)onBackButtonTriggered:(SPEvent *)event
 {
+    CGRect easeOutFrame = _textField.frame;
+    easeOutFrame.origin.x = 0-_textField.frame.size.width;
+    [UIView animateWithDuration:0.5
+                          delay:0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         _textField.frame = easeOutFrame;
+                         
+                     }
+                     completion:^(BOOL finished){
+                         [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
+                         [_textField removeFromSuperview];
+                     }];
     [super onBackButtonTriggered:event];
     //    [_backButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
-    [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
+
     
 }
 - (void)onSceneClosing:(SPEvent *)event
