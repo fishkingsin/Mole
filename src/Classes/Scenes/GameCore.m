@@ -8,7 +8,7 @@
 
 #import "GameCore.h"
 #import "MoleDescription.h"
-//#define DEBUG
+#define DEBUG
 @interface GameCore ()
 -(void) postFacebook;
 - (void)onButtonTriggered:(SPEvent *)event;
@@ -168,8 +168,8 @@
     [self addChild: [self childByName:NSLocalizedString(KEY_BACK, nil)]];
     
     textFieldContainer = [SPSprite sprite];
-    textFieldContainer.x = 25;
-    textFieldContainer.y = 25;
+    textFieldContainer.x = 0;
+    textFieldContainer.y = 0;
     SPImage *textFieldBkgImage = [SPImage imageWithContentsOfFile:@"textfieldBackground.png"];
     
     [textFieldContainer addChild:textFieldBkgImage];
@@ -200,7 +200,7 @@
     _cancelButton.visible = YES;
     _cancelButton.y = textFieldContainer.height - _saveButton.height;
     [textFieldContainer addChild:_cancelButton];
-
+    
     
     _isConfirm = _canCapScreen = _canPostFB = NO;
     
@@ -216,8 +216,9 @@ void releaseData(void *info, const void *data, size_t dataSize) {
 	free((void*)data);		// free the
 }
 - (UIImage *)screenshot :(SPRectangle*)rectangle{
-    
+#ifdef DEBUG
     NSLog(@"Screenshot %@",[self platformString]);
+#endif
 	int myWidth = 640;
 	int myHeight = 960;
     int myX = 0;
@@ -275,8 +276,9 @@ void releaseData(void *info, const void *data, size_t dataSize) {
 
 // callback for UIImageWriteToSavedPhotosAlbum
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+#ifdef DEBUG
 	NSLog(@"Save finished");
-    
+#endif
 }
 
 - (void)postFacebook
@@ -325,14 +327,14 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     if([button.name isEqualToString:NSLocalizedString(KEY_CONFIRM,nil)])
     {
         if([_mole numChildren] >0)
-       {
+        {
             state = GAME_STATE_CONFIRMED;
-           
+            
             _confirmButton.enabled = NO;
             _addButton.enabled = NO;
             _minuButton.enabled = NO;
             [self checkMolePosition];
-       }
+        }
     }
     else if([button.name isEqualToString:@"+"])
     {
@@ -378,9 +380,9 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     }
     else if([button.name isEqualToString:NSLocalizedString(KEY_CANCEL,nil)])
     {
-//        _fbButton.visible = NO;
-//        _saveButton.visible = NO;
-//        _cancelButton.visible = NO;
+        //        _fbButton.visible = NO;
+        //        _saveButton.visible = NO;
+        //        _cancelButton.visible = NO;
         _confirmButton.enabled = YES;
         _addButton.enabled = YES;
         _minuButton.enabled = YES;
@@ -393,19 +395,19 @@ void releaseData(void *info, const void *data, size_t dataSize) {
             [sheet removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
         }
         int numChildren = [_moleMenu numChildren];
-        for( int j = 0 ; j < numChildren ; j++)
-        {
-            MoleDescription *description = (MoleDescription*)[_moleMenu childAtIndex:j];
-            description.visible = NO;
-        }
+//        for( int j = 0 ; j < numChildren ; j++)
+//        {
+//            MoleDescription *description = (MoleDescription*)[_moleMenu childAtIndex:j];
+//            description.visible = NO;
+//        }
         [self removeChild:textFieldContainer];
         state = GAME_STATE_DRAGGING;
     }else if([button.name isEqualToString:NSLocalizedString(KEY_FACEBOOK,nil)])
     {
         [self removeChild: _confirmButton];
-//        [self removeChild: _fbButton];
-//        [self removeChild: _saveButton];
-//        [self removeChild: _cancelButton];
+        //        [self removeChild: _fbButton];
+        //        [self removeChild: _saveButton];
+        //        [self removeChild: _cancelButton];
         [self removeChild: [self backButton]];
         [self removeChild: _addButton];
         [self removeChild: _minuButton];
@@ -416,14 +418,14 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     }else if([button.name isEqualToString:NSLocalizedString(KEY_SAVE,nil)])
     {
         [self removeChild: _confirmButton];
-//        [self removeChild: _fbButton];
-//        [self removeChild: _saveButton];
+        //        [self removeChild: _fbButton];
+        //        [self removeChild: _saveButton];
         [self removeChild: [self backButton]];
-//        [self removeChild: _cancelButton];
+        //        [self removeChild: _cancelButton];
         [self removeChild: _addButton];
         [self removeChild: _minuButton];
         [self removeChild:textFieldContainer];
-
+        
         [self flatten];
         //allow render loop do scapscreeen function
         _canCapScreen = YES;
@@ -441,7 +443,9 @@ void releaseData(void *info, const void *data, size_t dataSize) {
 -(void) checkMolePosition
 {
     int numMole = [_mole numChildren];
+#ifdef DEBUG
     NSLog(@"checkMolePosition : %i",numMole);
+#endif
     NSString *errorDesc = nil;
 	NSPropertyListFormat format;
 	NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"descriptions" ofType:@"plist"];
@@ -459,7 +463,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         
 	}
     NSArray *data = [[NSArray alloc] initWithArray: [appPropertyList valueForKey:@"items"]];
-    //    currentDescription = @"";
+    currentDescription = @"";
     //retrieve items properties from plist which is array of Dictionary
     
     //    load plist descriptions
@@ -473,6 +477,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         int numChildren = [_moleMenu numChildren];
         float shortest = 9999;
         int index = -1;
+        NSString * _id;
         for( int j = 0 ; j < numChildren ; j++)
         {
             
@@ -491,6 +496,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
                 {
                     shortest = distance;
                     index = j ;
+                    _id = description.name;
                     
                 }
             }
@@ -498,35 +504,48 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         }
         if(index!=-1)
         {
-            numTargetHit++;
-            NSString * _description = [[data objectAtIndex:index] valueForKey:@"description"];
             
-//            MoleDescription *description = (MoleDescription*)[_moleMenu childAtIndex:index];
+            numTargetHit++;
+            
+            NSString * _description = nil;
+            for(NSDictionary *dic in data)
+            {
+                
+                if([_id isEqualToString:[dic valueForKey:@"name"]])
+                {
+                    _description = [dic valueForKey:@"description"];
+                }
+            }
 #ifdef DEBUG
+            MoleDescription *description = (MoleDescription*)[_moleMenu childAtIndex:index];
+
             description.visible = YES;
             
-            NSLog(@"%i %@",i,_description);
+            NSLog(@"id %@ %i %@",_id , index,_description);
 #endif
-            NSRange range = [currentDescription rangeOfString : _description];
-            
-            if (range.location == NSNotFound) {
+            if(_description!=nil)
+            {
+                NSRange range = [currentDescription rangeOfString : _description];
                 
-                currentDescription = [currentDescription stringByAppendingString:_description];
-                currentDescription = [currentDescription stringByAppendingString:@"\n"];
-                
+                if (range.location == NSNotFound) {
+                    
+                    currentDescription = [currentDescription stringByAppendingString:_description];
+                    currentDescription = [currentDescription stringByAppendingString:@"\n"];
+                    
+                }
             }
             
-
+            
         }
         
     }
-
+    
     [_userDescTF setText:currentDescription];
     [self addChild:textFieldContainer];
-    #ifdef DEBUG
+#ifdef DEBUG
     NSLog(@"currentDescription :\n%@",currentDescription);
 #endif
-
+    
     
 }
 - (void)render:(SPRenderSupport*)support
@@ -545,14 +564,14 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         _canCapScreen = NO;
         _canPostFB = NO;
         [self addChild: _confirmButton];
-//        [self addChild: _fbButton];
-//        [self addChild: _saveButton];
+        //        [self addChild: _fbButton];
+        //        [self addChild: _saveButton];
         [self addChild: [self backButton]];
-//        [self addChild: _cancelButton];
+        //        [self addChild: _cancelButton];
         [self addChild:_addButton];
         [self addChild:_minuButton];
         [self addChild:textFieldContainer];
-
+        
         //should use unflatten here
         //dont know why
         [self unflatten];
@@ -599,9 +618,26 @@ void releaseData(void *info, const void *data, size_t dataSize) {
 
 -(void) loadDescription
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *fileName = [defaults objectForKey:@"TargetFaceFile"];
+    
     NSString *errorDesc = nil;
 	NSPropertyListFormat format;
-	NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"deafult_description" ofType:@"plist"];
+    NSString *plistPath;
+    if(fileName!=nil)
+    {
+#ifdef DEBUG
+        NSLog(@"%@ ",fileName);
+#endif
+        plistPath = [[NSBundle mainBundle] pathForResource: [fileName substringWithRange:NSMakeRange(0, [fileName length] - 4)] ofType:@"plist"];
+#ifdef DEBUG
+        NSLog(@"pListPath %@",plistPath);
+#endif
+    }
+    else
+    {
+        plistPath = [[NSBundle mainBundle] pathForResource:@"deafult_description" ofType:@"plist"];
+    }
 	NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
     
     //load config.plist
@@ -628,7 +664,11 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         MoleDescription *myDescription = [[MoleDescription alloc ]initWithName:name ];//description:description];
         myDescription.x = [[position valueForKey:@"x"] integerValue];
         myDescription.y = [[position valueForKey:@"y"] integerValue];
+#ifdef DEBUG
+        myDescription.visible = YES;
+#else
         myDescription.visible = NO;
+#endif
         [_moleMenu addChild:myDescription];
         
     }
