@@ -99,6 +99,13 @@
 
 - (void)setup
 {
+    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
+    [self addChild:background];
+    [self addChild:[super backButton]];
+    self.x = GAME_WIDTH;
+    SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
+    [tween moveToX:0 y:0.0f];
+    [Sparrow.juggler addObject:tween];
     
     currentDescription = @"";
     state = GAME_STATE_DRAGGING;

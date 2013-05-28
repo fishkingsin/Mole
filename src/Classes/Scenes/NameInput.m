@@ -50,16 +50,9 @@
 {
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
     [self addChild:background];
-
     self.x = GAME_WIDTH;
     SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
-    //Delay the tween for two seconds, so that we can see the
-    //change in scenery.
-    
     [tween moveToX:0 y:0.0f];
-    
-    //Register the tween at the nearest juggler.
-    //(We will come back to jugglers later.)
     [Sparrow.juggler addObject:tween];
     
     startY = CENTER_Y-CENTER_Y*0.3;
