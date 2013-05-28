@@ -81,6 +81,7 @@
 		E3AA2FF717532F4C0056CF08 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = E3AA2FCE17532F4C0056CF08 /* README.txt */; };
 		E3AA2FF817532F4C0056CF08 /* deafult_description.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3AA2FCF17532F4C0056CF08 /* deafult_description.plist */; };
 		E3AA2FF917532F4C0056CF08 /* descriptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3AA2FD017532F4C0056CF08 /* descriptions.plist */; };
+		E3BED0051754928500795358 /* OverlayAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BED0041754928500795358 /* OverlayAnimation.m */; };
 		E3BF4A46174789FB00D3D3CF /* TouchSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BF4A45174789FB00D3D3CF /* TouchSheet.m */; };
 		E3E450D9174E578F0009C270 /* CreditPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E450D8174E578F0009C270 /* CreditPage.m */; };
 		E3ED9FE0174FB58E003201C9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E3ED9FDE174FB58E003201C9 /* Localizable.strings */; };
@@ -190,6 +191,8 @@
 		E3AA2FCE17532F4C0056CF08 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		E3AA2FCF17532F4C0056CF08 /* deafult_description.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = deafult_description.plist; sourceTree = "<group>"; };
 		E3AA2FD017532F4C0056CF08 /* descriptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = descriptions.plist; sourceTree = "<group>"; };
+		E3BED0031754928500795358 /* OverlayAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayAnimation.h; sourceTree = "<group>"; };
+		E3BED0041754928500795358 /* OverlayAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayAnimation.m; sourceTree = "<group>"; };
 		E3BF4A44174789FB00D3D3CF /* TouchSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchSheet.h; sourceTree = "<group>"; };
 		E3BF4A45174789FB00D3D3CF /* TouchSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchSheet.m; sourceTree = "<group>"; };
 		E3BF4A47174798DF00D3D3CF /* RoundButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoundButton.h; sourceTree = "<group>"; };
@@ -475,6 +478,8 @@
 				E3BF4A45174789FB00D3D3CF /* TouchSheet.m */,
 				E3A019C617507D6100D722FC /* MoleDescription.h */,
 				E3A019C717507D6100D722FC /* MoleDescription.m */,
+				E3BED0031754928500795358 /* OverlayAnimation.h */,
+				E3BED0041754928500795358 /* OverlayAnimation.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -640,6 +645,7 @@
 				E3BF4A46174789FB00D3D3CF /* TouchSheet.m in Sources */,
 				E3E450D9174E578F0009C270 /* CreditPage.m in Sources */,
 				E3A019C817507D6100D722FC /* MoleDescription.m in Sources */,
+				E3BED0051754928500795358 /* OverlayAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

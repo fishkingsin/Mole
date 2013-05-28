@@ -15,7 +15,7 @@
 {
     UITextField *_textField;
     SPButton *_okButton;
-//    NSString *_yourName;
+    //    NSString *_yourName;
     float startX;
     float startY;
 }
@@ -35,7 +35,7 @@
 
 - (void)dealloc
 {
-    if(_textField!=nil) 
+    if(_textField!=nil)
     {
         [_textField removeFromSuperview];
     }
@@ -48,8 +48,22 @@
 
 - (void)setup
 {
+    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
+    [self addChild:background];
+
+    self.x = GAME_WIDTH;
+    SPTween *tween = [SPTween tweenWithTarget:self time:1.0f transition:SP_TRANSITION_LINEAR];
+    //Delay the tween for two seconds, so that we can see the
+    //change in scenery.
+    
+    [tween moveToX:0 y:0.0f];
+    
+    //Register the tween at the nearest juggler.
+    //(We will come back to jugglers later.)
+    [Sparrow.juggler addObject:tween];
+    
     startY = CENTER_Y-CENTER_Y*0.3;
-    _textField = [[UITextField alloc] initWithFrame:CGRectMake(CENTER_X-80,startY-12.5, 160, 25)];
+    _textField = [[UITextField alloc] initWithFrame:CGRectMake(GAME_WIDTH,startY-12.5, 160, 25)];
     _textField.borderStyle = UITextBorderStyleRoundedRect;
     _textField.returnKeyType = UIReturnKeyDone;
     _textField.clearButtonMode = UITextFieldViewModeAlways;
@@ -58,8 +72,22 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *name = [defaults objectForKey:@"UserName"];
     [_textField setText:name];
-    
     [Sparrow.currentController.view addSubview:_textField];
+    
+    
+    CGRect easeInFrame = _textField.frame;
+    easeInFrame.origin.x = CENTER_X-80;
+    [UIView animateWithDuration:1
+                          delay:0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         _textField.frame = easeInFrame;
+                         
+                     }
+                     completion:^(BOOL finished){
+                        
+                     }];
+    
     
     
     SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"button_normal.png"];
@@ -73,10 +101,10 @@
         _okButton.enabled = NO;
     }
     [_okButton addEventListener:@selector(onOkButtonTriggered:) atObject:self
-                          forType:SP_EVENT_TYPE_TRIGGERED];
+                        forType:SP_EVENT_TYPE_TRIGGERED];
     [self addChild:_okButton];
     
-
+    
 }
 - (BOOL)textFieldShouldClear:(UITextField *)textField;               // called when clear button
 {
@@ -94,7 +122,7 @@
     assert( (textField == _textField ) );
     [textField resignFirstResponder];
     NSLog(@"textFieldShouldReturn %@",[textField text]);
-//    [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
+    //    [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
     if(![textField.text isEqualToString:@""])
     {
         _okButton.enabled = YES;
@@ -109,17 +137,45 @@
     [defaults setObject:name forKey:@"UserName"];
     [defaults synchronize];
     NSLog(@"Data saved");
-    [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
+    
+    SPTween *tween = [SPTween tweenWithTarget:self time:1.0f transition:SP_TRANSITION_LINEAR];
+    //Delay the tween for two seconds, so that we can see the
+    //change in scenery.
+    
+    [tween moveToX:-GAME_HEIGHT y:0.0f];
+    
+    //Register the tween at the nearest juggler.
+    //(We will come back to jugglers later.)
+    [Sparrow.juggler addObject:tween];
+    
+    CGRect easeOutFrame = _textField.frame;
+    easeOutFrame.origin.x = 0-_textField.frame.size.width;
+    [UIView animateWithDuration:1
+                          delay:0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         _textField.frame = easeOutFrame;
+                         
+                     }
+                     completion:^(BOOL finished){
+                         [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
+                         [_textField removeFromSuperview];
+                     }];
+    
 }
 - (void)onBackButtonTriggered:(SPEvent *)event
 {
     [super onBackButtonTriggered:event];
-//    [_backButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    //    [_backButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
+    
 }
 - (void)onSceneClosing:(SPEvent *)event
 {
+    
     [_okButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    
+    
     [super onSceneClosing:event];
 }
 

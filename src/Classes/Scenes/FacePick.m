@@ -66,6 +66,19 @@
 
 - (void)setup
 {
+    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
+    [self addChild:background];
+    [self addChild:[super backButton]];
+    self.x = GAME_WIDTH;
+    SPTween *tween = [SPTween tweenWithTarget:self time:1.0f transition:SP_TRANSITION_LINEAR];
+    //Delay the tween for two seconds, so that we can see the
+    //change in scenery.
+    
+    [tween moveToX:0 y:0.0f];
+    
+    //Register the tween at the nearest juggler.
+    //(We will come back to jugglers later.)
+    [Sparrow.juggler addObject:tween];
     
     
     _faceFile = nil;
@@ -147,9 +160,23 @@
     
     float offSetX = (GAME_WIDTH-SCROLL_SIZE)*0.5+(int) (gameWidth  - GAME_WIDTH)  / 2;
     float offSetY = (GAME_HEIGHT-SCROLL_SIZE)*0.5+(int) (gameHeight - GAME_HEIGHT) / 2;
-    _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(offSetX, offSetY, SCROLL_SIZE, SCROLL_SIZE)];
+    _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(GAME_WIDTH, offSetY, SCROLL_SIZE, SCROLL_SIZE)];
     _scroll.pagingEnabled = YES;
     [self createScrollView:_femaleThumbnailImages];
+    
+    CGRect easeInFrame = _scroll.frame;
+    easeInFrame.origin.x = offSetX;
+    [UIView animateWithDuration:1
+                          delay:0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         _scroll.frame = easeInFrame;
+                         
+                     }
+                     completion:^(BOOL finished){
+                         
+                     }];
+
     
     [Sparrow.currentController.view addSubview:_scroll];
     //    [scroll release];
@@ -208,7 +235,31 @@
         [defaults setObject:faceFile forKey:@"TargetFaceFile"];
         [defaults synchronize];
         
-        [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
+        
+        SPTween *tween = [SPTween tweenWithTarget:self time:1.0f transition:SP_TRANSITION_LINEAR];
+        //Delay the tween for two seconds, so that we can see the
+        //change in scenery.
+        
+        [tween moveToX:-GAME_HEIGHT y:0.0f];
+        
+        //Register the tween at the nearest juggler.
+        //(We will come back to jugglers later.)
+        [Sparrow.juggler addObject:tween];
+        
+        CGRect easeOutFrame = _scroll.frame;
+        easeOutFrame.origin.x = -_scroll.frame.size.width;
+        [UIView animateWithDuration:1
+                              delay:0
+                            options: UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             _scroll.frame = easeOutFrame;
+                             
+                         }
+                         completion:^(BOOL finished){
+                             [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
+//                             [_textField removeFromSuperview];
+                         }];
+//        [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
     }
 }
 - (void)onImageTouched:(SPTouchEvent *)event
@@ -264,6 +315,8 @@
     
     [_femaleButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     [_maleButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    
+    
     
     [super onSceneClosing:event];
 }

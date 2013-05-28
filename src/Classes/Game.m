@@ -9,6 +9,7 @@
 #import "FacePick.h"
 #import "GameCore.h"
 #import "CreditPage.h"
+#import "OverlayAnimation.h"
 //define scene array index
 #define NAME_INPUT 0
 #define FACE_PICK 1
@@ -36,6 +37,8 @@
     SPSprite *_contents;
     SPSprite *_menu;
     NSArray *scenesToCreate;
+    
+    OverlayAnimation* overlayAnimation;
 }
 
 - (id)init
@@ -92,7 +95,7 @@
     
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
     [_contents addChild:background];
-    
+     [self updateLocations];
     
     scenesToCreate = @[[NameInput class],
                        [FacePick class],
@@ -109,48 +112,15 @@
     [_contents addChild:_currentScene];
     
     
+
+    
     
     [self addEventListener:@selector(onSceneClosing:) atObject:self
                    forType:EVENT_TYPE_SCENE_CLOSING];
     [self addEventListener:@selector( onCreditClosing:) atObject:self
                    forType:EVENT_TYPE_CREDIT_CLOSING];
 
-    //    NSString *text = @"To find out how to create your own game out of this scaffold, "
-    //                     @"have a look at the 'First Steps' section of the Sparrow website!";
-    //
-    //    SPTextField *textField = [[SPTextField alloc] initWithWidth:280 height:80 text:text];
-    //    textField.x = (background.width - textField.width) / 2;
-    //    textField.y = (background.height / 2) - 135;
-    //    [_contents addChild:textField];
-    //
-    //    SPImage *image = [[SPImage alloc] initWithTexture:[Media atlasTexture:@"sparrow"]];
-    //    image.pivotX = (int)image.width  / 2;
-    //    image.pivotY = (int)image.height / 2;
-    //    image.x = background.width  / 2;
-    //    image.y = background.height / 2 + 40;
-    //    [_contents addChild:image];
     
-    [self updateLocations];
-    
-    // play a sound when the image is touched
-    //    [image addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-    //
-    //    // and animate it a little
-    //    SPTween *tween = [SPTween tweenWithTarget:image time:1.5 transition:SP_TRANSITION_EASE_IN_OUT];
-    //    [tween animateProperty:@"y" targetValue:image.y + 30];
-    //    [tween animateProperty:@"rotation" targetValue:0.1];
-    //    tween.repeatCount = 0; // repeat indefinitely
-    //    tween.reverse = YES;
-    //    [Sparrow.juggler addObject:tween];
-    
-    
-    // The controller autorotates the game to all supported device orientations.
-    // Choose the orienations you want to support in the Xcode Target Settings ("Summary"-tab).
-    // To update the game content accordingly, listen to the "RESIZE" event; it is dispatched
-    // to all game elements (just like an ENTER_FRAME event).
-    //
-    // To force the game to start up in landscape, add the key "Initial Interface Orientation"
-    // to the "App-Info.plist" file and choose any landscape orientation.
     
     [self addEventListener:@selector(onResize:) atObject:self forType:SP_EVENT_TYPE_RESIZE];
     
@@ -163,6 +133,7 @@
     //   * iPhone/iPad -> Universal App
     //
     // Sparrow's minimum deployment target is iOS 5.
+    overlayAnimation = [[OverlayAnimation alloc] init];
 }
 
 - (void)updateLocations
@@ -229,7 +200,22 @@
         _currentScene.name = NSStringFromClass(scenesToCreate[FACE_PICK]);
         //        _contents.visible = NO;
         [_contents addChild:_currentScene];
-        
+
+
+//        SPTween *tween = [SPTween tweenWithTarget:overlayAnimation time:2.0f transition:SP_TRANSITION_LINEAR];
+//        
+//        [_contents addChild:overlayAnimation];
+//        // you can animate any property as long as it's numeric (float, double, int).
+//        // it is animated from it's current value to a target value.
+//        overlayAnimation.alpha = 1.0f;
+//        
+//        [tween animateProperty:@"alpha" targetValue:0.0f];
+//        
+//        tween.onComplete = ^{
+//            NSLog(@"animation complete");
+//            [_contents removeChild:overlayAnimation];
+//        };
+//        [Sparrow.juggler addObject:tween];
         
     }
     else if([_currentScene.name isEqualToString:  NSStringFromClass(scenesToCreate[GAME_CORE])])

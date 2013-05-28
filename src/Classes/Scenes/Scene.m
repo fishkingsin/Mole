@@ -20,6 +20,7 @@
 {
     if ((self = [super init]))
     {
+        
         // create a button with the text "back" and display it at the bottom of the screen.
         SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"button_back.png"];
         
@@ -32,6 +33,7 @@
         [self addChild:_backButton];
         [self addEventListener:@selector(onSceneClosing:) atObject:self
                        forType:EVENT_TYPE_SCENE_CLOSING];
+        
     }
     return self;
 }
@@ -41,7 +43,19 @@
     
     [Media playSound:@"sound.caf"];
     [_backButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
-    [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
+    
+    SPTween *tween = [SPTween tweenWithTarget:self time:1.0f transition:SP_TRANSITION_LINEAR];
+    //Delay the tween for two seconds, so that we can see the
+    //change in scenery.
+    
+    [tween moveToX:GAME_WIDTH y:0.0f];
+    
+    //Register the tween at the nearest juggler.
+    //(We will come back to jugglers later.)
+    [Sparrow.juggler addObject:tween];
+    tween.onComplete = ^{ NSLog(@"Tween completed");
+    [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];};
+
 }
 
 - (void)onSceneClosing:(SPEvent *)event
