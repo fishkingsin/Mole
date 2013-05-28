@@ -15,7 +15,8 @@
 @end
 @implementation CreditPage
 {
-    UIScrollView *_scroll;
+    UIView *baseView;
+//    UIScrollView *_scroll;
     SPButton *_backButton;
     UIButton* _button;
 }
@@ -30,10 +31,12 @@
 
 - (void)dealloc
 {
-    for (UIView *view in _scroll.subviews) {
+
+    for (UIView *view in baseView.subviews) {
         [view removeFromSuperview];
     }
-    if(_scroll!=nil)[_scroll removeFromSuperview];
+    if(baseView!=nil)[ baseView removeFromSuperview];
+    
     if(_button!=nil){
         [_button removeFromSuperview];
     }
@@ -49,7 +52,11 @@
     
     float offSetWidth = 0;
     float offSetHeight = 0;
-    _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(offSetX, offSetY, GAME_WIDTH-offSetWidth, GAME_HEIGHT-offSetHeight)];
+    
+    baseView = [[UIView alloc] initWithFrame:CGRectMake(offSetX, offSetY, GAME_WIDTH, GAME_HEIGHT-offSetY)];
+
+    
+    UIScrollView* _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, GAME_WIDTH-offSetWidth, GAME_HEIGHT)];
     [_scroll setBackgroundColor:[UIColor darkGrayColor]];
     _scroll.alpha = 0.7f;
     NSInteger numberOfViews = 3;
@@ -64,15 +71,15 @@
     
     _scroll.pagingEnabled = YES;
 
+    [baseView addSubview:_scroll];
+    [Sparrow.currentController.view addSubview:baseView];
     
-    [Sparrow.currentController.view addSubview:_scroll];
     
     
-    
-    CGRect textViewFrame = CGRectMake(_scroll.frame.origin.x,
-                                      _scroll.frame.origin.y,
-                                      _scroll.contentSize.width,
-                                      _scroll.contentSize.height-50);
+    CGRect textViewFrame = CGRectMake(baseView.frame.origin.x,
+                                      baseView.frame.origin.y,
+                                      baseView.frame.size.width,
+                                      baseView.frame.size.height);
     UITextView *textView = [[UITextView alloc] initWithFrame:textViewFrame];
     [textView setBackgroundColor:[UIColor clearColor]];
     [textView setEditable:NO];
@@ -81,22 +88,22 @@
 //    textView.returnKeyType = UIReturnKeyDone;
     [_scroll addSubview:textView];
     
-    _button = [[UIButton alloc] initWithFrame:CGRectMake(GAME_WIDTH-offSetWidth-50, offSetY, 50, 50)];
+    _button = [[UIButton alloc] initWithFrame:CGRectMake(GAME_WIDTH-offSetWidth-50, 0, 50, 50)];
     _button.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
     [_button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [Sparrow.currentController.view addSubview: _button];
+    [baseView addSubview: _button];
     
        [self addEventListener:@selector(onSceneClosing:) atObject:self
                    forType:EVENT_TYPE_CREDIT_CLOSING];
     
-    _scroll.frame = CGRectMake(0, -GAME_HEIGHT, gameWidth, gameHeight);
-    CGRect easeInFrame = _scroll.frame;
+    baseView.frame = CGRectMake(0, -GAME_HEIGHT, GAME_WIDTH, GAME_HEIGHT);
+    CGRect easeInFrame = baseView.frame;
     easeInFrame.origin.y = offSetY;
     [UIView animateWithDuration:0.5
                           delay:0
                         options: UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         _scroll.frame = easeInFrame;
+                         baseView.frame = easeInFrame;
                          
                      }
                      completion:^(BOOL finished){
@@ -107,7 +114,19 @@
 - (void)buttonClick:(id)sender
 {
 //    [_backButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
-    [self dispatchEventWithType:EVENT_TYPE_CREDIT_CLOSING bubbles:YES];
+    CGRect easeOutFrame = baseView.frame;
+    easeOutFrame.origin.y = -GAME_HEIGHT;
+    [UIView animateWithDuration:0.5
+                          delay:0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         baseView.frame = easeOutFrame;
+                         
+                     }
+                     completion:^(BOOL finished){
+    [self dispatchEventWithType:EVENT_TYPE_CREDIT_CLOSING bubbles:YES];                         
+                     }];
+
 }
 - (void)onBackButtonTriggered:(SPEvent *)event
 {

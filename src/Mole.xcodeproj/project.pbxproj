@@ -35,6 +35,13 @@
 		E3747BDC173BFEBF00C24DD2 /* libSparrow.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3747BD9173BFEB900C24DD2 /* libSparrow.a */; };
 		E376B96817473F53007D6BD8 /* GameCore.m in Sources */ = {isa = PBXBuildFile; fileRef = E376B96717473F53007D6BD8 /* GameCore.m */; };
 		E376B9A0174742E2007D6BD8 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E376B99F174742E2007D6BD8 /* Social.framework */; };
+		E3851B0A1754ECED00D89DE0 /* ks_holy-tricky_female.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3851B031754ECE700D89DE0 /* ks_holy-tricky_female.plist */; };
+		E3851B0B1754ECED00D89DE0 /* ks_holy-tricky_male.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3851B041754ECE700D89DE0 /* ks_holy-tricky_male.plist */; };
+		E3851B0C1754ECED00D89DE0 /* lbt_holy-tricky_female.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3851B051754ECE700D89DE0 /* lbt_holy-tricky_female.plist */; };
+		E3851B0D1754ECED00D89DE0 /* lbt_holy-tricky_male.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3851B061754ECE800D89DE0 /* lbt_holy-tricky_male.plist */; };
+		E3851B0E1754ECED00D89DE0 /* peter_holy-tricky_female.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3851B071754ECEA00D89DE0 /* peter_holy-tricky_female.plist */; };
+		E3851B0F1754ECED00D89DE0 /* peter_holy-tricky_male.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3851B081754ECEB00D89DE0 /* peter_holy-tricky_male.plist */; };
+		E3851B101754ECED00D89DE0 /* tse_holy-tricky_female.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3851B091754ECEC00D89DE0 /* tse_holy-tricky_female.plist */; };
 		E3A019C31750751D00D722FC /* deafult_description.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3A019C21750751D00D722FC /* deafult_description.plist */; };
 		E3A019C817507D6100D722FC /* MoleDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A019C717507D6100D722FC /* MoleDescription.m */; };
 		E3A8755517466A59002410DD /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A8755417466A59002410DD /* Scene.m */; };
@@ -148,6 +155,13 @@
 		E376B96617473F53007D6BD8 /* GameCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCore.h; sourceTree = "<group>"; };
 		E376B96717473F53007D6BD8 /* GameCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCore.m; sourceTree = "<group>"; };
 		E376B99F174742E2007D6BD8 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		E3851B031754ECE700D89DE0 /* ks_holy-tricky_female.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ks_holy-tricky_female.plist"; path = "../media/graphics/ks_holy-tricky_female.plist"; sourceTree = "<group>"; };
+		E3851B041754ECE700D89DE0 /* ks_holy-tricky_male.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ks_holy-tricky_male.plist"; path = "../media/graphics/ks_holy-tricky_male.plist"; sourceTree = "<group>"; };
+		E3851B051754ECE700D89DE0 /* lbt_holy-tricky_female.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "lbt_holy-tricky_female.plist"; path = "../media/graphics/lbt_holy-tricky_female.plist"; sourceTree = "<group>"; };
+		E3851B061754ECE800D89DE0 /* lbt_holy-tricky_male.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "lbt_holy-tricky_male.plist"; path = "../media/graphics/lbt_holy-tricky_male.plist"; sourceTree = "<group>"; };
+		E3851B071754ECEA00D89DE0 /* peter_holy-tricky_female.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "peter_holy-tricky_female.plist"; path = "../media/graphics/peter_holy-tricky_female.plist"; sourceTree = "<group>"; };
+		E3851B081754ECEB00D89DE0 /* peter_holy-tricky_male.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "peter_holy-tricky_male.plist"; path = "../media/graphics/peter_holy-tricky_male.plist"; sourceTree = "<group>"; };
+		E3851B091754ECEC00D89DE0 /* tse_holy-tricky_female.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "tse_holy-tricky_female.plist"; path = "../media/graphics/tse_holy-tricky_female.plist"; sourceTree = "<group>"; };
 		E3A019C21750751D00D722FC /* deafult_description.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = deafult_description.plist; path = ../media/graphics/deafult_description.plist; sourceTree = "<group>"; };
 		E3A019C617507D6100D722FC /* MoleDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoleDescription.h; sourceTree = "<group>"; };
 		E3A019C717507D6100D722FC /* MoleDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoleDescription.m; sourceTree = "<group>"; };
@@ -290,6 +304,13 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E3851B031754ECE700D89DE0 /* ks_holy-tricky_female.plist */,
+				E3851B041754ECE700D89DE0 /* ks_holy-tricky_male.plist */,
+				E3851B051754ECE700D89DE0 /* lbt_holy-tricky_female.plist */,
+				E3851B061754ECE800D89DE0 /* lbt_holy-tricky_male.plist */,
+				E3851B071754ECEA00D89DE0 /* peter_holy-tricky_female.plist */,
+				E3851B081754ECEB00D89DE0 /* peter_holy-tricky_male.plist */,
+				E3851B091754ECEC00D89DE0 /* tse_holy-tricky_female.plist */,
 				E3BED00B1754A39700795358 /* graphics */,
 				E33738AB175265C300952F8D /* descriptions.plist */,
 				E3A019C21750751D00D722FC /* deafult_description.plist */,
@@ -656,6 +677,13 @@
 				E3BED0721754A39700795358 /* README.txt in Resources */,
 				E3BED0731754A39700795358 /* deafult_description.plist in Resources */,
 				E3BED0741754A39700795358 /* descriptions.plist in Resources */,
+				E3851B0A1754ECED00D89DE0 /* ks_holy-tricky_female.plist in Resources */,
+				E3851B0B1754ECED00D89DE0 /* ks_holy-tricky_male.plist in Resources */,
+				E3851B0C1754ECED00D89DE0 /* lbt_holy-tricky_female.plist in Resources */,
+				E3851B0D1754ECED00D89DE0 /* lbt_holy-tricky_male.plist in Resources */,
+				E3851B0E1754ECED00D89DE0 /* peter_holy-tricky_female.plist in Resources */,
+				E3851B0F1754ECED00D89DE0 /* peter_holy-tricky_male.plist in Resources */,
+				E3851B101754ECED00D89DE0 /* tse_holy-tricky_female.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
