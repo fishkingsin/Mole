@@ -8,7 +8,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/Scenes/NameInput.m"
-         timestampString = "391420883.477469"
+         timestampString = "391311965.229283"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "50"
@@ -21,23 +21,23 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/Game.m"
-         timestampString = "391421034.130739"
+         timestampString = "391184709.848704"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "274"
-         endingLineNumber = "274">
+         startingLineNumber = "288"
+         endingLineNumber = "288">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/Scenes/FacePick.m"
-         timestampString = "391421396.604915"
+         timestampString = "391327702.285724"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "228"
-         endingLineNumber = "228"
-         landmarkName = "-onFaceClicked:"
+         startingLineNumber = "201"
+         endingLineNumber = "201"
+         landmarkName = "-createScrollView:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -45,12 +45,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/Scenes/FacePick.m"
-         timestampString = "391421396.604915"
+         timestampString = "391327702.285724"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "209"
-         endingLineNumber = "209"
-         landmarkName = "-createScrollView:"
+         startingLineNumber = "182"
+         endingLineNumber = "182"
+         landmarkName = "-setup"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -84,12 +84,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/Scenes/FacePick.m"
-         timestampString = "391421396.604915"
+         timestampString = "391327702.285724"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "263"
-         endingLineNumber = "263"
-         landmarkName = "-onFaceClicked:"
+         startingLineNumber = "212"
+         endingLineNumber = "212"
+         landmarkName = "-createScrollView:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -103,19 +103,6 @@
          startingLineNumber = "103"
          endingLineNumber = "103"
          landmarkName = "-buttonClick:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Classes/Scenes/FacePick.m"
-         timestampString = "391421890.887694"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "300"
-         endingLineNumber = "300"
-         landmarkName = "-onFemaleTriggered:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
