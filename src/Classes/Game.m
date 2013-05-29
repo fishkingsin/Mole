@@ -37,7 +37,7 @@
     SPSprite *_contents;
     SPSprite *_menu;
     NSArray *scenesToCreate;
-    
+    SPButton* _creditButton;
     OverlayAnimation* overlayAnimation;
 }
 
@@ -85,7 +85,7 @@
     
     SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"button_back.png"];
     
-    SPButton* _creditButton = [[SPButton alloc] initWithUpState:buttonTexture text:@"credit"];
+    _creditButton = [[SPButton alloc] initWithUpState:buttonTexture text:@"credit"];
     _creditButton.x = GAME_WIDTH - _creditButton.width;
     _creditButton.y = GAME_HEIGHT - _creditButton.height;
     _creditButton.name = @"credit";
@@ -164,7 +164,15 @@
 {
     _creditPage = [[CreditPage alloc]init];
     [_contents addChild:_creditPage];
+    _creditButton.enabled = NO;
 }
+- (void)onCreditClosing:(SPEvent *)event
+{
+    _creditButton.enabled = YES;
+    [_creditPage removeFromParent];
+    _creditPage = nil;
+}
+
 - (void)onButtonTriggered:(SPEvent *)event
 {
     
@@ -181,11 +189,6 @@
     //    _currentScene.y = _offsetY;
     //    _mainMenu.visible = NO;
     //    [_contents addChild:_currentScene];
-}
-- (void)onCreditClosing:(SPEvent *)event
-{
-    [_creditPage removeFromParent];
-    _creditPage = nil;
 }
 - (void)onSceneClosing:(SPEvent *)event
 {
