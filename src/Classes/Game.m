@@ -91,7 +91,7 @@
     _creditButton.name = @"credit";
     [_creditButton addEventListener:@selector(onCreditButtonTriggered:) atObject:self
                           forType:SP_EVENT_TYPE_TRIGGERED];
-    [_menu addChild:_creditButton];
+//    [_menu addChild:_creditButton];
     
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
     [_contents addChild:background];
