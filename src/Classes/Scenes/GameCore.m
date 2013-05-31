@@ -99,11 +99,13 @@
 
 - (void)setup
 {
-    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
+    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"alpha_background.png"];
     [self addChild:background];
     [self addChild:[super backButton]];
     self.x = GAME_WIDTH;
+    self.alpha = 0;
     SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
+        [tween fadeTo:1.0f];
     [tween moveToX:0 y:0.0f];
     [Sparrow.juggler addObject:tween];
     
@@ -174,13 +176,23 @@
     
     [textFieldContainer addChild:textFieldBkgImage];
     
-    _userDescTF = [SPTextField textFieldWithWidth:textFieldContainer.width height:textFieldContainer.height text:@""];
+    SPTextField *TF = [SPTextField textFieldWithWidth:textFieldContainer.width height:50 text:@"解說"];
+    TF.fontSize = 24;
+    TF.hAlign = SPHAlignCenter ;
+    TF.vAlign = SPVAlignCenter ;
+    
+    TF.border = NO;
+    TF.color = 0xFFFFFF;
+    
+    _userDescTF = [SPTextField textFieldWithWidth:textFieldContainer.width-50 height:textFieldContainer.height-50 text:@""];
     
     _userDescTF.hAlign = SPHAlignLeft ;
-    _userDescTF.vAlign = SPVAlignCenter ;
+    _userDescTF.vAlign = SPVAlignTop ;
+    _userDescTF.x = 25;
+    _userDescTF.y = TF.y+TF.height;
     _userDescTF.border = NO;
     _userDescTF.color = 0xFFFFFF;
-    
+    [textFieldContainer addChild:TF];
     [textFieldContainer addChild:_userDescTF];
     
     _fbButton = [self createButton:NSLocalizedString(KEY_FACEBOOK, nil) :@"button_short.png"];
