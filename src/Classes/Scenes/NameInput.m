@@ -48,10 +48,12 @@
 
 - (void)setup
 {
-    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
+    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"alpha_background.png"];
     [self addChild:background];
     self.x = GAME_WIDTH;
+    self.alpha = 0;
     SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
+        [tween fadeTo:1.0f];
     [tween moveToX:0 y:0.0f];
     [Sparrow.juggler addObject:tween];
     
@@ -134,7 +136,7 @@
     SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
     //Delay the tween for two seconds, so that we can see the
     //change in scenery.
-    
+        [tween fadeTo:0.0f];
     [tween moveToX:-GAME_HEIGHT y:0.0f];
     
     //Register the tween at the nearest juggler.
