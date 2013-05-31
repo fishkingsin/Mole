@@ -7,7 +7,7 @@
 //
 
 #import "FacePick.h"
-
+#import <QuartzCore/QuartzCore.h>
 #define SCROLL_SIZE 310
 
 @interface FacePick ()
@@ -66,11 +66,13 @@
 
 - (void)setup
 {
-    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
+    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"alpha_background.png"];
     [self addChild:background];
     [self addChild:[super backButton]];
     self.x = GAME_WIDTH;
+    self.alpha = 0;
     SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
+    [tween fadeTo:1.0f];
     [tween moveToX:0 y:0.0f];
     [Sparrow.juggler addObject:tween];
     
@@ -112,8 +114,8 @@
                             @"lbt_holy-tricky_male_thumb.png",
                             @"peter_holy-tricky_male.png",
                             @"peter_holy-tricky_male_thumb.png",
-                            @"",
-                            @"blank_face.png",
+                            @"tse_holy-tricky_male.png",
+                            @"tse_holy-tricky_male_thumb.png",
                             @"",
                             @"blank_face.png",
                             @"",
@@ -217,6 +219,19 @@
         NSLog(@"Error : Array is not even number length please check the array content");
     }
     
+    
+//[UIView animateWithDuration:1.0 delay:0.0
+//                    options:UIViewAnimationOptionTransitionFlipFromRight
+//                 animations:^{
+//                     [_scroll removeFromSuperview];
+//                     [Sparrow.currentController.view addSubview:_scroll];
+//                 } completion:nil];
+//    [UIView animateWithDuration:1.0 delay:0.0
+//                    options:UIViewAnimationOptionTransitionFlipFromRight
+//                     animations:^{
+//                         _scroll.transform = CGAffineTransform(M_PI,1.0,0.0,0.0);
+//    } completion:nil];
+
 }
 - (void) onFaceClicked: (id)sender
 {
@@ -236,9 +251,9 @@
         SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
         //Delay the tween for two seconds, so that we can see the
         //change in scenery.
-        
+        [tween fadeTo:0.0f];
         [tween moveToX:-GAME_HEIGHT y:0.0f];
-        
+
         //Register the tween at the nearest juggler.
         //(We will come back to jugglers later.)
         [Sparrow.juggler addObject:tween];
@@ -287,6 +302,8 @@
 {
     _maleButton.enabled = NO;
     _femaleButton.enabled = YES;
+    
+    
     [self createScrollView:_maleThumbnailImages];
 }
 - (void)onFemaleTriggered:(SPEvent *)event
