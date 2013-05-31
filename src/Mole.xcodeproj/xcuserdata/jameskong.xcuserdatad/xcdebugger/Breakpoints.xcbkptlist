@@ -32,11 +32,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/Scenes/FacePick.m"
-         timestampString = "391425472.660707"
+         timestampString = "391705988.802219"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "225"
-         endingLineNumber = "225"
+         startingLineNumber = "235"
+         endingLineNumber = "235"
          landmarkName = "-onFaceClicked:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -45,11 +45,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/Scenes/FacePick.m"
-         timestampString = "391425472.660707"
+         timestampString = "391705206.930836"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "206"
-         endingLineNumber = "206"
+         startingLineNumber = "208"
+         endingLineNumber = "208"
          landmarkName = "-createScrollView:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -84,11 +84,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/Scenes/FacePick.m"
-         timestampString = "391425472.660707"
+         timestampString = "391705988.802219"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "260"
-         endingLineNumber = "260"
+         startingLineNumber = "270"
+         endingLineNumber = "270"
          landmarkName = "-onFaceClicked:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -96,25 +96,12 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Classes/Scenes/CreditPage.m"
-         timestampString = "391501086.149267"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "126"
-         endingLineNumber = "126"
-         landmarkName = "-buttonClick:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "Classes/Scenes/FacePick.m"
-         timestampString = "391425472.660707"
+         timestampString = "391705988.802219"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "297"
-         endingLineNumber = "297"
+         startingLineNumber = "309"
+         endingLineNumber = "309"
          landmarkName = "-onFemaleTriggered:"
          landmarkType = "5">
       </FileBreakpoint>
