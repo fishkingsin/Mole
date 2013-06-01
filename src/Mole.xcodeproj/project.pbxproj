@@ -40,6 +40,9 @@
 		E3A875FB1746A761002410DD /* NameInput.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A875FA1746A761002410DD /* NameInput.m */; };
 		E3BED07E1754A75200795358 /* OverlayAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BED07D1754A75200795358 /* OverlayAnimation.m */; };
 		E3BF4A46174789FB00D3D3CF /* TouchSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BF4A45174789FB00D3D3CF /* TouchSheet.m */; };
+		E3D234331759A72B001C4836 /* CustomUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D2342F1759A72B001C4836 /* CustomUIButton.m */; };
+		E3D234341759A72B001C4836 /* OBShapedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D234321759A72B001C4836 /* OBShapedButton.m */; };
+		E3D234381759AA5D001C4836 /* UIImage+ColorAtPixel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D234371759AA5D001C4836 /* UIImage+ColorAtPixel.m */; };
 		E3E1F9291758F37B003D49F7 /* credit.txt in Resources */ = {isa = PBXBuildFile; fileRef = E3E1F91E1758F37B003D49F7 /* credit.txt */; };
 		E3E1F92A1758F37B003D49F7 /* deafult_description.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3E1F91F1758F37B003D49F7 /* deafult_description.plist */; };
 		E3E1F92B1758F37B003D49F7 /* descriptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3E1F9201758F37B003D49F7 /* descriptions.plist */; };
@@ -176,6 +179,12 @@
 		E3BF4A45174789FB00D3D3CF /* TouchSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchSheet.m; sourceTree = "<group>"; };
 		E3BF4A47174798DF00D3D3CF /* RoundButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoundButton.h; sourceTree = "<group>"; };
 		E3BF4A48174798DF00D3D3CF /* RoundButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoundButton.m; sourceTree = "<group>"; };
+		E3D2342E1759A72B001C4836 /* CustomUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUIButton.h; sourceTree = "<group>"; };
+		E3D2342F1759A72B001C4836 /* CustomUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUIButton.m; sourceTree = "<group>"; };
+		E3D234311759A72B001C4836 /* OBShapedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBShapedButton.h; sourceTree = "<group>"; };
+		E3D234321759A72B001C4836 /* OBShapedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBShapedButton.m; sourceTree = "<group>"; };
+		E3D234361759AA5D001C4836 /* UIImage+ColorAtPixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ColorAtPixel.h"; sourceTree = "<group>"; };
+		E3D234371759AA5D001C4836 /* UIImage+ColorAtPixel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ColorAtPixel.m"; sourceTree = "<group>"; };
 		E3E1F91E1758F37B003D49F7 /* credit.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = credit.txt; sourceTree = "<group>"; };
 		E3E1F91F1758F37B003D49F7 /* deafult_description.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = deafult_description.plist; sourceTree = "<group>"; };
 		E3E1F9201758F37B003D49F7 /* descriptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = descriptions.plist; sourceTree = "<group>"; };
@@ -410,6 +419,10 @@
 		E3BF4A43174789FB00D3D3CF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				E3D234351759AA5D001C4836 /* UIImage+ColorAtPixel */,
+				E3D2342E1759A72B001C4836 /* CustomUIButton.h */,
+				E3D2342F1759A72B001C4836 /* CustomUIButton.m */,
+				E3D234301759A72B001C4836 /* OBShapedButton */,
 				E3BF4A47174798DF00D3D3CF /* RoundButton.h */,
 				E3BED07C1754A75100795358 /* OverlayAnimation.h */,
 				E3BED07D1754A75200795358 /* OverlayAnimation.m */,
@@ -420,6 +433,24 @@
 				E3A019C717507D6100D722FC /* MoleDescription.m */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		E3D234301759A72B001C4836 /* OBShapedButton */ = {
+			isa = PBXGroup;
+			children = (
+				E3D234311759A72B001C4836 /* OBShapedButton.h */,
+				E3D234321759A72B001C4836 /* OBShapedButton.m */,
+			);
+			path = OBShapedButton;
+			sourceTree = "<group>";
+		};
+		E3D234351759AA5D001C4836 /* UIImage+ColorAtPixel */ = {
+			isa = PBXGroup;
+			children = (
+				E3D234361759AA5D001C4836 /* UIImage+ColorAtPixel.h */,
+				E3D234371759AA5D001C4836 /* UIImage+ColorAtPixel.m */,
+			);
+			path = "UIImage+ColorAtPixel";
 			sourceTree = "<group>";
 		};
 		E3E1F91D1758F37B003D49F7 /* data */ = {
@@ -742,6 +773,9 @@
 				E3E450D9174E578F0009C270 /* CreditPage.m in Sources */,
 				E3A019C817507D6100D722FC /* MoleDescription.m in Sources */,
 				E3BED07E1754A75200795358 /* OverlayAnimation.m in Sources */,
+				E3D234331759A72B001C4836 /* CustomUIButton.m in Sources */,
+				E3D234341759A72B001C4836 /* OBShapedButton.m in Sources */,
+				E3D234381759AA5D001C4836 /* UIImage+ColorAtPixel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
