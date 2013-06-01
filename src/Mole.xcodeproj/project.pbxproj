@@ -45,6 +45,10 @@
 		E3D234381759AA5D001C4836 /* UIImage+ColorAtPixel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D234371759AA5D001C4836 /* UIImage+ColorAtPixel.m */; };
 		E3D2343A1759C43F001C4836 /* alpha_background.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D234391759C43F001C4836 /* alpha_background.png */; };
 		E3D2343C1759C445001C4836 /* alpha_background.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D2343B1759C445001C4836 /* alpha_background.png */; };
+		E3D234421759CF71001C4836 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = E3D2343E1759CF71001C4836 /* LICENSE */; };
+		E3D234431759CF71001C4836 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E3D2343F1759CF71001C4836 /* README.md */; };
+		E3D234441759CF71001C4836 /* WhiteRaccoon.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D234411759CF71001C4836 /* WhiteRaccoon.m */; };
+		E3D234461759CFCA001C4836 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3D234451759CFCA001C4836 /* CFNetwork.framework */; };
 		E3E1F9291758F37B003D49F7 /* credit.txt in Resources */ = {isa = PBXBuildFile; fileRef = E3E1F91E1758F37B003D49F7 /* credit.txt */; };
 		E3E1F92A1758F37B003D49F7 /* deafult_description.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3E1F91F1758F37B003D49F7 /* deafult_description.plist */; };
 		E3E1F92B1758F37B003D49F7 /* descriptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3E1F9201758F37B003D49F7 /* descriptions.plist */; };
@@ -187,6 +191,11 @@
 		E3D234371759AA5D001C4836 /* UIImage+ColorAtPixel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ColorAtPixel.m"; sourceTree = "<group>"; };
 		E3D234391759C43F001C4836 /* alpha_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha_background.png; sourceTree = "<group>"; };
 		E3D2343B1759C445001C4836 /* alpha_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha_background.png; sourceTree = "<group>"; };
+		E3D2343E1759CF71001C4836 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		E3D2343F1759CF71001C4836 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		E3D234401759CF71001C4836 /* WhiteRaccoon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteRaccoon.h; sourceTree = "<group>"; };
+		E3D234411759CF71001C4836 /* WhiteRaccoon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteRaccoon.m; sourceTree = "<group>"; };
+		E3D234451759CFCA001C4836 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		E3E1F91E1758F37B003D49F7 /* credit.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = credit.txt; sourceTree = "<group>"; };
 		E3E1F91F1758F37B003D49F7 /* deafult_description.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = deafult_description.plist; sourceTree = "<group>"; };
 		E3E1F9201758F37B003D49F7 /* descriptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = descriptions.plist; sourceTree = "<group>"; };
@@ -274,6 +283,7 @@
 				DE3F093A11B7B9DC009D4DB0 /* AudioToolbox.framework in Frameworks */,
 				DE3F097811B7BABD009D4DB0 /* OpenAL.framework in Frameworks */,
 				E376B9A0174742E2007D6BD8 /* Social.framework in Frameworks */,
+				E3D234461759CFCA001C4836 /* CFNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +348,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E3D234451759CFCA001C4836 /* CFNetwork.framework */,
 				E376B99F174742E2007D6BD8 /* Social.framework */,
 				DE5C4E6D138ED109004892CA /* libz.dylib */,
 				DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */,
@@ -419,6 +430,7 @@
 		E3BF4A43174789FB00D3D3CF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				E3D2343D1759CF71001C4836 /* WhiteRaccoon */,
 				E3D234351759AA5D001C4836 /* UIImage+ColorAtPixel */,
 				E3D2342E1759A72B001C4836 /* CustomUIButton.h */,
 				E3D2342F1759A72B001C4836 /* CustomUIButton.m */,
@@ -451,6 +463,17 @@
 				E3D234371759AA5D001C4836 /* UIImage+ColorAtPixel.m */,
 			);
 			path = "UIImage+ColorAtPixel";
+			sourceTree = "<group>";
+		};
+		E3D2343D1759CF71001C4836 /* WhiteRaccoon */ = {
+			isa = PBXGroup;
+			children = (
+				E3D2343E1759CF71001C4836 /* LICENSE */,
+				E3D2343F1759CF71001C4836 /* README.md */,
+				E3D234401759CF71001C4836 /* WhiteRaccoon.h */,
+				E3D234411759CF71001C4836 /* WhiteRaccoon.m */,
+			);
+			path = WhiteRaccoon;
 			sourceTree = "<group>";
 		};
 		E3E1F91D1758F37B003D49F7 /* data */ = {
@@ -751,6 +774,8 @@
 				E3E1F9A71758F380003D49F7 /* README.txt in Resources */,
 				E3D2343A1759C43F001C4836 /* alpha_background.png in Resources */,
 				E3D2343C1759C445001C4836 /* alpha_background.png in Resources */,
+				E3D234421759CF71001C4836 /* LICENSE in Resources */,
+				E3D234431759CF71001C4836 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -776,6 +801,7 @@
 				E3D234331759A72B001C4836 /* CustomUIButton.m in Sources */,
 				E3D234341759A72B001C4836 /* OBShapedButton.m in Sources */,
 				E3D234381759AA5D001C4836 /* UIImage+ColorAtPixel.m in Sources */,
+				E3D234441759CF71001C4836 /* WhiteRaccoon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
