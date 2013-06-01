@@ -406,7 +406,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
             sheet.enabled = YES;
             [sheet removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
         }
-        int numChildren = [_moleMenu numChildren];
+//        int numChildren = [_moleMenu numChildren];
 //        for( int j = 0 ; j < numChildren ; j++)
 //        {
 //            MoleDescription *description = (MoleDescription*)[_moleMenu childAtIndex:j];

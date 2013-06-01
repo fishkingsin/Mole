@@ -17,8 +17,8 @@
     UIView *_baseView;
     SPButton *_okButton;
     //    NSString *_yourName;
-    float startX;
-    float startY;
+//    float startX;
+//    float startY;
 }
 
 @synthesize textField = _textField ;
@@ -62,10 +62,14 @@
     [tween moveToX:0 y:0.0f];
     [Sparrow.juggler addObject:tween];
     
-    _baseView = [[UIView alloc]initWithFrame:CGRectMake(GAME_WIDTH, startY, GAME_WIDTH, GAME_HEIGHT*0.2)];
+//
     
-    startY = CENTER_Y-CENTER_Y*0.3;
-    _textField = [[UITextField alloc] initWithFrame:CGRectMake(CENTER_X-80,startY-12.5,160,25)];//(GAME_WIDTH,startY-12.5, 160, 25)];
+
+//    startY = ((Sparrow.stage.height-GAME_HEIGHT)*0.5) - 40 - 315;
+//    startY = CENTER_Y-GAME_HEIGHT*0.3;
+    float startY = GAME_HEIGHT - 40 - SCROLL_SIZE;
+    _baseView = [[UIView alloc]initWithFrame:CGRectMake(GAME_WIDTH, startY, GAME_WIDTH, 25)];
+    _textField = [[UITextField alloc] initWithFrame:CGRectMake(CENTER_X-80,0,160,25)];//(GAME_WIDTH,startY-12.5, 160, 25)];
     _textField.borderStyle = UITextBorderStyleRoundedRect;
     _textField.returnKeyType = UIReturnKeyDone;
     _textField.clearButtonMode = UITextFieldViewModeAlways;
@@ -97,7 +101,7 @@
     
     _okButton = [[SPButton alloc] initWithUpState:buttonTexture text:NSLocalizedString(KEY_OK, nil)];
     _okButton.x = CENTER_X - _okButton.width / 2.0f;
-    _okButton.y = startY - _okButton.height / 2.0f+30;
+    _okButton.y = startY - _okButton.height / 2.0f+5;
     _okButton.name = NSLocalizedString(KEY_OK, nil);
     if([_textField.text isEqualToString:@""])
     {

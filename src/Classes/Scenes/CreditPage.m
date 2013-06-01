@@ -50,8 +50,8 @@
     float offSetX = (int) (gameWidth  - GAME_WIDTH)  / 2;
     float offSetY = (int) (gameHeight - GAME_HEIGHT) / 2;
     
-    float offSetWidth = 0;
-    float offSetHeight = 0;
+//    float offSetWidth = 0;
+//    float offSetHeight = 0;
     
     baseView = [[UIView alloc] initWithFrame:CGRectMake(offSetX, offSetY+50, GAME_WIDTH, GAME_HEIGHT-offSetY-50)];
     baseView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];

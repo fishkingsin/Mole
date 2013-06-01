@@ -8,7 +8,7 @@
 #import "CustomUIButton.h"
 #import "FacePick.h"
 #import <QuartzCore/QuartzCore.h>
-#define SCROLL_SIZE 310
+
 
 @interface FacePick ()
 - (void)onImageTouched:(SPTouchEvent *)event;
@@ -93,7 +93,7 @@
     
     _maleButton = [self createButton:NSLocalizedString(KEY_MALE, nil) :@"button_short.png"];
     _maleButton.x = (GAME_WIDTH-( _maleButton.width*2))*0.5;
-    _maleButton.y = 0;
+    _maleButton.y = GAME_HEIGHT - 40 - SCROLL_SIZE - 10 - _maleButton.height;
     _maleButton.enabled = YES;
     [_maleButton addEventListener:@selector(onMaleTriggered:) atObject:self
                           forType:SP_EVENT_TYPE_TRIGGERED];
@@ -101,7 +101,7 @@
     
     _femaleButton = [self createButton:NSLocalizedString(KEY_FEMALE, nil) :@"button_short.png" ];
     _femaleButton.x = (GAME_WIDTH-( _maleButton.width*2))*0.5+_maleButton.width;
-    _femaleButton.y = 0;
+    _femaleButton.y = GAME_HEIGHT - 40 - SCROLL_SIZE - 10 - _maleButton.height;
     _femaleButton.enabled = NO;
     [_femaleButton addEventListener:@selector(onFemaleTriggered:) atObject:self
                             forType:SP_EVENT_TYPE_TRIGGERED];
@@ -155,7 +155,7 @@
     
     
     float offSetX = (GAME_WIDTH-SCROLL_SIZE)*0.5+(int) (gameWidth  - GAME_WIDTH)  / 2;
-    float offSetY = (GAME_HEIGHT-SCROLL_SIZE)*0.5+(int) (gameHeight - GAME_HEIGHT) / 2;
+    float offSetY = ((gameHeight-GAME_HEIGHT)*0.5)+GAME_HEIGHT - 40 - SCROLL_SIZE;
     _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(GAME_WIDTH, offSetY, SCROLL_SIZE, SCROLL_SIZE)];
     _scroll.pagingEnabled = YES;
     [self createScrollView:_femaleThumbnailImages];
