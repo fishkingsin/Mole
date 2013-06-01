@@ -5,7 +5,7 @@
 //  Created by James Kong on 17/5/13.
 //
 //
-
+#import "CustomUIButton.h"
 #import "FacePick.h"
 #import <QuartzCore/QuartzCore.h>
 #define SCROLL_SIZE 310
@@ -69,7 +69,7 @@
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"alpha_background.png"];
     [self addChild:background];
     [self addChild:[super backButton]];
-    self.x = GAME_WIDTH;
+    self.x = GAME_WIDTH*0.5;
     self.alpha = 0;
     SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
     [tween fadeTo:1.0f];
@@ -96,7 +96,7 @@
     _maleButton.y = 0;
     _maleButton.enabled = YES;
     [_maleButton addEventListener:@selector(onMaleTriggered:) atObject:self
-                         forType:SP_EVENT_TYPE_TRIGGERED];
+                          forType:SP_EVENT_TYPE_TRIGGERED];
     [self addChild:_maleButton];
     
     _femaleButton = [self createButton:NSLocalizedString(KEY_FEMALE, nil) :@"button_short.png" ];
@@ -104,7 +104,7 @@
     _femaleButton.y = 0;
     _femaleButton.enabled = NO;
     [_femaleButton addEventListener:@selector(onFemaleTriggered:) atObject:self
-                           forType:SP_EVENT_TYPE_TRIGGERED];
+                            forType:SP_EVENT_TYPE_TRIGGERED];
     [self addChild:_femaleButton];
     
     _maleThumbnailImages = [NSArray arrayWithObjects:
@@ -127,7 +127,7 @@
                             @"",
                             @"blank_face.png",
                             nil];
-
+    
     _femaleThumbnailImages = [NSArray arrayWithObjects:
                               @"tse_holy-tricky_female.png",
                               @"tse_holy-tricky_female_thumb.png",
@@ -162,31 +162,27 @@
     
     CGRect easeInFrame = _scroll.frame;
     easeInFrame.origin.x = offSetX;
+    _scroll.alpha = 0;
     [UIView animateWithDuration:0.5
                           delay:0
                         options: UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          _scroll.frame = easeInFrame;
-                         
+                         _scroll.alpha = 1;
                      }
                      completion:^(BOOL finished){
                          
                      }];
-
+    
     
     [Sparrow.currentController.view addSubview:_scroll];
-    //    [scroll release];
+//    [scroll release];
     
 }
 -(void) createScrollView :(NSArray*)array
 {
     for (UIView *view in _scroll.subviews) {
-       
-//        [UIView animateWithDuration:1.0 delay:0.0
-//                    options:UIViewAnimationOptionTransitionFlipFromRight
-//                 animations:^{
-                      [view removeFromSuperview];
-//                 } completion:nil];
+        [view removeFromSuperview];
     }
     int index = 0;
     int count = 0;
@@ -198,24 +194,39 @@
     {
         while (index < array.count)
         {
+            CustomUIButton *new_button = [CustomUIButton buttonWithType:UIButtonTypeCustom];
+            [new_button addTarget:self
+                           action:@selector(onFaceClicked:)
+                 forControlEvents:UIControlEventTouchUpInside];
+            NSString *faceName = array[index++];
+            [new_button setMessage:faceName];
+            UIImage *image1 = [UIImage imageNamed:array[index++]];
+//[[UIImageView alloc]initWithImage:[UIImage imageNamed:array[index++]]];
+            [new_button setFrame:CGRectMake((count % 3)*105, (count / 3) * 105, 100, 100)];
+            [new_button setImage: image1 forState:UIControlStateNormal];
+            [new_button setImage: image1 forState:UIControlStateSelected];
+            [new_button setBackgroundColor:[UIColor clearColor]];
+            [new_button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            [button addTarget:self
-                       action:@selector(onFaceClicked:)
-             forControlEvents:UIControlEventTouchDown];
-            button.frame = CGRectMake((count % 3)*105, (count / 3) * 105, 100, 100);
+            
+//            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//            [button addTarget:self
+//                       action:@selector(onFaceClicked:)
+//             forControlEvents:UIControlEventTouchDown];
+//            button.frame = CGRectMake((count % 3)*105, (count / 3) * 105, 100, 100);
             if(count%3==0)
             {
                 row++;
             }
             
-            NSString *faceName = array[index++];
-            [button setTitle:faceName forState:UIControlStateNormal];
-            [button addSubview:
-             [[UIImageView alloc]initWithImage:
-              [UIImage imageNamed:array[index++]]]];
-            
-            [_scroll addSubview:button];
+//            NSString *faceName = array[index++];
+//            [button setTitle:faceName forState:UIControlStateNormal];
+//            [button addSubview:
+//             [[UIImageView alloc]initWithImage:
+//              [UIImage imageNamed:array[index++]]]];
+//
+//            [_scroll addSubview:button];
+            [_scroll addSubview:new_button];
             ++count;
         }
         _scroll.contentSize = CGSizeMake(SCROLL_SIZE, 105*(row));
@@ -223,33 +234,22 @@
     else{
         NSLog(@"Error : Array is not even number length please check the array content");
     }
-    
-    
-//[UIView animateWithDuration:1.0 delay:0.0
-//                    options:UIViewAnimationOptionTransitionFlipFromRight
-//                 animations:^{
-//                     [_scroll removeFromSuperview];
-//                     [Sparrow.currentController.view addSubview:_scroll];
-//                 } completion:nil];
-//    [UIView animateWithDuration:1.0 delay:0.0
-//                    options:UIViewAnimationOptionTransitionFlipFromRight
-//                     animations:^{
-//                         _scroll.transform = CGAffineTransform(M_PI,1.0,0.0,0.0);
-//    } completion:nil];
-
 }
 - (void) onFaceClicked: (id)sender
 {
-    UIButton *button = (UIButton *)sender;
-    NSLog(@"Button image value %@",[button titleForState:UIControlStateNormal ]);
+//    UIButton *button = (UIButton *)sender;
+    CustomUIButton* theButton = (CustomUIButton*) sender;
+//    NSLog(@"Button image value %@",[button titleForState:UIControlStateNormal ]);
     [Media playSound:@"sound.caf"];
-    
-    _faceFile=[button titleForState:UIControlStateNormal ];
-    NSString* faceFile = [button titleForState:UIControlStateNormal ];
-    if(![faceFile isEqualToString:@""])
+
+    _faceFile=[theButton getMessage];
+    NSLog(@"Button image value %@",theButton);
+//    _faceFile=[button titleForState:UIControlStateNormal ];
+//    NSString* faceFile = [button titleForState:UIControlStateNormal ];
+    if(![_faceFile isEqualToString:@""])
     {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:faceFile forKey:@"TargetFaceFile"];
+        [defaults setObject:_faceFile forKey:@"TargetFaceFile"];
         [defaults synchronize];
         
         
@@ -257,8 +257,9 @@
         //Delay the tween for two seconds, so that we can see the
         //change in scenery.
         [tween fadeTo:0.0f];
+        
         [tween moveToX:-GAME_HEIGHT y:0.0f];
-
+        
         //Register the tween at the nearest juggler.
         //(We will come back to jugglers later.)
         [Sparrow.juggler addObject:tween];
@@ -270,13 +271,21 @@
                             options: UIViewAnimationOptionCurveEaseInOut
                          animations:^{
                              _scroll.frame = easeOutFrame;
-                             
+                             _scroll.alpha = 0;
                          }
                          completion:^(BOOL finished){
                              [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
 //                             [_textField removeFromSuperview];
                          }];
 //        [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
+    }
+    else{
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Hello World!"
+                                                          message:@"This is your first UIAlertview message."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
     }
 }
 - (void)onImageTouched:(SPTouchEvent *)event
@@ -287,7 +296,7 @@
 
 //- (void)onButtonTriggered:(SPEvent *)event
 //{
-//    
+//
 //    SPButton *button = (SPButton *)event.target;
 //    NSLog(@"onButtonTriggered %@", button.name);
 //    _faceFile=button.name;
@@ -295,7 +304,7 @@
 //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 //    [defaults setObject:faceFile forKey:@"TargetFaceFile"];
 //    [defaults synchronize];
-//    
+//
 //    [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
 //}
 - (NSString*) getTargetFace
@@ -339,7 +348,7 @@
                         options: UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          _scroll.frame = easeInFrame;
-                         
+                         _scroll.alpha = 0;
                      }
                      completion:^(BOOL finished){
                          
