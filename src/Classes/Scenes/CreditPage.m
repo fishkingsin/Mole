@@ -56,8 +56,8 @@
     baseView = [[UIView alloc] initWithFrame:CGRectMake(offSetX, offSetY+50, GAME_WIDTH, GAME_HEIGHT-offSetY-50)];
     baseView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
     
-    UIScrollView* _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(25, 0, GAME_WIDTH-50, GAME_HEIGHT-50)];
-    [_scroll setBackgroundColor:[UIColor clearColor]];
+//    UIScrollView* _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(25, 0, GAME_WIDTH-50, GAME_HEIGHT-50)];
+//    [_scroll setBackgroundColor:[UIColor clearColor]];
 
 //    NSInteger numberOfViews = 3;
 //    for (int i = 0; i < numberOfViews; i++) {
@@ -81,8 +81,9 @@
     [baseView addSubview:headerTV];
     
     CGRect textViewFrame = CGRectMake(0,headerTV.frame.origin.y+headerTV.frame.size.height,
-                                      _scroll.frame.size.width,
-                                      _scroll.frame.size.height);
+                                      GAME_WIDTH,GAME_HEIGHT-(headerTV.frame.origin.y+headerTV.frame.size.height));
+//                                      _scroll.frame.size.width,
+//                                      _scroll.frame.size.height);
     UITextView *textView = [[UITextView alloc] initWithFrame:textViewFrame];
     [textView setBackgroundColor:[UIColor clearColor]];
     [textView setEditable:NO];
@@ -95,14 +96,15 @@
     NSString *myText = [NSString stringWithContentsOfFile:txtPath encoding:NSUTF8StringEncoding error:nil];
     
     textView.text = myText;
-    [_scroll addSubview:textView];
+
+//    [_scroll addSubview:textView];
     
-    _scroll.contentSize = CGSizeMake(textViewFrame.size.width,textViewFrame.size.height);
+//    _scroll.contentSize = CGSizeMake(textView.frame.size.width,textView.frame.size.height*3);
     
-    _scroll.pagingEnabled = YES;
+//    _scroll.pagingEnabled = YES;
     
 
-    [baseView addSubview:_scroll];
+    [baseView addSubview:textView];
     [Sparrow.currentController.view addSubview:baseView];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
