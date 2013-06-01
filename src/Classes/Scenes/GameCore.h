@@ -9,10 +9,7 @@
 #include <sys/utsname.h>
 #import <Social/Social.h>
 #define SQ(x) ((x)*(x))
-#define KEY_CONFIRM @"Confirm"
-#define KEY_FACEBOOK @"Facebook"
-#define KEY_SAVE @"Save"
-#define KEY_CANCEL @"Cancel"
+
 
 
 #define  NUM_MOLE 10

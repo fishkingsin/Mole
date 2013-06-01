@@ -150,7 +150,7 @@
     //        [_mole addChild:sheet];
     //    }
     _confirmButton = [self createButton:NSLocalizedString(KEY_CONFIRM, nil) :@"button_short.png"];
-    _confirmButton.x = 41;
+    _confirmButton.x = 64;
     _confirmButton.y = GAME_HEIGHT-_confirmButton.height;
     [self addChild:_confirmButton];
     _addButton = [self createButton:NSLocalizedString(@"+", nil) :@"button_short.png"];
