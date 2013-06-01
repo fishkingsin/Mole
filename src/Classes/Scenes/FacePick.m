@@ -280,10 +280,11 @@
 //        [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
     }
     else{
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Hello World!"
-                                                          message:@"This is your first UIAlertview message."
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Alert Title"
+                                                                                    ,nil) 
+                                                          message:NSLocalizedString(@"Alert Body",nil) 
                                                          delegate:nil
-                                                cancelButtonTitle:@"OK"
+                                                cancelButtonTitle: NSLocalizedString(KEY_CONFIRM,nil)
                                                 otherButtonTitles:nil];
         [message show];
     }
