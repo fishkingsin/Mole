@@ -14,6 +14,7 @@
 @implementation NameInput
 {
     UITextField *_textField;
+    UIView *_baseView;
     SPButton *_okButton;
     //    NSString *_yourName;
     float startX;
@@ -35,6 +36,10 @@
 
 - (void)dealloc
 {
+    if(_baseView!=nil)
+    {
+        [_baseView removeFromSuperview];
+    }
     if(_textField!=nil)
     {
         [_textField removeFromSuperview];
@@ -50,15 +55,17 @@
 {
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"alpha_background.png"];
     [self addChild:background];
-    self.x = GAME_WIDTH;
+    self.x = GAME_WIDTH*0.5;
     self.alpha = 0;
     SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
         [tween fadeTo:1.0f];
     [tween moveToX:0 y:0.0f];
     [Sparrow.juggler addObject:tween];
     
+    _baseView = [[UIView alloc]initWithFrame:CGRectMake(GAME_WIDTH, startY, GAME_WIDTH, GAME_HEIGHT*0.2)];
+    
     startY = CENTER_Y-CENTER_Y*0.3;
-    _textField = [[UITextField alloc] initWithFrame:CGRectMake(GAME_WIDTH,startY-12.5, 160, 25)];
+    _textField = [[UITextField alloc] initWithFrame:CGRectMake(CENTER_X-80,startY-12.5,160,25)];//(GAME_WIDTH,startY-12.5, 160, 25)];
     _textField.borderStyle = UITextBorderStyleRoundedRect;
     _textField.returnKeyType = UIReturnKeyDone;
     _textField.clearButtonMode = UITextFieldViewModeAlways;
@@ -67,17 +74,18 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *name = [defaults objectForKey:@"UserName"];
     [_textField setText:name];
-    [Sparrow.currentController.view addSubview:_textField];
+    [Sparrow.currentController.view addSubview:_baseView];
+    [_baseView addSubview:_textField];
     
-    
-    CGRect easeInFrame = _textField.frame;
-    easeInFrame.origin.x = CENTER_X-80;
+    CGRect easeInFrame = _baseView.frame;
+    easeInFrame.origin.x = 0;
+    _baseView.alpha = 0;
     [UIView animateWithDuration:0.5
                           delay:0
                         options: UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         _textField.frame = easeInFrame;
-                         
+                         _baseView.frame = easeInFrame;
+                         _baseView.alpha = 1;
                      }
                      completion:^(BOOL finished){
                         
@@ -143,35 +151,37 @@
     //(We will come back to jugglers later.)
     [Sparrow.juggler addObject:tween];
     
-    CGRect easeOutFrame = _textField.frame;
-    easeOutFrame.origin.x = 0-_textField.frame.size.width;
+    CGRect easeOutFrame = _baseView.frame;
+    easeOutFrame.origin.x = 0-_baseView.frame.size.width;
+
     [UIView animateWithDuration:0.5
                           delay:0
                         options: UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         _textField.frame = easeOutFrame;
+                         _baseView.frame = easeOutFrame;
+                         _baseView.alpha = 0;
                          
                      }
                      completion:^(BOOL finished){
                          [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
-                         [_textField removeFromSuperview];
+                         [_baseView removeFromSuperview];
                      }];
     
 }
 - (void)onBackButtonTriggered:(SPEvent *)event
 {
-    CGRect easeOutFrame = _textField.frame;
-    easeOutFrame.origin.x = 0-_textField.frame.size.width;
+    CGRect easeOutFrame = _baseView.frame;
+    easeOutFrame.origin.x = 0-_baseView.frame.size.width;
     [UIView animateWithDuration:0.5
                           delay:0
                         options: UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         _textField.frame = easeOutFrame;
-                         
+                         _baseView.frame = easeOutFrame;
+                         _baseView.alpha = 0;
                      }
                      completion:^(BOOL finished){
                          [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
-                         [_textField removeFromSuperview];
+                         [_baseView removeFromSuperview];
                      }];
     [super onBackButtonTriggered:event];
     //    [_backButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
