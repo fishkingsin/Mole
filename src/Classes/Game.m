@@ -85,13 +85,13 @@
     
     SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"button_back.png"];
     
-    _creditButton = [[SPButton alloc] initWithUpState:buttonTexture text:@"credit"];
+    _creditButton = [[SPButton alloc] initWithUpState:buttonTexture text:NSLocalizedString(@"Credit", nil)];
     _creditButton.x = GAME_WIDTH - _creditButton.width;
     _creditButton.y = GAME_HEIGHT - _creditButton.height;
     _creditButton.name = @"credit";
     [_creditButton addEventListener:@selector(onCreditButtonTriggered:) atObject:self
                           forType:SP_EVENT_TYPE_TRIGGERED];
-//    [_menu addChild:_creditButton];
+    [_menu addChild:_creditButton];
     
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
     [_contents addChild:background];
