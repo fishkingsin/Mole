@@ -47,7 +47,7 @@
     SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
     //Delay the tween for two seconds, so that we can see the
     //change in scenery.
-    
+    [tween fadeTo:0];
     [tween moveToX:GAME_WIDTH y:0.0f];
     
     //Register the tween at the nearest juggler.
