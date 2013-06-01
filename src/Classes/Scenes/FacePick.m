@@ -181,7 +181,12 @@
 -(void) createScrollView :(NSArray*)array
 {
     for (UIView *view in _scroll.subviews) {
-        [view removeFromSuperview];
+       
+//        [UIView animateWithDuration:1.0 delay:0.0
+//                    options:UIViewAnimationOptionTransitionFlipFromRight
+//                 animations:^{
+                      [view removeFromSuperview];
+//                 } completion:nil];
     }
     int index = 0;
     int count = 0;
