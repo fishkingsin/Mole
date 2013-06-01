@@ -8,7 +8,7 @@
 
 #import "GameCore.h"
 #import "MoleDescription.h"
-
+#define KEY_BACK @"Back"  
 @interface GameCore ()
 -(void) postFacebook;
 - (void)onButtonTriggered:(SPEvent *)event;
@@ -102,7 +102,7 @@
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"alpha_background.png"];
     [self addChild:background];
     [self addChild:[super backButton]];
-    self.x = GAME_WIDTH;
+    self.x = GAME_WIDTH*0.5;
     self.alpha = 0;
     SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
         [tween fadeTo:1.0f];
@@ -153,11 +153,11 @@
     _confirmButton.x = 41;
     _confirmButton.y = GAME_HEIGHT-_confirmButton.height;
     [self addChild:_confirmButton];
-    _addButton = [self createButton:@"+" :@"button_short.png"];
+    _addButton = [self createButton:NSLocalizedString(@"+", nil) :@"button_short.png"];
     _addButton.x = _confirmButton.x+_confirmButton.width;
     _addButton.y = GAME_HEIGHT-_addButton.height;
     [self addChild:_addButton];
-    _minuButton = [self createButton:@"-" :@"button_short.png"];
+    _minuButton = [self createButton:NSLocalizedString(@"-", nil) :@"button_short.png"];
     _minuButton.x = _addButton.x+_addButton.width;
     _minuButton.y = GAME_HEIGHT-_minuButton.height;
     _minuButton.enabled = NO;
@@ -167,7 +167,7 @@
     
     
     
-    [self addChild: [self childByName:NSLocalizedString(KEY_BACK, nil)]];
+    [self addChild:[self backButton]];
     
     textFieldContainer = [SPSprite sprite];
     textFieldContainer.x = 0;
@@ -348,7 +348,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
             [self checkMolePosition];
         }
     }
-    else if([button.name isEqualToString:@"+"])
+    else if([button.name isEqualToString:NSLocalizedString(@"+", nil)])
     {
         
         if([_mole numChildren] < NUM_MOLE)
@@ -370,7 +370,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         }
         
     }
-    else if([button.name isEqualToString:@"-"])
+    else if([button.name isEqualToString:NSLocalizedString(@"-", nil)])
     {
         
         if([_mole numChildren] > 0 )
