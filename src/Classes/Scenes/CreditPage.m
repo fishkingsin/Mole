@@ -76,7 +76,7 @@
     [headerTV setTextColor:[UIColor whiteColor]];
     UIFont *headerTF = [UIFont fontWithName:@"Apple SD Gothic Neo" size:28.0];
     [headerTV setFont:headerTF];
-    headerTV.text = @"嗚謝";
+    headerTV.text = NSLocalizedString(@"Credit", nil);
     headerTV.textAlignment = NSTextAlignmentCenter;
     [baseView addSubview:headerTV];
     
