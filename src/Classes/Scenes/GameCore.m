@@ -312,7 +312,20 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         [vc addImage: img];
         //        [name release];
         // Present Compose View Controller
-        [Sparrow.currentController presentViewController:vc animated:YES completion:nil];
+        UIView *base = [[UIView alloc] initWithFrame:CGRectMake(0, 0, GAME_WIDTH, GAME_HEIGHT)];
+        [base setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]];
+        UIActivityIndicatorView *ai = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        ai.center = Sparrow.currentController.view.center;
+        [ai startAnimating];
+        [base addSubview:ai];
+        
+        [Sparrow.currentController presentViewController:vc animated:YES completion:
+         ^{
+             [ai removeFromSuperview];
+             [base removeFromSuperview];
+         }];
+                [Sparrow.currentController.view addSubview:base];
+        
     } else {
         NSString *message = @"It seems that we cannot talk to Facebook at the moment or you have not yet added your Facebook account to this device. Go to the Settings application to add your Facebook account to this device.";
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -474,13 +487,17 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         //		[errorDesc release];
         
 	}
-    NSArray *data = [[NSArray alloc] initWithArray: [appPropertyList valueForKey:@"items"]];
-    currentDescription = @"";
     //retrieve items properties from plist which is array of Dictionary
     
     //    load plist descriptions
     //    load plist by facename
-    //    NSString *name =  [defaults objectForKey:@"UserName"];;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *name =  [defaults objectForKey:@"UserName"];
+    NSArray *data = [[NSArray alloc] initWithArray: [appPropertyList valueForKey:@"items"]];
+    currentDescription = @"";
+    currentDescription = [currentDescription stringByAppendingString:name];
+    currentDescription = [currentDescription stringByAppendingString:@"\n"];
+    
     int numTargetHit = 0;
     for( int i = 0 ; i < numMole ; i++)
     {
