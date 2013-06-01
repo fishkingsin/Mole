@@ -492,11 +492,12 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     //    load plist descriptions
     //    load plist by facename
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *name =  [defaults objectForKey:@"UserName"];
+
     NSArray *data = [[NSArray alloc] initWithArray: [appPropertyList valueForKey:@"items"]];
     currentDescription = @"";
-    currentDescription = [currentDescription stringByAppendingString:name];
-    currentDescription = [currentDescription stringByAppendingString:@"\n"];
+//        NSString *name =  [defaults objectForKey:@"UserName"];
+//    currentDescription = [currentDescription stringByAppendingString:name];
+//    currentDescription = [currentDescription stringByAppendingString:@"\n"];
     
     int numTargetHit = 0;
     for( int i = 0 ; i < numMole ; i++)
