@@ -34,6 +34,8 @@
 		E3747BDC173BFEBF00C24DD2 /* libSparrow.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3747BD9173BFEB900C24DD2 /* libSparrow.a */; };
 		E376B96817473F53007D6BD8 /* GameCore.m in Sources */ = {isa = PBXBuildFile; fileRef = E376B96717473F53007D6BD8 /* GameCore.m */; };
 		E376B9A0174742E2007D6BD8 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E376B99F174742E2007D6BD8 /* Social.framework */; };
+		E37E02BB175B220100ABC60D /* alpha_background.png in Resources */ = {isa = PBXBuildFile; fileRef = E37E02BA175B220100ABC60D /* alpha_background.png */; };
+		E37E02BD175B220900ABC60D /* alpha_background.png in Resources */ = {isa = PBXBuildFile; fileRef = E37E02BC175B220900ABC60D /* alpha_background.png */; };
 		E3A019C817507D6100D722FC /* MoleDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A019C717507D6100D722FC /* MoleDescription.m */; };
 		E3A8755517466A59002410DD /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A8755417466A59002410DD /* Scene.m */; };
 		E3A87558174678AA002410DD /* FacePick.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A87557174678AA002410DD /* FacePick.m */; };
@@ -43,8 +45,6 @@
 		E3D234331759A72B001C4836 /* CustomUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D2342F1759A72B001C4836 /* CustomUIButton.m */; };
 		E3D234341759A72B001C4836 /* OBShapedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D234321759A72B001C4836 /* OBShapedButton.m */; };
 		E3D234381759AA5D001C4836 /* UIImage+ColorAtPixel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D234371759AA5D001C4836 /* UIImage+ColorAtPixel.m */; };
-		E3D2343A1759C43F001C4836 /* alpha_background.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D234391759C43F001C4836 /* alpha_background.png */; };
-		E3D2343C1759C445001C4836 /* alpha_background.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D2343B1759C445001C4836 /* alpha_background.png */; };
 		E3D234421759CF71001C4836 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = E3D2343E1759CF71001C4836 /* LICENSE */; };
 		E3D234431759CF71001C4836 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E3D2343F1759CF71001C4836 /* README.md */; };
 		E3D234441759CF71001C4836 /* WhiteRaccoon.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D234411759CF71001C4836 /* WhiteRaccoon.m */; };
@@ -168,6 +168,8 @@
 		E376B96617473F53007D6BD8 /* GameCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCore.h; sourceTree = "<group>"; };
 		E376B96717473F53007D6BD8 /* GameCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCore.m; sourceTree = "<group>"; };
 		E376B99F174742E2007D6BD8 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		E37E02BA175B220100ABC60D /* alpha_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha_background.png; sourceTree = "<group>"; };
+		E37E02BC175B220900ABC60D /* alpha_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha_background.png; sourceTree = "<group>"; };
 		E3A019C617507D6100D722FC /* MoleDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoleDescription.h; sourceTree = "<group>"; };
 		E3A019C717507D6100D722FC /* MoleDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoleDescription.m; sourceTree = "<group>"; };
 		E3A8755317466A59002410DD /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
@@ -189,8 +191,6 @@
 		E3D234321759A72B001C4836 /* OBShapedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBShapedButton.m; sourceTree = "<group>"; };
 		E3D234361759AA5D001C4836 /* UIImage+ColorAtPixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ColorAtPixel.h"; sourceTree = "<group>"; };
 		E3D234371759AA5D001C4836 /* UIImage+ColorAtPixel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ColorAtPixel.m"; sourceTree = "<group>"; };
-		E3D234391759C43F001C4836 /* alpha_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha_background.png; sourceTree = "<group>"; };
-		E3D2343B1759C445001C4836 /* alpha_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha_background.png; sourceTree = "<group>"; };
 		E3D2343E1759CF71001C4836 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		E3D2343F1759CF71001C4836 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		E3D234401759CF71001C4836 /* WhiteRaccoon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteRaccoon.h; sourceTree = "<group>"; };
@@ -508,7 +508,7 @@
 		E3E1F9351758F380003D49F7 /* 1x */ = {
 			isa = PBXGroup;
 			children = (
-				E3D234391759C43F001C4836 /* alpha_background.png */,
+				E37E02BA175B220100ABC60D /* alpha_background.png */,
 				E3E1F9371758F380003D49F7 /* atlas.png */,
 				E3E1F9381758F380003D49F7 /* atlas.xml */,
 				E3E1F9391758F380003D49F7 /* background.jpg */,
@@ -558,7 +558,7 @@
 		E3E1F9531758F380003D49F7 /* 2x */ = {
 			isa = PBXGroup;
 			children = (
-				E3D2343B1759C445001C4836 /* alpha_background.png */,
+				E37E02BC175B220900ABC60D /* alpha_background.png */,
 				E3E1F9551758F380003D49F7 /* atlas@2x.png */,
 				E3E1F9561758F380003D49F7 /* atlas@2x.xml */,
 				E3E1F9571758F380003D49F7 /* background@2x.jpg */,
@@ -772,10 +772,10 @@
 				E3E1F9A51758F380003D49F7 /* tse_holy-tricky_female_thumb@2x.png in Resources */,
 				E3E1F9A61758F380003D49F7 /* tse_holy-tricky_male_thumb@x2.png in Resources */,
 				E3E1F9A71758F380003D49F7 /* README.txt in Resources */,
-				E3D2343A1759C43F001C4836 /* alpha_background.png in Resources */,
-				E3D2343C1759C445001C4836 /* alpha_background.png in Resources */,
 				E3D234421759CF71001C4836 /* LICENSE in Resources */,
 				E3D234431759CF71001C4836 /* README.md in Resources */,
+				E37E02BB175B220100ABC60D /* alpha_background.png in Resources */,
+				E37E02BD175B220900ABC60D /* alpha_background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -826,7 +826,7 @@
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "App-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = Mole;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -839,7 +839,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				INFOPLIST_FILE = "App-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = Mole;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

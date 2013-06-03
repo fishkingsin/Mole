@@ -108,14 +108,14 @@
     [self addChild:_femaleButton];
     
     _maleThumbnailImages = [NSArray arrayWithObjects:
+                            @"tse_holy-tricky_male.png",
+                            @"tse_holy-tricky_male_thumb.png",
                             @"ks_holy-tricky_male.png",
                             @"ks_holy-tricky_male_thumb.png",
                             @"lbt_holy-tricky_male.png",
                             @"lbt_holy-tricky_male_thumb.png",
                             @"peter_holy-tricky_male.png",
-                            @"peter_holy-tricky_male_thumb.png",
-                            @"tse_holy-tricky_male.png",
-                            @"tse_holy-tricky_male_thumb.png",
+                            @"peter_holy-tricky_male_thumb.png",    
                             @"",
                             @"blank_face.png",
                             @"",

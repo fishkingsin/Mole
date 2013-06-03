@@ -152,6 +152,7 @@
     _confirmButton = [self createButton:NSLocalizedString(KEY_CONFIRM, nil) :@"button_short.png"];
     _confirmButton.x = 64;
     _confirmButton.y = GAME_HEIGHT-_confirmButton.height;
+    _confirmButton.enabled = NO;
     [self addChild:_confirmButton];
     _addButton = [self createButton:NSLocalizedString(@"+", nil) :@"button_short.png"];
     _addButton.x = _confirmButton.x+_confirmButton.width;
@@ -196,19 +197,19 @@
     [textFieldContainer addChild:_userDescTF];
     
     _fbButton = [self createButton:NSLocalizedString(KEY_FACEBOOK, nil) :@"button_short.png"];
-    _fbButton.x = 0;
+    _fbButton.x = _fbButton.width;
     _fbButton.visible = YES;
     _fbButton.y = textFieldContainer.height - _fbButton.height;
     [textFieldContainer addChild:_fbButton];
     
     _saveButton = [self createButton:NSLocalizedString(KEY_SAVE, nil) :@"button_short.png"];
-    _saveButton.x = _fbButton.width;
+    _saveButton.x = _fbButton.x+_fbButton.width;
     _saveButton.visible = YES;
     _saveButton.y =textFieldContainer.height - _saveButton.height;
     [textFieldContainer addChild:_saveButton];
     
     _cancelButton = [self createButton:NSLocalizedString(KEY_CANCEL, nil) :@"button_short.png"];
-    _cancelButton.x = _fbButton.width+_saveButton.width;
+    _cancelButton.x = _saveButton.x+_saveButton.width;
     _cancelButton.visible = YES;
     _cancelButton.y = textFieldContainer.height - _saveButton.height;
     [textFieldContainer addChild:_cancelButton];
@@ -368,17 +369,23 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         {
             SPImage *sparrow = [SPImage imageWithContentsOfFile:@"mole01.png"];
             TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:sparrow];
-            sheet.x = GAME_WIDTH*0.5;
-            sheet.y = GAME_HEIGHT*0.5;
+            sheet.x = CENTER_X;
+            sheet.y = GAME_HEIGHT;
+            
+            SPTween *tween = [SPTween tweenWithTarget:sheet time:0.5f transition:SP_TRANSITION_LINEAR];
+
+            [tween moveToX:CENTER_X y:CENTER_Y];
+            [Sparrow.juggler addObject:tween];
             
             [_mole addChild:sheet];
         }
-        else
+        if([_mole numChildren] == NUM_MOLE)
         {
             button.enabled = NO;
         }
         if([_mole numChildren] >0)
         {
+            _confirmButton.enabled = YES;
             _minuButton.enabled=YES;
         }
         
@@ -390,12 +397,15 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         {
             
             [_mole removeChildAtIndex:[_mole numChildren]-1];
-            if([_mole numChildren] == 0)
-            {
-                
-                _minuButton.enabled = NO;
-                
-            }
+            
+        }
+        if([_mole numChildren] == 0)
+        {
+            
+            _minuButton.enabled = NO;
+            
+        
+            _confirmButton.enabled = NO;
         }
         
         if([_mole numChildren] < NUM_MOLE)
@@ -425,7 +435,14 @@ void releaseData(void *info, const void *data, size_t dataSize) {
 //            MoleDescription *description = (MoleDescription*)[_moleMenu childAtIndex:j];
 //            description.visible = NO;
 //        }
-        [self removeChild:textFieldContainer];
+        SPTween *tween = [SPTween tweenWithTarget:textFieldContainer time:0.5f transition:SP_TRANSITION_LINEAR];
+
+        [tween scaleTo:0];
+        [tween moveToX:CENTER_X y:CENTER_Y];
+        tween.onComplete = ^{ [self removeChild:textFieldContainer]; };
+        [Sparrow.juggler addObject:tween];
+
+        
         state = GAME_STATE_DRAGGING;
     }else if([button.name isEqualToString:NSLocalizedString(KEY_FACEBOOK,nil)])
     {
@@ -572,6 +589,15 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     }
     
     [_userDescTF setText:currentDescription];
+    
+    SPTween *tween = [SPTween tweenWithTarget:textFieldContainer time:0.5f transition:SP_TRANSITION_LINEAR];
+    textFieldContainer.scaleX = textFieldContainer.scaleY = 0;
+    textFieldContainer.x = CENTER_X;
+    textFieldContainer.y = CENTER_Y;
+    [tween scaleTo:1];
+    [tween moveToX:0 y:0];
+    [Sparrow.juggler addObject:tween];
+    
     [self addChild:textFieldContainer];
 #ifdef DEBUG
     NSLog(@"currentDescription :\n%@",currentDescription);
