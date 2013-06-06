@@ -110,43 +110,61 @@
     _maleThumbnailImages = [NSArray arrayWithObjects:
                             @"tse_holy-tricky_male.png",
                             @"tse_holy-tricky_male_thumb.png",
+                            @"謝曬皮",
                             @"ks_holy-tricky_male.png",
                             @"ks_holy-tricky_male_thumb.png",
+                            @"KS",
                             @"lbt_holy-tricky_male.png",
                             @"lbt_holy-tricky_male_thumb.png",
+                            @"路邊攤",
                             @"peter_holy-tricky_male.png",
-                            @"peter_holy-tricky_male_thumb.png",    
+                            @"peter_holy-tricky_male_thumb.png",
+                            @"Peter Ng",
                             @"donald_holy-tricky_male.png",
                             @"donald_holy-tricky_male_thumb.png",
+                            @"Donald@903",
+                            @"sh_holy-tricky_male.png",
+                            @"sh_holy-tricky_male_thumb.png",
+                            @"小克",
+                            @"littlethunder_holy-tricky_male",
+                            @"littlethunder_holy-tricky_male_thumb.png",
+                            @"門小雷",
                             @"",
                             @"blank_face.png",
                             @"",
-                            @"blank_face.png",
                             @"",
                             @"blank_face.png",
                             @"",
-                            @"blank_face.png",
                             nil];
     
     _femaleThumbnailImages = [NSArray arrayWithObjects:
                               @"tse_holy-tricky_female.png",
                               @"tse_holy-tricky_female_thumb.png",
+                              @"謝曬皮",
                               @"ks_holy-tricky_female.png",
                               @"ks_holy-tricky_female_thumb.png",
+                              @"KS",
                               @"lbt_holy-tricky_female.png",
                               @"lbt_holy-tricky_female_thumb.png",
+                              @"路邊攤",
                               @"peter_holy-tricky_female.png",
                               @"peter_holy-tricky_female_thumb.png",
+                              @"Peter Ng",
                               @"donald_holy-tricky_female.png",
                               @"donald_holy-tricky_female_thumb.png",
+                              @"Donald",
+                              @"sh_holy-tricky_female.png",
+                              @"sh_holy-tricky_female_thumb.png",
+                              @"小克",
+                              @"littlethunder_holy-tricky_female",
+                              @"littlethunder_holy-tricky_female_thumb.png",
+                              @"門小雷",
                               @"",
                               @"blank_face.png",
                               @"",
-                              @"blank_face.png",
                               @"",
                               @"blank_face.png",
                               @"",
-                              @"blank_face.png",
                               nil];
     
     
@@ -190,7 +208,7 @@
     
     
     int row = 0;
-    if(array.count%2==0)
+    if(array.count%3==0)
     {
         while (index < array.count)
         {
@@ -199,14 +217,19 @@
                            action:@selector(onFaceClicked:)
                  forControlEvents:UIControlEventTouchUpInside];
             NSString *faceName = array[index++];
+
             [new_button setMessage:faceName];
             UIImage *image1 = [UIImage imageNamed:array[index++]];
+            NSString *authorName = array[index++];
 //[[UIImageView alloc]initWithImage:[UIImage imageNamed:array[index++]]];
             [new_button setFrame:CGRectMake((count % 3)*105, (count / 3) * 105, 100, 100)];
-            [new_button setImage: image1 forState:UIControlStateNormal];
-            [new_button setImage: image1 forState:UIControlStateSelected];
+            [new_button setBackgroundImage: image1 forState:UIControlStateNormal];
+            [new_button setBackgroundImage: image1 forState:UIControlStateSelected];
+            [new_button setTitle:authorName forState:UIControlStateNormal];
+            [new_button setTitle:authorName forState:UIControlStateSelected];
             [new_button setBackgroundColor:[UIColor clearColor]];
             [new_button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [new_button setTitleEdgeInsets:UIEdgeInsetsMake(80.0f, 0.0f, 0.0f, 0.0f)];
             
             
 //            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
