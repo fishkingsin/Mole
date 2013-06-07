@@ -134,7 +134,7 @@
     
     
     [self addChild:_face];
-    
+    [self addChild:_moleMenu];
     _mole = [SPSprite sprite];
     [_face addChild:_mole];
     // to find out how to react to touch events have a look at the TouchSheet class!
@@ -177,7 +177,7 @@
     
     [textFieldContainer addChild:textFieldBkgImage];
     
-    SPTextField *TF = [SPTextField textFieldWithWidth:textFieldContainer.width height:50 text:@"解說"];
+    SPTextField *TF = [SPTextField textFieldWithWidth:textFieldContainer.width height:30 text:@"解說"];
     TF.fontSize = 24;
     TF.hAlign = SPHAlignCenter ;
     TF.vAlign = SPVAlignCenter ;
@@ -192,6 +192,7 @@
     _userDescTF.x = 25;
     _userDescTF.y = TF.y+TF.height;
     _userDescTF.border = NO;
+    _userDescTF.fontSize = 11;
     _userDescTF.color = 0xFFFFFF;
     [textFieldContainer addChild:TF];
     [textFieldContainer addChild:_userDescTF];
@@ -219,7 +220,7 @@
     
     [self loadDescription];
     
-    [self addChild:_moleMenu];
+
     
 }
 
@@ -531,12 +532,16 @@ void releaseData(void *info, const void *data, size_t dataSize) {
             
             MoleDescription *description = (MoleDescription*)[_moleMenu childAtIndex:j];
             SPRectangle *bounds1 = sheet.bounds;
-            SPRectangle *bounds2 = description.bounds;
+            int x = description.bounds.x;
+            int y = description.bounds.y;
+            int w = description.bounds.width;
+            int h = description.bounds.height;
+            SPRectangle *bounds2 = [[SPRectangle alloc] initWithX:x-w*0.5 y:y-h*0.5 width:w height:h];
             
             if ([bounds1 intersectsRectangle:bounds2])
             {
                 
-                SPPoint *p1 = [SPPoint pointWithX:sheet.x+sheet.width*0.5 y:sheet.y+sheet.height*0.5];
+                SPPoint *p1 = [SPPoint pointWithX:sheet.x y:sheet.y];
                 SPPoint *p2 = [SPPoint pointWithX:description.x y:description.y];
                 
                 float distance = [SPPoint distanceFromPoint:p1 toPoint:p2];
@@ -576,7 +581,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
                 NSRange range = [currentDescription rangeOfString : _description];
                 
                 if (range.location == NSNotFound) {
-                    
+                    currentDescription = [currentDescription stringByAppendingString:@">"];
                     currentDescription = [currentDescription stringByAppendingString:_description];
                     currentDescription = [currentDescription stringByAppendingString:@"\n"];
                     

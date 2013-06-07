@@ -32,7 +32,7 @@
     {
         _name = name;
 //        _myText = description;
-        SPTextField *colorTF = [SPTextField textFieldWithWidth:30 height:20
+        SPTextField *colorTF = [SPTextField textFieldWithWidth:20 height:10
                                                           text:_name];
         colorTF.x = 0;
         colorTF.y = 0;
