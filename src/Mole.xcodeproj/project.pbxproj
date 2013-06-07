@@ -135,6 +135,7 @@
 		E3A875FB1746A761002410DD /* NameInput.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A875FA1746A761002410DD /* NameInput.m */; };
 		E3BED07E1754A75200795358 /* OverlayAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BED07D1754A75200795358 /* OverlayAnimation.m */; };
 		E3BF4A46174789FB00D3D3CF /* TouchSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BF4A45174789FB00D3D3CF /* TouchSheet.m */; };
+		E3CB1A40176244C400258211 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = E3CB1A3F176244C400258211 /* iTunesArtwork */; };
 		E3D234331759A72B001C4836 /* CustomUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D2342F1759A72B001C4836 /* CustomUIButton.m */; };
 		E3D234341759A72B001C4836 /* OBShapedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D234321759A72B001C4836 /* OBShapedButton.m */; };
 		E3D234381759AA5D001C4836 /* UIImage+ColorAtPixel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D234371759AA5D001C4836 /* UIImage+ColorAtPixel.m */; };
@@ -305,6 +306,7 @@
 		E3BF4A45174789FB00D3D3CF /* TouchSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchSheet.m; sourceTree = "<group>"; };
 		E3BF4A47174798DF00D3D3CF /* RoundButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoundButton.h; sourceTree = "<group>"; };
 		E3BF4A48174798DF00D3D3CF /* RoundButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoundButton.m; sourceTree = "<group>"; };
+		E3CB1A3F176244C400258211 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		E3D2342E1759A72B001C4836 /* CustomUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUIButton.h; sourceTree = "<group>"; };
 		E3D2342F1759A72B001C4836 /* CustomUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUIButton.m; sourceTree = "<group>"; };
 		E3D234311759A72B001C4836 /* OBShapedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBShapedButton.h; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				E3CB1A3F176244C400258211 /* iTunesArtwork */,
 				DE4A3DA210FFB0D400FDA492 /* Sparrow.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -875,6 +878,7 @@
 				E359ADF917604A1A00B7FF96 /* sh_holy-tricky_male.plist in Resources */,
 				E359ADFA17604A1A00B7FF96 /* tse_holy-tricky_female.plist in Resources */,
 				E359ADFB17604A1A00B7FF96 /* tse_holy-tricky_male.plist in Resources */,
+				E3CB1A40176244C400258211 /* iTunesArtwork in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
