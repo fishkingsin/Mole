@@ -10,9 +10,9 @@
                 <key>position</key>
                 <dict>
                     <key>x</key>
-                    <integer>163</integer>
+                    <integer>167</integer>
                     <key>y</key>
-                    <integer>80</integer>
+                    <integer>97</integer>
                     <key>id</key>
                     <string>1</string>
                 </dict>
@@ -25,9 +25,9 @@
                 <key>position</key>
                 <dict>
                     <key>x</key>
-                    <integer>163</integer>
+                    <integer>168</integer>
                     <key>y</key>
-                    <integer>104</integer>
+                    <integer>117</integer>
                     <key>id</key>
                     <string>2</string>
                 </dict>
@@ -40,9 +40,9 @@
                 <key>position</key>
                 <dict>
                     <key>x</key>
-                    <integer>164</integer>
+                    <integer>167</integer>
                     <key>y</key>
-                    <integer>127</integer>
+                    <integer>136</integer>
                     <key>id</key>
                     <string>3</string>
                 </dict>
@@ -55,9 +55,9 @@
                 <key>position</key>
                 <dict>
                     <key>x</key>
-                    <integer>166</integer>
+                    <integer>164</integer>
                     <key>y</key>
-                    <integer>169</integer>
+                    <integer>175</integer>
                     <key>id</key>
                     <string>4</string>
                 </dict>
@@ -117,7 +117,7 @@
                     <key>x</key>
                     <integer>164</integer>
                     <key>y</key>
-                    <integer>265</integer>
+                    <integer>270</integer>
                     <key>id</key>
                     <string>8</string>
                 </dict>
@@ -132,7 +132,7 @@
                     <key>x</key>
                     <integer>163</integer>
                     <key>y</key>
-                    <integer>280</integer>
+                    <integer>285</integer>
                     <key>id</key>
                     <string>9</string>
                 </dict>
@@ -160,9 +160,9 @@
                 <key>position</key>
                 <dict>
                     <key>x</key>
-                    <integer>191</integer>
+                    <integer>194</integer>
                     <key>y</key>
-                    <integer>252</integer>
+                    <integer>265</integer>
                     <key>id</key>
                     <string>11</string>
                 </dict>
@@ -220,9 +220,9 @@
                 <key>position</key>
                 <dict>
                     <key>x</key>
-                    <integer>202</integer>
+                    <integer>211</integer>
                     <key>y</key>
-                    <integer>385</integer>
+                    <integer>386</integer>
                     <key>id</key>
                     <string>15</string>
                 </dict>
@@ -265,9 +265,9 @@
                 <key>position</key>
                 <dict>
                     <key>x</key>
-                    <integer>237</integer>
+                    <integer>241</integer>
                     <key>y</key>
-                    <integer>93</integer>
+                    <integer>113</integer>
                     <key>id</key>
                     <string>18</string>
                 </dict>
@@ -280,9 +280,9 @@
                 <key>position</key>
                 <dict>
                     <key>x</key>
-                    <integer>261</integer>
+                    <integer>254</integer>
                     <key>y</key>
-                    <integer>218</integer>
+                    <integer>219</integer>
                     <key>id</key>
                     <string>19</string>
                 </dict>
@@ -310,9 +310,9 @@
                 <key>position</key>
                 <dict>
                     <key>x</key>
-                    <integer>192</integer>
+                    <integer>202</integer>
                     <key>y</key>
-                    <integer>305</integer>
+                    <integer>312</integer>
                     <key>id</key>
                     <string>21</string>
                 </dict>
@@ -385,9 +385,9 @@
                 <key>position</key>
                 <dict>
                     <key>x</key>
-                    <integer>103</integer>
+                    <integer>92</integer>
                     <key>y</key>
-                    <integer>94</integer>
+                    <integer>114</integer>
                     <key>id</key>
                     <string>18a</string>
                 </dict>
@@ -415,9 +415,9 @@
                 <key>position</key>
                 <dict>
                     <key>x</key>
-                    <integer>136</integer>
+                    <integer>130</integer>
                     <key>y</key>
-                    <integer>251</integer>
+                    <integer>265</integer>
                     <key>id</key>
                     <string>11a</string>
                 </dict>
@@ -445,9 +445,9 @@
                 <key>position</key>
                 <dict>
                     <key>x</key>
-                    <integer>128</integer>
+                    <integer>115</integer>
                     <key>y</key>
-                    <integer>309</integer>
+                    <integer>317</integer>
                     <key>id</key>
                     <string>21a</string>
                 </dict>
@@ -475,9 +475,9 @@
                 <key>position</key>
                 <dict>
                     <key>x</key>
-                    <integer>122</integer>
+                    <integer>114</integer>
                     <key>y</key>
-                    <integer>385</integer>
+                    <integer>387</integer>
                     <key>id</key>
                     <string>15a</string>
                 </dict>
@@ -505,9 +505,9 @@
                 <key>position</key>
                 <dict>
                     <key>x</key>
-                    <integer>72</integer>
+                    <integer>69</integer>
                     <key>y</key>
-                    <integer>218</integer>
+                    <integer>219</integer>
                     <key>id</key>
                     <string>19a</string>
                 </dict>
@@ -520,7 +520,7 @@
                 <key>position</key>
                 <dict>
                     <key>x</key>
-                    <integer>59</integer>
+                    <integer>50</integer>
                     <key>y</key>
                     <integer>286</integer>
                     <key>id</key>
@@ -535,9 +535,9 @@
                 <key>position</key>
                 <dict>
                     <key>x</key>
-                    <integer>266</integer>
+                    <integer>274</integer>
                     <key>y</key>
-                    <integer>288</integer>
+                    <integer>283</integer>
                     <key>id</key>
                     <string>23</string>
                 </dict>
@@ -552,7 +552,7 @@
                     <key>x</key>
                     <integer>159</integer>
                     <key>y</key>
-                    <integer>399</integer>
+                    <integer>406</integer>
                     <key>id</key>
                     <string>15c</string>
                 </dict>
