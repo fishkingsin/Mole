@@ -9,14 +9,14 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string></string>
+	<string>Icon.png</string>
 	<key>CFBundleIcons</key>
 	<dict>
 		<key>CFBundlePrimaryIcon</key>
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string></string>
+				<string>Icon.png</string>
 				<string>Icon.png</string>
 				<string>Icon@2x.png</string>
 			</array>

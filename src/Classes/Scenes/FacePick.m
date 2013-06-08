@@ -338,6 +338,7 @@
 
 - (void)onMaleTriggered:(SPEvent *)event
 {
+    [Media playSound:@"sound.caf"];
     _maleButton.enabled = NO;
     _femaleButton.enabled = YES;
     
@@ -346,6 +347,7 @@
 }
 - (void)onFemaleTriggered:(SPEvent *)event
 {
+    [Media playSound:@"sound.caf"];
     _maleButton.enabled = YES;
     _femaleButton.enabled = NO;
     [self createScrollView:_femaleThumbnailImages];
