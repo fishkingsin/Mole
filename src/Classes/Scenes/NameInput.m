@@ -17,8 +17,8 @@
     UIView *_baseView;
     SPButton *_okButton;
     //    NSString *_yourName;
-//    float startX;
-//    float startY;
+    //    float startX;
+    //    float startY;
 }
 
 @synthesize textField = _textField ;
@@ -58,15 +58,15 @@
     self.x = GAME_WIDTH*0.5;
     self.alpha = 0;
     SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
-        [tween fadeTo:1.0f];
+    [tween fadeTo:1.0f];
     [tween moveToX:0 y:0.0f];
     [Sparrow.juggler addObject:tween];
     
-//
+    //
     
-
-//    startY = ((Sparrow.stage.height-GAME_HEIGHT)*0.5) - 40 - 315;
-//    startY = CENTER_Y-GAME_HEIGHT*0.3;
+    
+    //    startY = ((Sparrow.stage.height-GAME_HEIGHT)*0.5) - 40 - 315;
+    //    startY = CENTER_Y-GAME_HEIGHT*0.3;
     float startY = ((Sparrow.stage.height-GAME_HEIGHT)*0.5)+GAME_HEIGHT - 40 - SCROLL_SIZE;
     _baseView = [[UIView alloc]initWithFrame:CGRectMake(GAME_WIDTH, startY, GAME_WIDTH, 25)];
     _textField = [[UITextField alloc] initWithFrame:CGRectMake(CENTER_X-80,0,160,25)];//(GAME_WIDTH,startY-12.5, 160, 25)];
@@ -92,7 +92,7 @@
                          _baseView.alpha = 1;
                      }
                      completion:^(BOOL finished){
-                        
+                         
                      }];
     
     
@@ -128,7 +128,9 @@
 #pragma unused(textField)
     assert( (textField == _textField ) );
     [textField resignFirstResponder];
+#ifdef DEBUG
     NSLog(@"textFieldShouldReturn %@",[textField text]);
+#endif
     //    [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
     if(![textField.text isEqualToString:@""])
     {
@@ -143,12 +145,13 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:name forKey:@"UserName"];
     [defaults synchronize];
+#ifdef DEBUG
     NSLog(@"Data saved");
-    
+#endif
     SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
     //Delay the tween for two seconds, so that we can see the
     //change in scenery.
-        [tween fadeTo:0.0f];
+    [tween fadeTo:0.0f];
     [tween moveToX:-GAME_HEIGHT y:0.0f];
     
     //Register the tween at the nearest juggler.
@@ -157,7 +160,7 @@
     
     CGRect easeOutFrame = _baseView.frame;
     easeOutFrame.origin.x = 0-_baseView.frame.size.width;
-
+    
     [UIView animateWithDuration:0.5
                           delay:0
                         options: UIViewAnimationOptionCurveEaseInOut
@@ -189,7 +192,7 @@
                      }];
     [super onBackButtonTriggered:event];
     //    [_backButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
-
+    
     
 }
 - (void)onSceneClosing:(SPEvent *)event

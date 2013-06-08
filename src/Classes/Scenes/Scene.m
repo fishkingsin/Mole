@@ -53,9 +53,13 @@
     //Register the tween at the nearest juggler.
     //(We will come back to jugglers later.)
     [Sparrow.juggler addObject:tween];
-    tween.onComplete = ^{ NSLog(@"Tween completed");
-    [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];};
-
+    
+    tween.onComplete = ^{
+#ifdef DEBUG
+        NSLog(@"Tween completed");
+#endif
+        [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];};
+    
 }
 
 - (void)onSceneClosing:(SPEvent *)event

@@ -8,7 +8,7 @@
 
 #import "GameCore.h"
 #import "MoleDescription.h"
-#define KEY_BACK @"Back"  
+#define KEY_BACK @"Back"
 @interface GameCore ()
 -(void) postFacebook;
 - (void)onButtonTriggered:(SPEvent *)event;
@@ -105,7 +105,7 @@
     self.x = GAME_WIDTH*0.5;
     self.alpha = 0;
     SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
-        [tween fadeTo:1.0f];
+    [tween fadeTo:1.0f];
     [tween moveToX:0 y:0.0f];
     [Sparrow.juggler addObject:tween];
     
@@ -220,7 +220,7 @@
     
     [self loadDescription];
     
-
+    
     
 }
 
@@ -326,7 +326,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
              [ai removeFromSuperview];
              [base removeFromSuperview];
          }];
-                [Sparrow.currentController.view addSubview:base];
+        [Sparrow.currentController.view addSubview:base];
         
     } else {
         NSString *message = @"It seems that we cannot talk to Facebook at the moment or you have not yet added your Facebook account to this device. Go to the Settings application to add your Facebook account to this device.";
@@ -374,7 +374,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
             sheet.y = GAME_HEIGHT;
             
             SPTween *tween = [SPTween tweenWithTarget:sheet time:0.5f transition:SP_TRANSITION_LINEAR];
-
+            
             [tween moveToX:CENTER_X y:CENTER_Y];
             [Sparrow.juggler addObject:tween];
             
@@ -405,7 +405,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
             
             _minuButton.enabled = NO;
             
-        
+            
             _confirmButton.enabled = NO;
         }
         
@@ -430,19 +430,19 @@ void releaseData(void *info, const void *data, size_t dataSize) {
             sheet.enabled = YES;
             [sheet removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
         }
-//        int numChildren = [_moleMenu numChildren];
-//        for( int j = 0 ; j < numChildren ; j++)
-//        {
-//            MoleDescription *description = (MoleDescription*)[_moleMenu childAtIndex:j];
-//            description.visible = NO;
-//        }
+        //        int numChildren = [_moleMenu numChildren];
+        //        for( int j = 0 ; j < numChildren ; j++)
+        //        {
+        //            MoleDescription *description = (MoleDescription*)[_moleMenu childAtIndex:j];
+        //            description.visible = NO;
+        //        }
         SPTween *tween = [SPTween tweenWithTarget:textFieldContainer time:0.5f transition:SP_TRANSITION_LINEAR];
-
+        
         [tween scaleTo:0];
         [tween moveToX:CENTER_X y:CENTER_Y];
         tween.onComplete = ^{ [self removeChild:textFieldContainer]; };
         [Sparrow.juggler addObject:tween];
-
+        
         
         state = GAME_STATE_DRAGGING;
     }else if([button.name isEqualToString:NSLocalizedString(KEY_FACEBOOK,nil)])
@@ -509,14 +509,14 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     
     //    load plist descriptions
     //    load plist by facename
-
-
+    
+    
     NSArray *data = [[NSArray alloc] initWithArray: [appPropertyList valueForKey:@"items"]];
     currentDescription = @"";
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    NSString *name =  [defaults objectForKey:@"UserName"];
-//    currentDescription = [currentDescription stringByAppendingString:name];
-//    currentDescription = [currentDescription stringByAppendingString:@"\n"];
+    //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //    NSString *name =  [defaults objectForKey:@"UserName"];
+    //    currentDescription = [currentDescription stringByAppendingString:name];
+    //    currentDescription = [currentDescription stringByAppendingString:@"\n"];
     
     int numTargetHit = 0;
     for( int i = 0 ; i < numMole ; i++)
@@ -571,7 +571,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
             }
 #ifdef DEBUG
             MoleDescription *description = (MoleDescription*)[_moleMenu childAtIndex:index];
-
+            
             description.visible = YES;
             
             NSLog(@"id %@ %i %@",_id , index,_description);

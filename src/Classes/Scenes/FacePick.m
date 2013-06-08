@@ -55,7 +55,7 @@
     {
         [_maleButton removeFromParent];
         [_maleButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
-
+        
     }
     if(_femaleButton!=nil)
     {
@@ -78,17 +78,17 @@
     
     
     _faceFile = nil;
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    NSString *name = [defaults objectForKey:@"UserName"];
-//    SPTextField * _userNameTF = [SPTextField textFieldWithWidth:100 height:25
-//                                                           text:name];
-//    _userNameTF.x = (GAME_WIDTH*0.5)-(_userNameTF.width*0.5);
-//    _userNameTF.y = 50;
-//    _userNameTF.hAlign = SPHAlignCenter ;
-//    _userNameTF.vAlign = SPVAlignCenter ;
-//    _userNameTF.border = NO;
-//    _userNameTF.color = 0x000000;
-//    [self addChild:_userNameTF];
+    //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //    NSString *name = [defaults objectForKey:@"UserName"];
+    //    SPTextField * _userNameTF = [SPTextField textFieldWithWidth:100 height:25
+    //                                                           text:name];
+    //    _userNameTF.x = (GAME_WIDTH*0.5)-(_userNameTF.width*0.5);
+    //    _userNameTF.y = 50;
+    //    _userNameTF.hAlign = SPHAlignCenter ;
+    //    _userNameTF.vAlign = SPVAlignCenter ;
+    //    _userNameTF.border = NO;
+    //    _userNameTF.color = 0x000000;
+    //    [self addChild:_userNameTF];
     
     
     _maleButton = [self createButton:NSLocalizedString(KEY_MALE, nil) :@"button_short.png"];
@@ -194,7 +194,7 @@
     
     
     [Sparrow.currentController.view addSubview:_scroll];
-//    [scroll release];
+    //    [scroll release];
     
 }
 -(void) createScrollView :(NSArray*)array
@@ -217,11 +217,11 @@
                            action:@selector(onFaceClicked:)
                  forControlEvents:UIControlEventTouchUpInside];
             NSString *faceName = array[index++];
-
+            
             [new_button setMessage:faceName];
             UIImage *image1 = [UIImage imageNamed:array[index++]];
             NSString *authorName = array[index++];
-//[[UIImageView alloc]initWithImage:[UIImage imageNamed:array[index++]]];
+            //[[UIImageView alloc]initWithImage:[UIImage imageNamed:array[index++]]];
             [new_button setFrame:CGRectMake((count % 3)*105, (count / 3) * 105, 100, 100)];
             [new_button setBackgroundImage: image1 forState:UIControlStateNormal];
             [new_button setBackgroundImage: image1 forState:UIControlStateSelected];
@@ -232,23 +232,23 @@
             [new_button setTitleEdgeInsets:UIEdgeInsetsMake(80.0f, 0.0f, 0.0f, 0.0f)];
             
             
-//            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//            [button addTarget:self
-//                       action:@selector(onFaceClicked:)
-//             forControlEvents:UIControlEventTouchDown];
-//            button.frame = CGRectMake((count % 3)*105, (count / 3) * 105, 100, 100);
+            //            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            //            [button addTarget:self
+            //                       action:@selector(onFaceClicked:)
+            //             forControlEvents:UIControlEventTouchDown];
+            //            button.frame = CGRectMake((count % 3)*105, (count / 3) * 105, 100, 100);
             if(count%3==0)
             {
                 row++;
             }
             
-//            NSString *faceName = array[index++];
-//            [button setTitle:faceName forState:UIControlStateNormal];
-//            [button addSubview:
-//             [[UIImageView alloc]initWithImage:
-//              [UIImage imageNamed:array[index++]]]];
-//
-//            [_scroll addSubview:button];
+            //            NSString *faceName = array[index++];
+            //            [button setTitle:faceName forState:UIControlStateNormal];
+            //            [button addSubview:
+            //             [[UIImageView alloc]initWithImage:
+            //              [UIImage imageNamed:array[index++]]]];
+            //
+            //            [_scroll addSubview:button];
             [_scroll addSubview:new_button];
             ++count;
         }
@@ -260,15 +260,17 @@
 }
 - (void) onFaceClicked: (id)sender
 {
-//    UIButton *button = (UIButton *)sender;
+    //    UIButton *button = (UIButton *)sender;
     CustomUIButton* theButton = (CustomUIButton*) sender;
-//    NSLog(@"Button image value %@",[button titleForState:UIControlStateNormal ]);
+    //    NSLog(@"Button image value %@",[button titleForState:UIControlStateNormal ]);
     [Media playSound:@"sound.caf"];
-
+    
     _faceFile=[theButton getMessage];
+#ifdef DEBUG
     NSLog(@"Button image value %@",theButton);
-//    _faceFile=[button titleForState:UIControlStateNormal ];
-//    NSString* faceFile = [button titleForState:UIControlStateNormal ];
+#endif
+    //    _faceFile=[button titleForState:UIControlStateNormal ];
+    //    NSString* faceFile = [button titleForState:UIControlStateNormal ];
     if(![_faceFile isEqualToString:@""])
     {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -298,14 +300,14 @@
                          }
                          completion:^(BOOL finished){
                              [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
-//                             [_textField removeFromSuperview];
+                             //                             [_textField removeFromSuperview];
                          }];
-//        [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
+        //        [self dispatchEventWithType:EVENT_TYPE_SCENE_CLOSING bubbles:YES];
     }
     else{
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Alert Title"
-                                                                                    ,nil) 
-                                                          message:NSLocalizedString(@"Alert Body",nil) 
+                                                                                    ,nil)
+                                                          message:NSLocalizedString(@"Alert Body",nil)
                                                          delegate:nil
                                                 cancelButtonTitle: NSLocalizedString(KEY_CONFIRM,nil)
                                                 otherButtonTitles:nil];

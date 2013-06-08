@@ -14,7 +14,7 @@
 @end
 @implementation OverlayAnimation
 {
-
+    
 }
 - (id)init
 {
@@ -33,7 +33,9 @@
 }
 - (void)render:(SPRenderSupport*)support
 {
+#ifdef DEBUG
     NSLog(@"OverlayAnimation rendering");
+#endif
     //should do super render before the cap screen
     [super render:support];
 }

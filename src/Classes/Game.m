@@ -90,12 +90,12 @@
     _creditButton.y = GAME_HEIGHT - _creditButton.height;
     _creditButton.name = @"credit";
     [_creditButton addEventListener:@selector(onCreditButtonTriggered:) atObject:self
-                          forType:SP_EVENT_TYPE_TRIGGERED];
+                            forType:SP_EVENT_TYPE_TRIGGERED];
     [_menu addChild:_creditButton];
     
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
     [_contents addChild:background];
-     [self updateLocations];
+    [self updateLocations];
     
     scenesToCreate = @[[NameInput class],
                        [FacePick class],
@@ -112,14 +112,14 @@
     [_contents addChild:_currentScene];
     
     
-
+    
     
     
     [self addEventListener:@selector(onSceneClosing:) atObject:self
                    forType:EVENT_TYPE_SCENE_CLOSING];
     [self addEventListener:@selector( onCreditClosing:) atObject:self
                    forType:EVENT_TYPE_CREDIT_CLOSING];
-
+    
     
     
     [self addEventListener:@selector(onResize:) atObject:self forType:SP_EVENT_TYPE_RESIZE];
@@ -155,9 +155,10 @@
 
 - (void)onResize:(SPResizeEvent *)event
 {
+#ifdef DEBUG
     NSLog(@"new size: %.0fx%.0f (%@)", event.width, event.height,
           event.isPortrait ? @"portrait" : @"landscape");
-    
+#endif
     [self updateLocations];
 }
 - (void)onCreditButtonTriggered:(SPEvent *)event
@@ -180,8 +181,9 @@
     //
     //    // the class name of the scene is saved in the "name" property of the button.
     SPButton *button = (SPButton *)event.target;
+#ifdef DEBUG
     NSLog(@"onButtonTriggered %@", button.name);
-    
+#endif
     //    Class sceneClass = NSClassFromString(button.name);
     //
     //    // create an instance of that class and add it to the display tree.
@@ -192,7 +194,9 @@
 }
 - (void)onSceneClosing:(SPEvent *)event
 {
+#ifdef DEBUG
     NSLog(@"onSceneClosing _currentScene.name : %@ , target : %@",_currentScene.name , event.target);
+#endif
     if([_currentScene.name isEqualToString: NSStringFromClass(scenesToCreate[NAME_INPUT])])
     {
         
@@ -203,22 +207,22 @@
         _currentScene.name = NSStringFromClass(scenesToCreate[FACE_PICK]);
         //        _contents.visible = NO;
         [_contents addChild:_currentScene];
-
-
-//        SPTween *tween = [SPTween tweenWithTarget:overlayAnimation time:2.0f transition:SP_TRANSITION_LINEAR];
-//        
-//        [_contents addChild:overlayAnimation];
-//        // you can animate any property as long as it's numeric (float, double, int).
-//        // it is animated from it's current value to a target value.
-//        overlayAnimation.alpha = 1.0f;
-//        
-//        [tween animateProperty:@"alpha" targetValue:0.0f];
-//        
-//        tween.onComplete = ^{
-//            NSLog(@"animation complete");
-//            [_contents removeChild:overlayAnimation];
-//        };
-//        [Sparrow.juggler addObject:tween];
+        
+        
+        //        SPTween *tween = [SPTween tweenWithTarget:overlayAnimation time:2.0f transition:SP_TRANSITION_LINEAR];
+        //
+        //        [_contents addChild:overlayAnimation];
+        //        // you can animate any property as long as it's numeric (float, double, int).
+        //        // it is animated from it's current value to a target value.
+        //        overlayAnimation.alpha = 1.0f;
+        //
+        //        [tween animateProperty:@"alpha" targetValue:0.0f];
+        //
+        //        tween.onComplete = ^{
+        //            NSLog(@"animation complete");
+        //            [_contents removeChild:overlayAnimation];
+        //        };
+        //        [Sparrow.juggler addObject:tween];
         
     }
     else if([_currentScene.name isEqualToString:  NSStringFromClass(scenesToCreate[GAME_CORE])])
@@ -245,15 +249,16 @@
             [_contents addChild:_currentScene];
         }
         else{
+#ifdef DEBUG
             NSLog(@"FacePick target : %@",[_scene faceFile] );
-            
+#endif
             [_currentScene removeFromParent];
             _currentScene = nil;
             _currentScene = [[[scenesToCreate[GAME_CORE] class] alloc] init];
             _currentScene.name = NSStringFromClass(scenesToCreate[GAME_CORE]);
             //        _contents.visible = NO;
-//            GameCore*gameCore =  (GameCore*)_currentScene;
-//            [gameCore setFaceFile:[_scene faceFile]];
+            //            GameCore*gameCore =  (GameCore*)_currentScene;
+            //            [gameCore setFaceFile:[_scene faceFile]];
             
             
             [_contents addChild:_currentScene];
