@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/Game.m"
-         timestampString = "391500826.090214"
+         timestampString = "393410732.162297"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "277"
-         endingLineNumber = "277">
+         startingLineNumber = "279"
+         endingLineNumber = "279">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -89,7 +89,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "348"
          endingLineNumber = "348"
-         landmarkName = "-onFemaleTriggered:"
+         landmarkName = "-onMaleTriggered:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
