@@ -11,6 +11,9 @@
 "+"="+";
 "Alert Title"="Locked";
 "Alert Body"="This face is currently locked please wait for the next release";
+"Explain"="Explain";
+"Save Complete"="Save Complete";
+
 /* "Facebook"="臉書";
  "Confirm"="好啦";
  "Cancel"="我唔要";
