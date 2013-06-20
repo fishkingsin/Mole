@@ -9,6 +9,9 @@
 #import "GameCore.h"
 #import "MoleDescription.h"
 #define KEY_BACK @"Back"
+#define KEY_EXPLAIN @"Explain"
+#define KEY_SAVE_COMPLETE @"Save Complete"
+
 @interface GameCore ()
 -(void) postFacebook;
 - (void)onButtonTriggered:(SPEvent *)event;
@@ -178,7 +181,7 @@
     
     [textFieldContainer addChild:textFieldBkgImage];
     
-    SPTextField *TF = [SPTextField textFieldWithWidth:textFieldContainer.width height:30 text:@"解說"];
+    SPTextField *TF = [SPTextField textFieldWithWidth:textFieldContainer.width height:30 text:NSLocalizedString(KEY_EXPLAIN, nil)];
     TF.fontSize = 24;
     TF.hAlign = SPHAlignCenter ;
     TF.vAlign = SPVAlignCenter ;
@@ -530,12 +533,13 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     {
         //        TouchSheet *sheet = (TouchSheet *)[_mole childAtIndex:i];
         sheet.enabled = NO;
-        int numChildren = [_moleMenu numChildren];
+//        int numChildren = [_moleMenu numChildren];
         float shortest = 9999;
         int index = -1;
         NSString * _id;
         //        for( int j = 0 ; j < numChildren ; j++)
         int j = 0;
+        SPRectangle *bounds2 = [[SPRectangle alloc] init];
         for (MoleDescription *description in _moleMenu)
         {
             j++;
@@ -545,8 +549,8 @@ void releaseData(void *info, const void *data, size_t dataSize) {
             int y = description.bounds.y;
             int w = description.bounds.width;
             int h = description.bounds.height;
-            SPRectangle *bounds2 = [[SPRectangle alloc] initWithX:x-w*0.5 y:y-h*0.5 width:w height:h];
             
+            [bounds2 setX:x-w*0.5 y:y-h*0.5 width:w height:h];
             if ([bounds1 intersectsRectangle:bounds2])
             {
                 
@@ -631,6 +635,11 @@ void releaseData(void *info, const void *data, size_t dataSize) {
             UIImage * img = [self screenshot :[[SPRectangle alloc] initWithX:
                                                0 y:0 width:GAME_WIDTH height:GAME_HEIGHT]];
             UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil);
+
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(KEY_SAVE_COMPLETE, nil) message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+
+            
         }
         _canCapScreen = NO;
         _canPostFB = NO;
