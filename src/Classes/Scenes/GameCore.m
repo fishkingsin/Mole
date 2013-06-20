@@ -49,10 +49,11 @@
 
 - (void)dealloc
 {
-    int numMole = [_mole numChildren];
-    for( int i = 0 ; i < numMole ; i++)
+    //    int numMole = [_mole numChildren];
+    //    for( int i = 0 ; i < numMole ; i++)
+    for (TouchSheet *sheet in _mole)
     {
-        TouchSheet *sheet = (TouchSheet *)[_mole childAtIndex:i];
+        //        TouchSheet *sheet = (TouchSheet *)[_mole childAtIndex:i];
         sheet.enabled = YES;
         [sheet removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     }
@@ -423,10 +424,13 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         _addButton.enabled = YES;
         _minuButton.enabled = YES;
         
-        int numMole = [_mole numChildren];
-        for( int i = 0 ; i < numMole ; i++)
+        //        int numMole = [_mole numChildren];
+        //        for( int i = 0 ; i < numMole ; i++)
+        //        {
+        //            TouchSheet *sheet = (TouchSheet *)[_mole childAtIndex:i];
+        for (TouchSheet *sheet in _mole)
         {
-            TouchSheet *sheet = (TouchSheet *)[_mole childAtIndex:i];
+            //        TouchSheet *sheet = (TouchSheet *)[_mole childAtIndex:i];
             sheet.enabled = YES;
             [sheet removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
         }
@@ -485,10 +489,10 @@ void releaseData(void *info, const void *data, size_t dataSize) {
 }
 -(void) checkMolePosition
 {
-    int numMole = [_mole numChildren];
-#ifdef DEBUG
-    NSLog(@"checkMolePosition : %i",numMole);
-#endif
+    //    int numMole = [_mole numChildren];
+    //#ifdef DEBUG
+    //    NSLog(@"checkMolePosition : %i",numMole);
+    //#endif
     NSString *errorDesc = nil;
 	NSPropertyListFormat format;
 	NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"descriptions" ofType:@"plist"];
@@ -519,18 +523,23 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     //    currentDescription = [currentDescription stringByAppendingString:@"\n"];
     
     int numTargetHit = 0;
-    for( int i = 0 ; i < numMole ; i++)
+    //    for( int i = 0 ; i < numMole ; i++)
+    //    {
+    //        TouchSheet *sheet = (TouchSheet *)[_mole childAtIndex:i];
+    for (TouchSheet *sheet in _mole)
     {
-        TouchSheet *sheet = (TouchSheet *)[_mole childAtIndex:i];
+        //        TouchSheet *sheet = (TouchSheet *)[_mole childAtIndex:i];
         sheet.enabled = NO;
         int numChildren = [_moleMenu numChildren];
         float shortest = 9999;
         int index = -1;
         NSString * _id;
-        for( int j = 0 ; j < numChildren ; j++)
+        //        for( int j = 0 ; j < numChildren ; j++)
+        int j = 0;
+        for (MoleDescription *description in _moleMenu)
         {
-            
-            MoleDescription *description = (MoleDescription*)[_moleMenu childAtIndex:j];
+            j++;
+            //            MoleDescription *description = (MoleDescription*)[_moleMenu childAtIndex:j];
             SPRectangle *bounds1 = sheet.bounds;
             int x = description.bounds.x;
             int y = description.bounds.y;
