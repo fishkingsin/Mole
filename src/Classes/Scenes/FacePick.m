@@ -122,7 +122,7 @@
                             @"Peter Ng",
                             @"donald_holy-tricky_male.png",
                             @"donald_holy-tricky_male_thumb.png",
-                            @"Donald@903",
+                            @"Donald",
                             @"sh_holy-tricky_male.png",
                             @"sh_holy-tricky_male_thumb.png",
                             @"小克",
