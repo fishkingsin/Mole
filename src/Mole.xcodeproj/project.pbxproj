@@ -31,6 +31,7 @@
 		DE4F80E814E1541400655D44 /* sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = DE4F80DB14E1541400655D44 /* sound.caf */; };
 		DE5C4E6E138ED109004892CA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE5C4E6D138ED109004892CA /* libz.dylib */; };
 		DEAAF3DF16BC114D004EB9D5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */; };
+		E308C48E1785735C0084A937 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E308C4881785735C0084A937 /* Localizable.strings */; };
 		E359AD8B1760499A00B7FF96 /* alpha_background.png in Resources */ = {isa = PBXBuildFile; fileRef = E359AD371760499A00B7FF96 /* alpha_background.png */; };
 		E359AD8C1760499A00B7FF96 /* atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = E359AD381760499A00B7FF96 /* atlas.png */; };
 		E359AD8D1760499A00B7FF96 /* atlas.xml in Resources */ = {isa = PBXBuildFile; fileRef = E359AD391760499A00B7FF96 /* atlas.xml */; };
@@ -128,7 +129,7 @@
 		E359ADFB17604A1A00B7FF96 /* tse_holy-tricky_male.plist in Resources */ = {isa = PBXBuildFile; fileRef = E359ADEA17604A1A00B7FF96 /* tse_holy-tricky_male.plist */; };
 		E3747BDC173BFEBF00C24DD2 /* libSparrow.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3747BD9173BFEB900C24DD2 /* libSparrow.a */; };
 		E376B96817473F53007D6BD8 /* GameCore.m in Sources */ = {isa = PBXBuildFile; fileRef = E376B96717473F53007D6BD8 /* GameCore.m */; };
-		E376B9A0174742E2007D6BD8 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E376B99F174742E2007D6BD8 /* Social.framework */; };
+		E376B9A0174742E2007D6BD8 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E376B99F174742E2007D6BD8 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E3A019C817507D6100D722FC /* MoleDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A019C717507D6100D722FC /* MoleDescription.m */; };
 		E3A8755517466A59002410DD /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A8755417466A59002410DD /* Scene.m */; };
 		E3A87558174678AA002410DD /* FacePick.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A87557174678AA002410DD /* FacePick.m */; };
@@ -141,7 +142,6 @@
 		E3D234381759AA5D001C4836 /* UIImage+ColorAtPixel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D234371759AA5D001C4836 /* UIImage+ColorAtPixel.m */; };
 		E3D234461759CFCA001C4836 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3D234451759CFCA001C4836 /* CFNetwork.framework */; };
 		E3E450D9174E578F0009C270 /* CreditPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E450D8174E578F0009C270 /* CreditPage.m */; };
-		E3ED9FE0174FB58E003201C9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E3ED9FDE174FB58E003201C9 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -193,6 +193,9 @@
 		DE4F80DB14E1541400655D44 /* sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound.caf; sourceTree = "<group>"; };
 		DE5C4E6D138ED109004892CA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		E308C4891785735C0084A937 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		E308C491178573D00084A937 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		E308C492178573DF0084A937 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E359AD371760499A00B7FF96 /* alpha_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha_background.png; sourceTree = "<group>"; };
 		E359AD381760499A00B7FF96 /* atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atlas.png; sourceTree = "<group>"; };
 		E359AD391760499A00B7FF96 /* atlas.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = atlas.xml; sourceTree = "<group>"; };
@@ -316,9 +319,6 @@
 		E3D234451759CFCA001C4836 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		E3E450D7174E578F0009C270 /* CreditPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditPage.h; sourceTree = "<group>"; };
 		E3E450D8174E578F0009C270 /* CreditPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditPage.m; sourceTree = "<group>"; };
-		E3ED9FDF174FB58E003201C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
-		E3ED9FE3174FB941003201C9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		E3ED9FE4174FBBF1003201C9 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -382,7 +382,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				E3ED9FDD174FB58E003201C9 /* en.lproj */,
+				E308C4871785735C0084A937 /* en.lproj */,
 				32CA4F630368D1EE00C91783 /* App-Prefix.pch */,
 				8D1107310486CEB800E47090 /* App-Info.plist */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
@@ -455,6 +455,14 @@
 			);
 			name = audio;
 			path = ../media/audio;
+			sourceTree = "<group>";
+		};
+		E308C4871785735C0084A937 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				E308C4881785735C0084A937 /* Localizable.strings */,
+			);
+			path = en.lproj;
 			sourceTree = "<group>";
 		};
 		E359AD351760499A00B7FF96 /* graphics */ = {
@@ -686,14 +694,6 @@
 			path = "UIImage+ColorAtPixel";
 			sourceTree = "<group>";
 		};
-		E3ED9FDD174FB58E003201C9 /* en.lproj */ = {
-			isa = PBXGroup;
-			children = (
-				E3ED9FDE174FB58E003201C9 /* Localizable.strings */,
-			);
-			path = en.lproj;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -734,6 +734,8 @@
 				en,
 				"zh-Hans",
 				"zh-Hant",
+				zh_CN,
+				zh_TW,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -782,7 +784,6 @@
 				DE0C710D162417AC00357F6E /* Icon~ipad.png in Resources */,
 				DE0C710F162417B400357F6E /* Icon@2x.png in Resources */,
 				DE0C7111162417B800357F6E /* Icon@2x~ipad.png in Resources */,
-				E3ED9FE0174FB58E003201C9 /* Localizable.strings in Resources */,
 				E359AD8B1760499A00B7FF96 /* alpha_background.png in Resources */,
 				E359AD8C1760499A00B7FF96 /* atlas.png in Resources */,
 				E359AD8D1760499A00B7FF96 /* atlas.xml in Resources */,
@@ -879,6 +880,7 @@
 				E359ADFA17604A1A00B7FF96 /* tse_holy-tricky_female.plist in Resources */,
 				E359ADFB17604A1A00B7FF96 /* tse_holy-tricky_male.plist in Resources */,
 				E3CB1A40176244C400258211 /* iTunesArtwork in Resources */,
+				E308C48E1785735C0084A937 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -910,12 +912,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		E3ED9FDE174FB58E003201C9 /* Localizable.strings */ = {
+		E308C4881785735C0084A937 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E3ED9FDF174FB58E003201C9 /* en */,
-				E3ED9FE3174FB941003201C9 /* zh-Hans */,
-				E3ED9FE4174FBBF1003201C9 /* zh-Hant */,
+				E308C4891785735C0084A937 /* en */,
+				E308C491178573D00084A937 /* zh-Hans */,
+				E308C492178573DF0084A937 /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

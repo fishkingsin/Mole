@@ -24,7 +24,7 @@
         // create a button with the text "back" and display it at the bottom of the screen.
         SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"button_back.png"];
         
-        _backButton = [[SPButton alloc] initWithUpState:buttonTexture text:KEY_BACK];
+        _backButton = [[SPButton alloc] initWithUpState:buttonTexture text:NSLocalizedString(KEY_BACK, nil)];
         _backButton.x = 0;
         _backButton.y = GAME_HEIGHT - _backButton.height ;
         _backButton.name = KEY_BACK;

@@ -201,11 +201,19 @@
     [textFieldContainer addChild:TF];
     [textFieldContainer addChild:_userDescTF];
     
+    
     _fbButton = [self createButton:NSLocalizedString(KEY_FACEBOOK, nil) :@"button_short.png"];
     _fbButton.x = _fbButton.width;
     _fbButton.visible = YES;
     _fbButton.y = textFieldContainer.height - _fbButton.height;
-    [textFieldContainer addChild:_fbButton];
+    NSComparisonResult order = [[UIDevice currentDevice].systemVersion compare: @"6.0" options: NSNumericSearch];
+    if (order == NSOrderedSame || order == NSOrderedDescending) {
+        [textFieldContainer addChild:_fbButton];
+    } else {
+        // OS version < 6.0
+    }
+
+
     
     _saveButton = [self createButton:NSLocalizedString(KEY_SAVE, nil) :@"button_short.png"];
     _saveButton.x = _fbButton.x+_fbButton.width;
@@ -630,7 +638,13 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     if (_canCapScreen || _canPostFB) {
         if(_canPostFB)
         {
-            [self postFacebook];
+            NSComparisonResult order = [[UIDevice currentDevice].systemVersion compare: @"6.0" options: NSNumericSearch];
+            if (order == NSOrderedSame || order == NSOrderedDescending) {
+                [self postFacebook];
+            } else {
+                // OS version < 6.0
+            }
+            
         }else{
             UIImage * img = [self screenshot :[[SPRectangle alloc] initWithX:
                                                0 y:0 width:GAME_WIDTH height:GAME_HEIGHT]];
