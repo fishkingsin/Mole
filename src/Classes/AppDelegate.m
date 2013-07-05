@@ -5,7 +5,7 @@
 
 #import "AppDelegate.h"
 #import "Game.h"
-
+#import <FacebookSDK/FacebookSDK.h>
 // --- c functions ---
 
 void onUncaughtException(NSException *exception)
@@ -35,6 +35,20 @@ void onUncaughtException(NSException *exception)
     [_window makeKeyAndVisible];
     
     return YES;
+}
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    // We need to properly handle activation of the application with regards to Facebook Login
+    // (e.g., returning from iOS 6.0 Login Dialog or from fast app switching).
+    [FBSession.activeSession handleDidBecomeActive];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return [FBSession.activeSession handleOpenURL:url];
 }
 
 @end
