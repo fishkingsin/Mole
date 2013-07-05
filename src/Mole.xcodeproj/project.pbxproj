@@ -32,6 +32,15 @@
 		DE5C4E6E138ED109004892CA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE5C4E6D138ED109004892CA /* libz.dylib */; };
 		DEAAF3DF16BC114D004EB9D5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */; };
 		E308C48E1785735C0084A937 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E308C4881785735C0084A937 /* Localizable.strings */; };
+		E31AF2A41786BE750018E837 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E31AF2A31786BE750018E837 /* Social.framework */; };
+		E31AF2A81786BE8A0018E837 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E31AF2A71786BE8A0018E837 /* Accounts.framework */; };
+		E31AF2AA1786BE8E0018E837 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E31AF2A91786BE8E0018E837 /* AdSupport.framework */; };
+		E31AF2AE1786BED80018E837 /* FacebookShare.m in Sources */ = {isa = PBXBuildFile; fileRef = E31AF2AD1786BED80018E837 /* FacebookShare.m */; };
+		E31AF2B01786BEFA0018E837 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E31AF2AF1786BEFA0018E837 /* FacebookSDK.framework */; };
+		E31AF2B41786BF290018E837 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E31AF2B11786BF290018E837 /* FacebookSDKResources.bundle */; };
+		E31AF2B51786BF290018E837 /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E31AF2B21786BF290018E837 /* FBUserSettingsViewResources.bundle */; };
+		E31AF2B61786BF290018E837 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E31AF2B31786BF290018E837 /* Info.plist */; };
+		E31AF2BA1786BFB50018E837 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E31AF2B91786BFB50018E837 /* libsqlite3.dylib */; };
 		E359AD8B1760499A00B7FF96 /* alpha_background.png in Resources */ = {isa = PBXBuildFile; fileRef = E359AD371760499A00B7FF96 /* alpha_background.png */; };
 		E359AD8C1760499A00B7FF96 /* atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = E359AD381760499A00B7FF96 /* atlas.png */; };
 		E359AD8D1760499A00B7FF96 /* atlas.xml in Resources */ = {isa = PBXBuildFile; fileRef = E359AD391760499A00B7FF96 /* atlas.xml */; };
@@ -196,6 +205,16 @@
 		E308C4891785735C0084A937 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		E308C491178573D00084A937 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E308C492178573DF0084A937 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		E31AF2A31786BE750018E837 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		E31AF2A71786BE8A0018E837 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		E31AF2A91786BE8E0018E837 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		E31AF2AC1786BED80018E837 /* FacebookShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookShare.h; sourceTree = "<group>"; };
+		E31AF2AD1786BED80018E837 /* FacebookShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookShare.m; sourceTree = "<group>"; };
+		E31AF2AF1786BEFA0018E837 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../FacebookSDK/build/FacebookSDK.framework; sourceTree = "<group>"; };
+		E31AF2B11786BF290018E837 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../../../FacebookSDK/build/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
+		E31AF2B21786BF290018E837 /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../../../../FacebookSDK/build/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
+		E31AF2B31786BF290018E837 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../../../FacebookSDK/build/FacebookSDK.framework/Versions/A/Resources/Info.plist; sourceTree = "<group>"; };
+		E31AF2B91786BFB50018E837 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		E359AD371760499A00B7FF96 /* alpha_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha_background.png; sourceTree = "<group>"; };
 		E359AD381760499A00B7FF96 /* atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atlas.png; sourceTree = "<group>"; };
 		E359AD391760499A00B7FF96 /* atlas.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = atlas.xml; sourceTree = "<group>"; };
@@ -339,6 +358,11 @@
 				DE3F097811B7BABD009D4DB0 /* OpenAL.framework in Frameworks */,
 				E376B9A0174742E2007D6BD8 /* Social.framework in Frameworks */,
 				E3D234461759CFCA001C4836 /* CFNetwork.framework in Frameworks */,
+				E31AF2A41786BE750018E837 /* Social.framework in Frameworks */,
+				E31AF2A81786BE8A0018E837 /* Accounts.framework in Frameworks */,
+				E31AF2AA1786BE8E0018E837 /* AdSupport.framework in Frameworks */,
+				E31AF2B01786BEFA0018E837 /* FacebookSDK.framework in Frameworks */,
+				E31AF2BA1786BFB50018E837 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +372,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E31AF2AB1786BED80018E837 /* FacebookShare */,
 				E3BF4A43174789FB00D3D3CF /* Helpers */,
 				E3A8755017466A3B002410DD /* Scenes */,
 				DE4F80D714E153EA00655D44 /* Game */,
@@ -393,6 +418,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E31AF2B11786BF290018E837 /* FacebookSDKResources.bundle */,
+				E31AF2B21786BF290018E837 /* FBUserSettingsViewResources.bundle */,
+				E31AF2B31786BF290018E837 /* Info.plist */,
 				E359ADD917604A1A00B7FF96 /* data */,
 				E359AD351760499A00B7FF96 /* graphics */,
 				DE0C71121624180300357F6E /* system */,
@@ -404,6 +432,11 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E31AF2B91786BFB50018E837 /* libsqlite3.dylib */,
+				E31AF2AF1786BEFA0018E837 /* FacebookSDK.framework */,
+				E31AF2A91786BE8E0018E837 /* AdSupport.framework */,
+				E31AF2A71786BE8A0018E837 /* Accounts.framework */,
+				E31AF2A31786BE750018E837 /* Social.framework */,
 				E3D234451759CFCA001C4836 /* CFNetwork.framework */,
 				E376B99F174742E2007D6BD8 /* Social.framework */,
 				DE5C4E6D138ED109004892CA /* libz.dylib */,
@@ -463,6 +496,15 @@
 				E308C4881785735C0084A937 /* Localizable.strings */,
 			);
 			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		E31AF2AB1786BED80018E837 /* FacebookShare */ = {
+			isa = PBXGroup;
+			children = (
+				E31AF2AC1786BED80018E837 /* FacebookShare.h */,
+				E31AF2AD1786BED80018E837 /* FacebookShare.m */,
+			);
+			path = FacebookShare;
 			sourceTree = "<group>";
 		};
 		E359AD351760499A00B7FF96 /* graphics */ = {
@@ -881,6 +923,9 @@
 				E359ADFB17604A1A00B7FF96 /* tse_holy-tricky_male.plist in Resources */,
 				E3CB1A40176244C400258211 /* iTunesArtwork in Resources */,
 				E308C48E1785735C0084A937 /* Localizable.strings in Resources */,
+				E31AF2B41786BF290018E837 /* FacebookSDKResources.bundle in Resources */,
+				E31AF2B51786BF290018E837 /* FBUserSettingsViewResources.bundle in Resources */,
+				E31AF2B61786BF290018E837 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -906,6 +951,7 @@
 				E3D234331759A72B001C4836 /* CustomUIButton.m in Sources */,
 				E3D234341759A72B001C4836 /* OBShapedButton.m in Sources */,
 				E3D234381759AA5D001C4836 /* UIImage+ColorAtPixel.m in Sources */,
+				E31AF2AE1786BED80018E837 /* FacebookShare.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -929,6 +975,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../FacebookSDK/build\"",
+				);
 				INFOPLIST_FILE = "App-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = Mole;
@@ -942,6 +992,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../FacebookSDK/build\"",
+				);
 				INFOPLIST_FILE = "App-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = Mole;
