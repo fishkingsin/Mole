@@ -13,3 +13,6 @@
 "Alert Body"="這張臉是目前被鎖定，請等待下一個版本";
 "Explain"="解說";
 "Save Complete"="完成儲存";
+"Post Complete"="上載完成";
+"Post Error"="上載發生錯誤";
+"Switch User"="切換用戶";

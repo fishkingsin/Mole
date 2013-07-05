@@ -309,45 +309,68 @@ void releaseData(void *info, const void *data, size_t dataSize) {
 {
     //    NSSet *touches = [event touchesWithTarget:self andPhase:SPTouchPhaseEnded];
     //    if ([touches anyObject]) [Media playSound:@"sound.caf"];
-    //    NSComparisonResult order = [[UIDevice currentDevice].systemVersion compare: @"6.0" options: NSNumericSearch];
-    //    if (order == NSOrderedSame || order == NSOrderedDescending) {
-    //        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
-    //            // Initialize Compose View Controller
-    //            SLComposeViewController *vc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-    //            // Configure Compose View Controller
-    //            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    //            NSString *name = [defaults objectForKey:@"UserName"];
-    //            NSString *content = [[NSString alloc] initWithFormat:@"%@ : %@",name,currentDescription];
-    //            [vc setInitialText:content];
-    //            UIImage * img = [self screenshot:[[SPRectangle alloc] initWithX:
-    //                                              0 y:0
-    //                                                                      width:GAME_WIDTH height:GAME_HEIGHT]];
-    //            [vc addImage: img];
-    //            //        [name release];
-    //            // Present Compose View Controller
-    //            UIView *base = [[UIView alloc] initWithFrame:CGRectMake(0, 0, GAME_WIDTH, GAME_HEIGHT)];
-    //            [base setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]];
-    //            UIActivityIndicatorView *ai = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    //            ai.center = Sparrow.currentController.view.center;
-    //            [ai startAnimating];
-    //            [base addSubview:ai];
-    //
-    //            [Sparrow.currentController presentViewController:vc animated:YES completion:
-    //             ^{
-    //                 [ai removeFromSuperview];
-    //                 [base removeFromSuperview];
-    //             }];
-    //            [Sparrow.currentController.view addSubview:base];
-    //
-    //        } else {
-    //            NSString *message = @"It seems that we cannot talk to Facebook at the moment or you have not yet added your Facebook account to this device. Go to the Settings application to add your Facebook account to this device.";
-    //            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    //            [alertView show];
-    //        }
-    //
-    //    } else {
-    // OS version < 6.0
+    NSComparisonResult order = [[UIDevice currentDevice].systemVersion compare: @"6.0" options: NSNumericSearch];
+    if (order == NSOrderedSame || order == NSOrderedDescending) {
+        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+            // Initialize Compose View Controller
+            SLComposeViewController *vc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+            // Configure Compose View Controller
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSString *name = [defaults objectForKey:@"UserName"];
+            NSString *content = [[NSString alloc] initWithFormat:@"%@ : %@",name,currentDescription];
+            [vc setInitialText:content];
+            UIImage * img = [self screenshot:[[SPRectangle alloc] initWithX:
+                                              0 y:0
+                                                                      width:GAME_WIDTH height:GAME_HEIGHT]];
+            [vc addImage: img];
+            //        [name release];
+            // Present Compose View Controller
+            UIView *base = [[UIView alloc] initWithFrame:CGRectMake(0, 0, GAME_WIDTH, GAME_HEIGHT)];
+            [base setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]];
+            UIActivityIndicatorView *ai = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+            ai.center = Sparrow.currentController.view.center;
+            [ai startAnimating];
+            [base addSubview:ai];
+            
+            [Sparrow.currentController presentViewController:vc animated:YES completion:
+             ^{
+                 [ai removeFromSuperview];
+                 [base removeFromSuperview];
+             }];
+            [Sparrow.currentController.view addSubview:base];
+            
+        } else {
+            NSString *message = @"It seems that we cannot talk to Facebook at the moment or you have not yet added your Facebook account to this device. Go to the Settings application to add your Facebook account to this device.";
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        }
+        
+    } else {
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(KEY_POST_ERROR, nil)
+                                                            message:nil delegate:self
+                                                  cancelButtonTitle:NSLocalizedString(KEY_CONFIRM,nil)
+                                                  otherButtonTitles:NSLocalizedString(KEY_SWITCH_USER, nil), nil ];
+        [alertView show];
+
+        
+        // OS version < 6.0
+        
+    }
+    
+    
+    
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
     FacebookShare *fbShare = [[FacebookShare alloc] init];
+    if(buttonIndex==1)
+    {
+        [fbShare logout];
+    }
+    
     //    [fbShare loginWithCompletionHandler:^{
     UIImage * img = [self screenshot:[[SPRectangle alloc] initWithX:
                                       0 y:0
@@ -356,22 +379,34 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     NSString *name = [defaults objectForKey:@"UserName"];
     NSString *content = [[NSString alloc] initWithFormat:@"%@ : %@",name,currentDescription];
     
+    UIView *base = [[UIView alloc] initWithFrame:CGRectMake(0, 0, GAME_WIDTH, GAME_HEIGHT)];
+    [base setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]];
+    UIActivityIndicatorView *ai = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    ai.center = Sparrow.currentController.view.center;
+    [ai startAnimating];
+    [base addSubview:ai];
+    [Sparrow.currentController.view addSubview:base];
+    
+    
     [fbShare postImage:img withCaption:content withCompletionHandler:^{
-        [fbShare logout];
+        //[fbShare logout];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(KEY_POST_COMPLETE, nil)
+                                                            message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
+        [alertView show];
+        [ai removeFromSuperview];
+        [base removeFromSuperview];
+        
     }
       withErrorHandler:^
      {
-         
+         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(KEY_POST_ERROR, nil)
+                                                             message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
+         [alertView show];
          NSLog(@"Facebook upload failed");
+         [ai removeFromSuperview];
+         [base removeFromSuperview];
+         
      }];
-    //    } andErrorHander:^{
-    //             NSLog(@"Facebook login failed");
-    //    } ];
-    
-    
-    
-    //}
-    
 }
 -(SPButton*) createButton:(NSString*) _text : (NSString*)filePath
 {

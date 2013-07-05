@@ -13,6 +13,10 @@
 #define KEY_SAVE @"Save"
 #define KEY_CANCEL @"Cancel"
 #define EVENT_TYPE_SCENE_CLOSING @"closing"
+#define KEY_POST_COMPLETE @"Post Complete"
+#define KEY_POST_ERROR @"Post Error"
+#define KEY_SWITCH_USER @"Switch User"
+
 #define SCROLL_SIZE 310
 // A scene is just a sprite with a back button that dispatches a "closing" event
 // when that button was hit. All scenes inherit from this class.
