@@ -8,3 +8,5 @@ src/.DS_Store
 *.xcuserstate
 
 src/Mole.xcodeproj/project.xcworkspace/xcuserdata/jameskong.xcuserdatad/UserInterfaceState.xcuserstate
+
+*.tmp$$
