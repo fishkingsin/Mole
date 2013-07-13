@@ -21,7 +21,7 @@
     if ((self = [super init]))
     {
         
-        SPTextField *_userDescTF = [SPTextField textFieldWithWidth:GAME_WIDTH height:GAME_HEIGHT text:@"fjkgnqeklrb\nfjkgnqeklrb\nfjkgnqeklrb\nfjkgnqeklrb\nfjkgnqeklrb\n"];
+        SPTextField *_userDescTF = [SPTextField textFieldWithWidth:Sparrow.stage.width height:Sparrow.stage.height text:@"fjkgnqeklrb\nfjkgnqeklrb\nfjkgnqeklrb\nfjkgnqeklrb\nfjkgnqeklrb\n"];
         
         _userDescTF.hAlign = SPHAlignLeft ;
         _userDescTF.vAlign = SPVAlignCenter ;

@@ -12,8 +12,8 @@
 
 #endif
 
-#define GAME_WIDTH    320.0f
-#define GAME_HEIGHT   480.0f
+//#define GAME_WIDTH    320.0f
+//#define GAME_HEIGHT   480.0f
 
-#define CENTER_X   (GAME_WIDTH  / 2.0f)
-#define CENTER_Y   (GAME_HEIGHT / 2.0f)
+//#define (Sparrow.stage.width*0.5)   (GAME_WIDTH  / 2.0f)
+//#define (Sparrow.stage.height*0.5)   (GAME_HEIGHT / 2.0f)

@@ -47,22 +47,22 @@
     int gameWidth  = Sparrow.stage.width;
     int gameHeight = Sparrow.stage.height;
     
-    float offSetX = (int) (gameWidth  - GAME_WIDTH)  / 2;
-    float offSetY = (int) (gameHeight - GAME_HEIGHT) / 2;
+    float offSetX = (int) (gameWidth  - Sparrow.stage.width)  / 2;
+    float offSetY = (int) (gameHeight - Sparrow.stage.height) / 2;
     
 //    float offSetWidth = 0;
 //    float offSetHeight = 0;
     
-    baseView = [[UIView alloc] initWithFrame:CGRectMake(offSetX, offSetY+50, GAME_WIDTH, GAME_HEIGHT-offSetY-50)];
+    baseView = [[UIView alloc] initWithFrame:CGRectMake(offSetX, offSetY+50, Sparrow.stage.width, Sparrow.stage.height-offSetY-50)];
     baseView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
     
-//    UIScrollView* _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(25, 0, GAME_WIDTH-50, GAME_HEIGHT-50)];
+//    UIScrollView* _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(25, 0, Sparrow.stage.width-50, Sparrow.stage.height-50)];
 //    [_scroll setBackgroundColor:[UIColor clearColor]];
 
 //    NSInteger numberOfViews = 3;
 //    for (int i = 0; i < numberOfViews; i++) {
-//        CGFloat yOrigin = i * (GAME_HEIGHT-offSetWidth);
-//        UIView *awesomeView = [[UIView alloc    ] initWithFrame:CGRectMake(0, yOrigin, GAME_WIDTH-offSetWidth, GAME_HEIGHT-offSetHeight)];
+//        CGFloat yOrigin = i * (Sparrow.stage.height-offSetWidth);
+//        UIView *awesomeView = [[UIView alloc    ] initWithFrame:CGRectMake(0, yOrigin, Sparrow.stage.width-offSetWidth, Sparrow.stage.height-offSetHeight)];
 //        awesomeView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1];
 //        [_scroll addSubview:awesomeView];
 //
@@ -81,7 +81,7 @@
     [baseView addSubview:headerTV];
     
     CGRect textViewFrame = CGRectMake(0,headerTV.frame.origin.y+headerTV.frame.size.height,
-                                      GAME_WIDTH,GAME_HEIGHT-(headerTV.frame.origin.y+headerTV.frame.size.height));
+                                      Sparrow.stage.width,Sparrow.stage.height-(headerTV.frame.origin.y+headerTV.frame.size.height));
 //                                      _scroll.frame.size.width,
 //                                      _scroll.frame.size.height);
     UITextView *textView = [[UITextView alloc] initWithFrame:textViewFrame];
@@ -112,7 +112,7 @@
     
     
     
-//    _button = [[UIButton alloc] initWithFrame:CGRectMake(0,0,GAME_WIDTH,GAME_HEIGHT)];
+//    _button = [[UIButton alloc] initWithFrame:CGRectMake(0,0,Sparrow.stage.width,Sparrow.stage.height)];
 //    _button.backgroundColor = [UIColor clearColor];
 //    [_button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
 //    [baseView addSubview: _button];
@@ -120,7 +120,7 @@
        [self addEventListener:@selector(onSceneClosing:) atObject:self
                    forType:EVENT_TYPE_CREDIT_CLOSING];
     
-    baseView.frame = CGRectMake(0, -GAME_HEIGHT, GAME_WIDTH, GAME_HEIGHT);
+    baseView.frame = CGRectMake(0, -Sparrow.stage.height, Sparrow.stage.width, Sparrow.stage.height);
     CGRect easeInFrame = baseView.frame;
     easeInFrame.origin.y = offSetY;
     [UIView animateWithDuration:0.5
@@ -137,7 +137,7 @@
 }
 - (void)viewTapped:(UITapGestureRecognizer *)gr {
     CGRect easeOutFrame = baseView.frame;
-    easeOutFrame.origin.y = -GAME_HEIGHT;
+    easeOutFrame.origin.y = -Sparrow.stage.height;
     [UIView animateWithDuration:0.5
                           delay:0
                         options: UIViewAnimationOptionCurveEaseInOut
@@ -154,7 +154,7 @@
 //{
 ////    [_backButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
 //    CGRect easeOutFrame = baseView.frame;
-//    easeOutFrame.origin.y = -GAME_HEIGHT;
+//    easeOutFrame.origin.y = -Sparrow.stage.height;
 //    [UIView animateWithDuration:0.5
 //                          delay:0
 //                        options: UIViewAnimationOptionCurveEaseInOut

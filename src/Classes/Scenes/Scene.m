@@ -26,7 +26,7 @@
         
         _backButton = [[SPButton alloc] initWithUpState:buttonTexture text:NSLocalizedString(KEY_BACK, nil)];
         _backButton.x = 0;
-        _backButton.y = GAME_HEIGHT - _backButton.height ;
+        _backButton.y = Sparrow.stage.height - _backButton.height ;
         _backButton.name = KEY_BACK;
         [_backButton addEventListener:@selector(onBackButtonTriggered:) atObject:self
                               forType:SP_EVENT_TYPE_TRIGGERED];
@@ -48,7 +48,7 @@
     //Delay the tween for two seconds, so that we can see the
     //change in scenery.
     [tween fadeTo:0];
-    [tween moveToX:GAME_WIDTH y:0.0f];
+    [tween moveToX:Sparrow.stage.width y:0.0f];
     
     //Register the tween at the nearest juggler.
     //(We will come back to jugglers later.)

@@ -69,7 +69,7 @@
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"alpha_background.png"];
     [self addChild:background];
     [self addChild:[super backButton]];
-    self.x = GAME_WIDTH*0.5;
+    self.x = Sparrow.stage.width*0.5;
     self.alpha = 0;
     SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
     [tween fadeTo:1.0f];
@@ -82,7 +82,7 @@
     //    NSString *name = [defaults objectForKey:@"UserName"];
     //    SPTextField * _userNameTF = [SPTextField textFieldWithWidth:100 height:25
     //                                                           text:name];
-    //    _userNameTF.x = (GAME_WIDTH*0.5)-(_userNameTF.width*0.5);
+    //    _userNameTF.x = (Sparrow.stage.width*0.5)-(_userNameTF.width*0.5);
     //    _userNameTF.y = 50;
     //    _userNameTF.hAlign = SPHAlignCenter ;
     //    _userNameTF.vAlign = SPVAlignCenter ;
@@ -92,16 +92,16 @@
     
     
     _maleButton = [self createButton:NSLocalizedString(KEY_MALE, nil) :@"button_short.png"];
-    _maleButton.x = (GAME_WIDTH-( _maleButton.width*2))*0.5;
-    _maleButton.y = GAME_HEIGHT - 40 - SCROLL_SIZE - 10 - _maleButton.height;
+    _maleButton.x = (Sparrow.stage.width-( _maleButton.width*2))*0.5;
+    _maleButton.y = Sparrow.stage.height - 40 - SCROLL_SIZE - 10 - _maleButton.height;
     _maleButton.enabled = YES;
     [_maleButton addEventListener:@selector(onMaleTriggered:) atObject:self
                           forType:SP_EVENT_TYPE_TRIGGERED];
     [self addChild:_maleButton];
     
     _femaleButton = [self createButton:NSLocalizedString(KEY_FEMALE, nil) :@"button_short.png" ];
-    _femaleButton.x = (GAME_WIDTH-( _maleButton.width*2))*0.5+_maleButton.width;
-    _femaleButton.y = GAME_HEIGHT - 40 - SCROLL_SIZE - 10 - _maleButton.height;
+    _femaleButton.x = (Sparrow.stage.width-( _maleButton.width*2))*0.5+_maleButton.width;
+    _femaleButton.y = Sparrow.stage.height - 40 - SCROLL_SIZE - 10 - _maleButton.height;
     _femaleButton.enabled = NO;
     [_femaleButton addEventListener:@selector(onFemaleTriggered:) atObject:self
                             forType:SP_EVENT_TYPE_TRIGGERED];
@@ -172,9 +172,9 @@
     int gameHeight = Sparrow.stage.height;
     
     
-    float offSetX = (GAME_WIDTH-SCROLL_SIZE)*0.5+(int) (gameWidth  - GAME_WIDTH)  / 2;
-    float offSetY = ((gameHeight-GAME_HEIGHT)*0.5)+GAME_HEIGHT - 40 - SCROLL_SIZE;
-    _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(GAME_WIDTH, offSetY, SCROLL_SIZE, SCROLL_SIZE)];
+    float offSetX = (Sparrow.stage.width-SCROLL_SIZE)*0.5+(int) (gameWidth  - Sparrow.stage.width)  / 2;
+    float offSetY = ((gameHeight-Sparrow.stage.height)*0.5)+Sparrow.stage.height - 40 - SCROLL_SIZE;
+    _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(Sparrow.stage.width, offSetY, SCROLL_SIZE, SCROLL_SIZE)];
     _scroll.pagingEnabled = YES;
     [self createScrollView:_femaleThumbnailImages];
     
@@ -283,7 +283,7 @@
         //change in scenery.
         [tween fadeTo:0.0f];
         
-        [tween moveToX:-GAME_HEIGHT y:0.0f];
+        [tween moveToX:-Sparrow.stage.height y:0.0f];
         
         //Register the tween at the nearest juggler.
         //(We will come back to jugglers later.)
@@ -370,7 +370,7 @@
 - (void)onBackButtonTriggered:(SPEvent *)event
 {
     CGRect easeInFrame = _scroll.frame;
-    easeInFrame.origin.x = GAME_WIDTH;
+    easeInFrame.origin.x = Sparrow.stage.width;
     [UIView animateWithDuration:0.5
                           delay:0
                         options: UIViewAnimationOptionCurveEaseInOut

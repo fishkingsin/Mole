@@ -55,7 +55,7 @@
 {
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"alpha_background.png"];
     [self addChild:background];
-    self.x = GAME_WIDTH*0.5;
+    self.x = Sparrow.stage.width*0.5;
     self.alpha = 0;
     SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
     [tween fadeTo:1.0f];
@@ -65,11 +65,11 @@
     //
     
     
-    //    startY = ((Sparrow.stage.height-GAME_HEIGHT)*0.5) - 40 - 315;
-    //    startY = CENTER_Y-GAME_HEIGHT*0.3;
-    float startY = ((Sparrow.stage.height-GAME_HEIGHT)*0.5)+GAME_HEIGHT - 40 - SCROLL_SIZE;
-    _baseView = [[UIView alloc]initWithFrame:CGRectMake(GAME_WIDTH, startY, GAME_WIDTH, 25)];
-    _textField = [[UITextField alloc] initWithFrame:CGRectMake(CENTER_X-80,0,160,25)];//(GAME_WIDTH,startY-12.5, 160, 25)];
+    //    startY = ((Sparrow.stage.height-Sparrow.stage.height)*0.5) - 40 - 315;
+    //    startY = (Sparrow.stage.height*0.5)-Sparrow.stage.height*0.3;
+    float startY = ((Sparrow.stage.height-Sparrow.stage.height)*0.5)+Sparrow.stage.height - 40 - SCROLL_SIZE;
+    _baseView = [[UIView alloc]initWithFrame:CGRectMake(Sparrow.stage.width, startY, Sparrow.stage.width, 25)];
+    _textField = [[UITextField alloc] initWithFrame:CGRectMake((Sparrow.stage.width*0.5)-80,0,160,25)];//(Sparrow.stage.width,startY-12.5, 160, 25)];
     _textField.borderStyle = UITextBorderStyleRoundedRect;
     _textField.returnKeyType = UIReturnKeyDone;
     _textField.clearButtonMode = UITextFieldViewModeAlways;
@@ -100,8 +100,8 @@
     SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"button_normal.png"];
     
     _okButton = [[SPButton alloc] initWithUpState:buttonTexture text:NSLocalizedString(KEY_OK, nil)];
-    _okButton.x = CENTER_X - _okButton.width / 2.0f ;
-    _okButton.y = startY +_textField.frame.size.height - ((Sparrow.stage.height-GAME_HEIGHT)*0.5);
+    _okButton.x = (Sparrow.stage.width*0.5) - _okButton.width / 2.0f ;
+    _okButton.y = startY +_textField.frame.size.height - ((Sparrow.stage.height-Sparrow.stage.height)*0.5);
     _okButton.name = NSLocalizedString(KEY_OK, nil);
     if([_textField.text isEqualToString:@""])
     {
@@ -152,7 +152,7 @@
     //Delay the tween for two seconds, so that we can see the
     //change in scenery.
     [tween fadeTo:0.0f];
-    [tween moveToX:-GAME_HEIGHT y:0.0f];
+    [tween moveToX:-Sparrow.stage.height y:0.0f];
     
     //Register the tween at the nearest juggler.
     //(We will come back to jugglers later.)

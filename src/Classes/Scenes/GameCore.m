@@ -107,7 +107,7 @@
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"alpha_background.png"];
     [self addChild:background];
     [self addChild:[super backButton]];
-    self.x = GAME_WIDTH*0.5;
+    self.x = Sparrow.stage.width*0.5;
     self.alpha = 0;
     SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
     [tween fadeTo:1.0f];
@@ -150,22 +150,22 @@
     //        SPImage *sparrow = [SPImage imageWithContentsOfFile:@"mole01.png"];
     //        TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:sparrow];
     //        sheet.x = (i*30)+30;
-    //        sheet.y = GAME_HEIGHT-80;
+    //        sheet.y = Sparrow.stage.height-80;
     //
     //        [_mole addChild:sheet];
     //    }
     _confirmButton = [self createButton:NSLocalizedString(KEY_CONFIRM, nil) :@"button_short.png"];
     _confirmButton.x = 64;
-    _confirmButton.y = GAME_HEIGHT-_confirmButton.height;
+    _confirmButton.y = Sparrow.stage.height-_confirmButton.height;
     _confirmButton.enabled = NO;
     [self addChild:_confirmButton];
     _addButton = [self createButton:NSLocalizedString(@"+", nil) :@"button_short.png"];
     _addButton.x = _confirmButton.x+_confirmButton.width;
-    _addButton.y = GAME_HEIGHT-_addButton.height;
+    _addButton.y = Sparrow.stage.height-_addButton.height;
     [self addChild:_addButton];
     _minuButton = [self createButton:NSLocalizedString(@"-", nil) :@"button_short.png"];
     _minuButton.x = _addButton.x+_addButton.width;
-    _minuButton.y = GAME_HEIGHT-_minuButton.height;
+    _minuButton.y = Sparrow.stage.height-_minuButton.height;
     _minuButton.enabled = NO;
     [self addChild:_minuButton];
     
@@ -321,11 +321,11 @@ void releaseData(void *info, const void *data, size_t dataSize) {
             [vc setInitialText:content];
             UIImage * img = [self screenshot:[[SPRectangle alloc] initWithX:
                                               0 y:0
-                                                                      width:GAME_WIDTH height:GAME_HEIGHT]];
+                                                                      width:Sparrow.stage.width height:Sparrow.stage.height]];
             [vc addImage: img];
             //        [name release];
             // Present Compose View Controller
-            UIView *base = [[UIView alloc] initWithFrame:CGRectMake(0, 0, GAME_WIDTH, GAME_HEIGHT)];
+            UIView *base = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Sparrow.stage.width, Sparrow.stage.height)];
             [base setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]];
             UIActivityIndicatorView *ai = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
             ai.center = Sparrow.currentController.view.center;
@@ -374,12 +374,12 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     //    [fbShare loginWithCompletionHandler:^{
     UIImage * img = [self screenshot:[[SPRectangle alloc] initWithX:
                                       0 y:0
-                                                              width:GAME_WIDTH height:GAME_HEIGHT]];
+                                                              width:Sparrow.stage.width height:Sparrow.stage.height]];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *name = [defaults objectForKey:@"UserName"];
     NSString *content = [[NSString alloc] initWithFormat:@"%@ : %@",name,currentDescription];
     
-    UIView *base = [[UIView alloc] initWithFrame:CGRectMake(0, 0, GAME_WIDTH, GAME_HEIGHT)];
+    UIView *base = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Sparrow.stage.width, Sparrow.stage.height)];
     [base setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]];
     UIActivityIndicatorView *ai = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     ai.center = Sparrow.currentController.view.center;
@@ -444,12 +444,12 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         {
             SPImage *sparrow = [SPImage imageWithContentsOfFile:@"mole01.png"];
             TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:sparrow];
-            sheet.x = CENTER_X;
-            sheet.y = GAME_HEIGHT;
+            sheet.x = (Sparrow.stage.width*0.5);
+            sheet.y = Sparrow.stage.height;
             
             SPTween *tween = [SPTween tweenWithTarget:sheet time:0.5f transition:SP_TRANSITION_LINEAR];
             
-            [tween moveToX:CENTER_X y:CENTER_Y];
+            [tween moveToX:(Sparrow.stage.width*0.5) y:(Sparrow.stage.height*0.5)];
             [Sparrow.juggler addObject:tween];
             
             [_mole addChild:sheet];
@@ -516,7 +516,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
         SPTween *tween = [SPTween tweenWithTarget:textFieldContainer time:0.5f transition:SP_TRANSITION_LINEAR];
         
         [tween scaleTo:0];
-        [tween moveToX:CENTER_X y:CENTER_Y];
+        [tween moveToX:(Sparrow.stage.width*0.5) y:(Sparrow.stage.height*0.5)];
         tween.onComplete = ^{ [self removeChild:textFieldContainer]; };
         [Sparrow.juggler addObject:tween];
         
@@ -680,8 +680,8 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     
     SPTween *tween = [SPTween tweenWithTarget:textFieldContainer time:0.5f transition:SP_TRANSITION_LINEAR];
     textFieldContainer.scaleX = textFieldContainer.scaleY = 0;
-    textFieldContainer.x = CENTER_X;
-    textFieldContainer.y = CENTER_Y;
+    textFieldContainer.x = (Sparrow.stage.width*0.5);
+    textFieldContainer.y = (Sparrow.stage.height*0.5);
     [tween scaleTo:1];
     [tween moveToX:0 y:0];
     [Sparrow.juggler addObject:tween];
@@ -709,7 +709,7 @@ void releaseData(void *info, const void *data, size_t dataSize) {
             
         }else{
             UIImage * img = [self screenshot :[[SPRectangle alloc] initWithX:
-                                               0 y:0 width:GAME_WIDTH height:GAME_HEIGHT]];
+                                               0 y:0 width:Sparrow.stage.width height:Sparrow.stage.height]];
             UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil);
             
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(KEY_SAVE_COMPLETE, nil) message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
