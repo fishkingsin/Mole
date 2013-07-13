@@ -41,6 +41,26 @@ void onUncaughtException(NSException *exception)
     // We need to properly handle activation of the application with regards to Facebook Login
     // (e.g., returning from iOS 6.0 Login Dialog or from fast app switching).
     [FBSession.activeSession handleDidBecomeActive];
+    
+    //killing timer
+    
+    if(currentTimer!=nil)
+    {
+        if([currentTimer isValid]){
+            NSLog(@"kill timer");
+            [currentTimer invalidate];
+            currentTimer = nil;
+        }
+    }
+}
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    NSLog(@"Start Timer");
+    currentTimer = [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(theActionMethod) userInfo:nil repeats:NO];
+}
+- (void)theActionMethod {
+	NSLog(@"5mins pass exit app");
+    exit(0);
 }
 
 - (BOOL)application:(UIApplication *)application
@@ -51,22 +71,5 @@ void onUncaughtException(NSException *exception)
     return [FBSession.activeSession handleOpenURL:url];
 }
 
-- (NSUInteger)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window
-{
-    NSArray *supportedOrientations =
-    [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISupportedInterfaceOrientations"];
-    
-    NSUInteger returnOrientations;
-    if ([supportedOrientations containsObject:@"UIInterfaceOrientationPortrait"])
-        returnOrientations |= UIInterfaceOrientationMaskPortrait;
-    if ([supportedOrientations containsObject:@"UIInterfaceOrientationLandscapeLeft"])
-        returnOrientations |= UIInterfaceOrientationMaskLandscapeLeft;
-    if ([supportedOrientations containsObject:@"UIInterfaceOrientationPortraitUpsideDown"])
-        returnOrientations |= UIInterfaceOrientationMaskPortraitUpsideDown;
-    if ([supportedOrientations containsObject:@"UIInterfaceOrientationLandscapeRight"])
-        returnOrientations |= UIInterfaceOrientationMaskLandscapeRight;
-    
-    return returnOrientations;
-}
 
 @end

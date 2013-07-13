@@ -179,7 +179,8 @@
     textFieldContainer.x = 0;
     textFieldContainer.y = 0;
     SPImage *textFieldBkgImage = [SPImage imageWithContentsOfFile:@"textfieldBackground.png"];
-    
+    textFieldBkgImage.width = Sparrow.stage.width;
+    textFieldBkgImage.height = Sparrow.stage.height;
     [textFieldContainer addChild:textFieldBkgImage];
     
     SPTextField *TF = [SPTextField textFieldWithWidth:textFieldContainer.width height:30 text:NSLocalizedString(KEY_EXPLAIN, nil)];

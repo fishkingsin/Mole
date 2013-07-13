@@ -59,6 +59,7 @@
 
 - (void)setup
 {
+    NSLog(@"width = %f height = %f",Sparrow.stage.width,Sparrow.stage.height);
     // This is where the code of your game will start.
     // In this sample, we add just a few simple elements to get a feeling about how it's done.
     
@@ -138,13 +139,13 @@
 
 - (void)updateLocations
 {
-    int gameWidth  = Sparrow.stage.width;
-    int gameHeight = Sparrow.stage.height;
-    
-    _contents.x = (int) (gameWidth  - _contents.width)  / 2;
-    _contents.y = (int) (gameHeight - _contents.height) / 2;
-    _menu.x = (int) (gameWidth  - _contents.width)  / 2;
-    _menu.y = (int) (gameHeight - _contents.height) / 2;
+//    int gameWidth  = Sparrow.stage.width;
+//    int gameHeight = Sparrow.stage.height;
+//    
+//    _contents.x = (int) (gameWidth  - _contents.width)  / 2;
+//    _contents.y = (int) (gameHeight - _contents.height) / 2;
+//    _menu.x = (int) (gameWidth  - _contents.width)  / 2;
+//    _menu.y = (int) (gameHeight - _contents.height) / 2;
 }
 
 - (void)onImageTouched:(SPTouchEvent *)event
