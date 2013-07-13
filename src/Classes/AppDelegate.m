@@ -51,4 +51,22 @@ void onUncaughtException(NSException *exception)
     return [FBSession.activeSession handleOpenURL:url];
 }
 
+- (NSUInteger)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window
+{
+    NSArray *supportedOrientations =
+    [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISupportedInterfaceOrientations"];
+    
+    NSUInteger returnOrientations;
+    if ([supportedOrientations containsObject:@"UIInterfaceOrientationPortrait"])
+        returnOrientations |= UIInterfaceOrientationMaskPortrait;
+    if ([supportedOrientations containsObject:@"UIInterfaceOrientationLandscapeLeft"])
+        returnOrientations |= UIInterfaceOrientationMaskLandscapeLeft;
+    if ([supportedOrientations containsObject:@"UIInterfaceOrientationPortraitUpsideDown"])
+        returnOrientations |= UIInterfaceOrientationMaskPortraitUpsideDown;
+    if ([supportedOrientations containsObject:@"UIInterfaceOrientationLandscapeRight"])
+        returnOrientations |= UIInterfaceOrientationMaskLandscapeRight;
+    
+    return returnOrientations;
+}
+
 @end
