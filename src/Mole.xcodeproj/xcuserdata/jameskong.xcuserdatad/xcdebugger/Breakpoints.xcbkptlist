@@ -32,11 +32,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/Scenes/FacePick.m"
-         timestampString = "394620151.211112"
+         timestampString = "395382485.132445"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "281"
-         endingLineNumber = "281"
+         startingLineNumber = "271"
+         endingLineNumber = "271"
          landmarkName = "-onFaceClicked:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -71,11 +71,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/Scenes/FacePick.m"
-         timestampString = "394620151.211112"
+         timestampString = "395382485.132445"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "320"
-         endingLineNumber = "320"
+         startingLineNumber = "310"
+         endingLineNumber = "310"
          landmarkName = "-onImageTouched:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -84,11 +84,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/Scenes/FacePick.m"
-         timestampString = "394620151.211112"
+         timestampString = "395382485.132445"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "386"
-         endingLineNumber = "386"
+         startingLineNumber = "376"
+         endingLineNumber = "376"
          landmarkName = "-onSceneClosing:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -97,11 +97,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/Scenes/FacePick.m"
-         timestampString = "394620151.211112"
+         timestampString = "395382485.132445"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "290"
-         endingLineNumber = "290"
+         startingLineNumber = "280"
+         endingLineNumber = "280"
          landmarkName = "-onFaceClicked:"
          landmarkType = "5">
       </FileBreakpoint>

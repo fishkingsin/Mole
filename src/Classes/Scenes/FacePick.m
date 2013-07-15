@@ -66,6 +66,8 @@
 
 - (void)setup
 {
+    int gameWidth  = Sparrow.stage.width;
+    //int gameHeight = Sparrow.stage.height;
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"alpha_background.png"];
     [self addChild:background];
     [self addChild:[super backButton]];
@@ -76,24 +78,15 @@
     [tween moveToX:0 y:0.0f];
     [Sparrow.juggler addObject:tween];
     
-    
     _faceFile = nil;
-    //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    //    NSString *name = [defaults objectForKey:@"UserName"];
-    //    SPTextField * _userNameTF = [SPTextField textFieldWithWidth:100 height:25
-    //                                                           text:name];
-    //    _userNameTF.x = (Sparrow.stage.width*0.5)-(_userNameTF.width*0.5);
-    //    _userNameTF.y = 50;
-    //    _userNameTF.hAlign = SPHAlignCenter ;
-    //    _userNameTF.vAlign = SPVAlignCenter ;
-    //    _userNameTF.border = NO;
-    //    _userNameTF.color = 0x000000;
-    //    [self addChild:_userNameTF];
-    
+
+    float offSetX = (Sparrow.stage.width-SCROLL_SIZE)*0.5+(int) (gameWidth  - Sparrow.stage.width)  / 2;
+    float offSetY = (Sparrow.stage.height*0.5)  - SCROLL_SIZE*0.33333f;
+
     
     _maleButton = [self createButton:NSLocalizedString(KEY_MALE, nil) :@"button_short.png"];
     _maleButton.x = (Sparrow.stage.width-( _maleButton.width*2))*0.5;
-    _maleButton.y = Sparrow.stage.height - 40 - SCROLL_SIZE - 10 - _maleButton.height;
+    _maleButton.y = offSetY -  10 - _maleButton.height;
     _maleButton.enabled = YES;
     [_maleButton addEventListener:@selector(onMaleTriggered:) atObject:self
                           forType:SP_EVENT_TYPE_TRIGGERED];
@@ -101,7 +94,7 @@
     
     _femaleButton = [self createButton:NSLocalizedString(KEY_FEMALE, nil) :@"button_short.png" ];
     _femaleButton.x = (Sparrow.stage.width-( _maleButton.width*2))*0.5+_maleButton.width;
-    _femaleButton.y = Sparrow.stage.height - 40 - SCROLL_SIZE - 10 - _maleButton.height;
+    _femaleButton.y = offSetY - 10 - _maleButton.height;
     _femaleButton.enabled = NO;
     [_femaleButton addEventListener:@selector(onFemaleTriggered:) atObject:self
                             forType:SP_EVENT_TYPE_TRIGGERED];
@@ -168,13 +161,10 @@
                               nil];
     
     
-    int gameWidth  = Sparrow.stage.width;
-    int gameHeight = Sparrow.stage.height;
     
     
-    float offSetX = (Sparrow.stage.width-SCROLL_SIZE)*0.5+(int) (gameWidth  - Sparrow.stage.width)  / 2;
-    float offSetY = ((gameHeight-Sparrow.stage.height)*0.5)+Sparrow.stage.height - 40 - SCROLL_SIZE;
-    _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(Sparrow.stage.width, offSetY, SCROLL_SIZE, SCROLL_SIZE)];
+    
+        _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(Sparrow.stage.width, offSetY, SCROLL_SIZE, SCROLL_SIZE)];
     _scroll.pagingEnabled = YES;
     [self createScrollView:_femaleThumbnailImages];
     

@@ -965,7 +965,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../../FacebookSDK/build\"",
 					"\"$(SRCROOT)/../../../../FacebookSDK\"",
 				);
 				INFOPLIST_FILE = "App-Info.plist";
@@ -983,7 +982,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../../FacebookSDK/build\"",
 					"\"$(SRCROOT)/../../../../FacebookSDK\"",
 				);
 				INFOPLIST_FILE = "App-Info.plist";

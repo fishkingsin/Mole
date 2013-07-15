@@ -181,7 +181,7 @@
     //    if (_currentScene) return;
     //
     //    // the class name of the scene is saved in the "name" property of the button.
-    SPButton *button = (SPButton *)event.target;
+    //SPButton *button = (SPButton *)event.target;
 #ifdef DEBUG
     NSLog(@"onButtonTriggered %@", button.name);
 #endif
