@@ -5,6 +5,7 @@
 
 #import "AppDelegate.h"
 #import "Game.h"
+#import "BannerExampleViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
 // --- c functions ---
 
@@ -19,6 +20,7 @@ void onUncaughtException(NSException *exception)
 {
     SPViewController *_viewController;
     UIWindow *_window;
+    BannerExampleViewController * banner;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -33,6 +35,10 @@ void onUncaughtException(NSException *exception)
     
     [_window setRootViewController:_viewController];
     [_window makeKeyAndVisible];
+    
+    banner = [[BannerExampleViewController alloc] init];
+    
+    [_viewController.view addSubview:banner.view];
     
     return YES;
 }

@@ -182,9 +182,9 @@
     //
     //    // the class name of the scene is saved in the "name" property of the button.
     //SPButton *button = (SPButton *)event.target;
-#ifdef DEBUG
-    NSLog(@"onButtonTriggered %@", button.name);
-#endif
+//#ifdef DEBUG
+//    NSLog(@"onButtonTriggered %@", button.name);
+//#endif
     //    Class sceneClass = NSClassFromString(button.name);
     //
     //    // create an instance of that class and add it to the display tree.
