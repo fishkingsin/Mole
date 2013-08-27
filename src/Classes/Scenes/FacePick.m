@@ -86,7 +86,7 @@
     
     _maleButton = [self createButton:NSLocalizedString(KEY_MALE, nil) :@"button_short.png"];
     _maleButton.x = (Sparrow.stage.width-( _maleButton.width*2))*0.5;
-    _maleButton.y = offSetY -  10 - _maleButton.height;
+    _maleButton.y = offSetY -  10 - _maleButton.height-BANNER_HEIGHT;
     _maleButton.enabled = YES;
     [_maleButton addEventListener:@selector(onMaleTriggered:) atObject:self
                           forType:SP_EVENT_TYPE_TRIGGERED];
@@ -94,7 +94,7 @@
     
     _femaleButton = [self createButton:NSLocalizedString(KEY_FEMALE, nil) :@"button_short.png" ];
     _femaleButton.x = (Sparrow.stage.width-( _maleButton.width*2))*0.5+_maleButton.width;
-    _femaleButton.y = offSetY - 10 - _maleButton.height;
+    _femaleButton.y = offSetY - 10 - _maleButton.height-BANNER_HEIGHT;
     _femaleButton.enabled = NO;
     [_femaleButton addEventListener:@selector(onFemaleTriggered:) atObject:self
                             forType:SP_EVENT_TYPE_TRIGGERED];
@@ -164,7 +164,7 @@
     
     
     
-        _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(Sparrow.stage.width, offSetY, SCROLL_SIZE, SCROLL_SIZE)];
+        _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(Sparrow.stage.width, offSetY-BANNER_HEIGHT, SCROLL_SIZE, SCROLL_SIZE)];
     _scroll.pagingEnabled = YES;
     [self createScrollView:_femaleThumbnailImages];
     

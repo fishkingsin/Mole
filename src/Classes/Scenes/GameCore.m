@@ -156,16 +156,16 @@
     //    }
     _confirmButton = [self createButton:NSLocalizedString(KEY_CONFIRM, nil) :@"button_short.png"];
     _confirmButton.x = 64;
-    _confirmButton.y = Sparrow.stage.height-_confirmButton.height;
+    _confirmButton.y = Sparrow.stage.height-_confirmButton.height-BANNER_HEIGHT;
     _confirmButton.enabled = NO;
     [self addChild:_confirmButton];
     _addButton = [self createButton:NSLocalizedString(@"+", nil) :@"button_short.png"];
     _addButton.x = _confirmButton.x+_confirmButton.width;
-    _addButton.y = Sparrow.stage.height-_addButton.height;
+    _addButton.y = Sparrow.stage.height-_addButton.height-BANNER_HEIGHT;
     [self addChild:_addButton];
     _minuButton = [self createButton:NSLocalizedString(@"-", nil) :@"button_short.png"];
     _minuButton.x = _addButton.x+_addButton.width;
-    _minuButton.y = Sparrow.stage.height-_minuButton.height;
+    _minuButton.y = Sparrow.stage.height-_minuButton.height-BANNER_HEIGHT;
     _minuButton.enabled = NO;
     [self addChild:_minuButton];
     
@@ -207,7 +207,7 @@
     _fbButton = [self createButton:NSLocalizedString(KEY_FACEBOOK, nil) :@"button_short.png"];
     _fbButton.x = _fbButton.width;
     _fbButton.visible = YES;
-    _fbButton.y = textFieldContainer.height - _fbButton.height;
+    _fbButton.y = textFieldContainer.height - _fbButton.height-BANNER_HEIGHT;
     
     
     [textFieldContainer addChild:_fbButton];
@@ -217,13 +217,13 @@
     _saveButton = [self createButton:NSLocalizedString(KEY_SAVE, nil) :@"button_short.png"];
     _saveButton.x = _fbButton.x+_fbButton.width;
     _saveButton.visible = YES;
-    _saveButton.y =textFieldContainer.height - _saveButton.height;
+    _saveButton.y =textFieldContainer.height - _saveButton.height-BANNER_HEIGHT;
     [textFieldContainer addChild:_saveButton];
     
     _cancelButton = [self createButton:NSLocalizedString(KEY_CANCEL, nil) :@"button_short.png"];
     _cancelButton.x = _saveButton.x+_saveButton.width;
     _cancelButton.visible = YES;
-    _cancelButton.y = textFieldContainer.height - _saveButton.height;
+    _cancelButton.y = textFieldContainer.height - _saveButton.height-BANNER_HEIGHT;
     [textFieldContainer addChild:_cancelButton];
     
     
@@ -245,33 +245,33 @@ void releaseData(void *info, const void *data, size_t dataSize) {
     NSLog(@"Screenshot %@",[self platformString]);
 #endif
 	int myWidth = 640;
-	int myHeight = 960;
+	int myHeight = 960-BANNER_HEIGHT;
     int myX = 0;
     int myY = 0;
     if ([[self platformString] isEqualToString:@"iPhone 3G"] ||
         [[self platformString] isEqualToString:@"iPhone 3GS"])
     {
         myWidth = 320;
-        myHeight = 480;
+        myHeight = 480-BANNER_HEIGHT;
     }
     else if ([[self platformString] isEqualToString:@"iPhone 4"] ||
              [[self platformString] isEqualToString:@"Verizon iPhone 4"] ||
              [[self platformString] isEqualToString:@"iPhone 4S"])
     {
         myWidth = 640;
-        myHeight = 960;
+        myHeight = 960-BANNER_HEIGHT;
     }
     else if ([[self platformString] isEqualToString:@"iPhone 5 (GSM)"] ||
              [[self platformString] isEqualToString:@"iPhone 5 (GSM+CDMA)"])
     {
         myWidth = 640;
-        myHeight = 960;
+        myHeight = 960-BANNER_HEIGHT;
         myX = 0;
-        myY = (1136-960)/2;
+        myY = (1136-myHeight)/2;
     }
     else{
         myWidth = 640;
-        myHeight = 960;
+        myHeight = 960-BANNER_HEIGHT;
     }
     
     

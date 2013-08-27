@@ -18,9 +18,9 @@ void onUncaughtException(NSException *exception)
 
 @implementation AppDelegate
 {
-    SPViewController *_viewController;
+    BannerExampleViewController *_viewController;
     UIWindow *_window;
-    BannerExampleViewController * banner;
+//    BannerExampleViewController * banner;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -30,15 +30,15 @@ void onUncaughtException(NSException *exception)
     CGRect screenBounds = [UIScreen mainScreen].bounds;
     _window = [[UIWindow alloc] initWithFrame:screenBounds];
     
-    _viewController = [[SPViewController alloc] init];
+    _viewController = [[BannerExampleViewController alloc] init];
     [_viewController startWithRoot:[Game class] supportHighResolutions:YES doubleOnPad:YES];
     
     [_window setRootViewController:_viewController];
     [_window makeKeyAndVisible];
     
-    banner = [[BannerExampleViewController alloc] init];
+//    banner = [[BannerExampleViewController alloc] init];
     
-    [_viewController.view addSubview:banner.view];
+//    [_viewController.view addSubview:banner.view];
     
     return YES;
 }

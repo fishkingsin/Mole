@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GADBannerView.h"
-@interface BannerExampleViewController : UIViewController
+@interface BannerExampleViewController : SPViewController
 {
     GADBannerView *bannerView_;
 }

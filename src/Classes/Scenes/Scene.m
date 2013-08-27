@@ -26,7 +26,7 @@
         
         _backButton = [[SPButton alloc] initWithUpState:buttonTexture text:NSLocalizedString(KEY_BACK, nil)];
         _backButton.x = 0;
-        _backButton.y = Sparrow.stage.height - _backButton.height ;
+        _backButton.y = Sparrow.stage.height - _backButton.height-BANNER_HEIGHT ;
         _backButton.name = KEY_BACK;
         [_backButton addEventListener:@selector(onBackButtonTriggered:) atObject:self
                               forType:SP_EVENT_TYPE_TRIGGERED];

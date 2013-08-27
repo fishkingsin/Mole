@@ -88,7 +88,7 @@
     
     _creditButton = [[SPButton alloc] initWithUpState:buttonTexture text:NSLocalizedString(@"Credit", nil)];
     _creditButton.x = Sparrow.stage.width - _creditButton.width;
-    _creditButton.y = Sparrow.stage.height - _creditButton.height;
+    _creditButton.y = Sparrow.stage.height - _creditButton.height-BANNER_HEIGHT;
     _creditButton.name = @"credit";
     [_creditButton addEventListener:@selector(onCreditButtonTriggered:) atObject:self
                             forType:SP_EVENT_TYPE_TRIGGERED];

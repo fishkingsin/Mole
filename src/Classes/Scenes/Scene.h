@@ -20,7 +20,7 @@
 #define SCROLL_SIZE 310
 // A scene is just a sprite with a back button that dispatches a "closing" event
 // when that button was hit. All scenes inherit from this class.
-
+#define BANNER_HEIGHT 50
 @interface Scene : SPSprite
 - (void)onBackButtonTriggered:(SPEvent *)event;
 - (void)onSceneClosing:(SPEvent *)event;
