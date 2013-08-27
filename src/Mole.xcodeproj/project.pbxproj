@@ -40,11 +40,11 @@
 		E32205F01790FA4200566D23 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E32205EE1790FA4200566D23 /* FacebookSDKResources.bundle */; };
 		E32205F11790FA4200566D23 /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E32205EF1790FA4200566D23 /* FBUserSettingsViewResources.bundle */; };
 		E32205F31790FA6900566D23 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E32205F21790FA6900566D23 /* FacebookSDK.framework */; };
-		E3244B4817CC9A7200D7FAEA /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3244B1717CC9A7200D7FAEA /* libGoogleAdMobAds.a */; };
 		E3244B5117CC9ABF00D7FAEA /* BannerExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3244B5017CC9ABF00D7FAEA /* BannerExampleViewController.m */; };
 		E3244B5317CCA0AC00D7FAEA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3244B5217CCA0AC00D7FAEA /* SystemConfiguration.framework */; };
 		E3244B5517CCA0ED00D7FAEA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3244B5417CCA0ED00D7FAEA /* StoreKit.framework */; };
 		E3244B5717CCA10600D7FAEA /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3244B5617CCA10600D7FAEA /* MessageUI.framework */; };
+		E3244B5917CCA85500D7FAEA /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3244B5817CCA85500D7FAEA /* libGoogleAdMobAds.a */; };
 		E359AD8B1760499A00B7FF96 /* alpha_background.png in Resources */ = {isa = PBXBuildFile; fileRef = E359AD371760499A00B7FF96 /* alpha_background.png */; };
 		E359AD8C1760499A00B7FF96 /* atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = E359AD381760499A00B7FF96 /* atlas.png */; };
 		E359AD8D1760499A00B7FF96 /* atlas.xml in Resources */ = {isa = PBXBuildFile; fileRef = E359AD391760499A00B7FF96 /* atlas.xml */; };
@@ -225,12 +225,12 @@
 		E3244B1417CC9A7200D7FAEA /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
 		E3244B1517CC9A7200D7FAEA /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
 		E3244B1617CC9A7200D7FAEA /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
-		E3244B1717CC9A7200D7FAEA /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
 		E3244B4F17CC9ABF00D7FAEA /* BannerExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerExampleViewController.h; sourceTree = "<group>"; };
 		E3244B5017CC9ABF00D7FAEA /* BannerExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerExampleViewController.m; sourceTree = "<group>"; };
 		E3244B5217CCA0AC00D7FAEA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E3244B5417CCA0ED00D7FAEA /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		E3244B5617CCA10600D7FAEA /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		E3244B5817CCA85500D7FAEA /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
 		E359AD371760499A00B7FF96 /* alpha_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha_background.png; sourceTree = "<group>"; };
 		E359AD381760499A00B7FF96 /* atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atlas.png; sourceTree = "<group>"; };
 		E359AD391760499A00B7FF96 /* atlas.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = atlas.xml; sourceTree = "<group>"; };
@@ -377,10 +377,10 @@
 				E31AF2BA1786BFB50018E837 /* libsqlite3.dylib in Frameworks */,
 				E32205ED1790FA2800566D23 /* Security.framework in Frameworks */,
 				E32205F31790FA6900566D23 /* FacebookSDK.framework in Frameworks */,
-				E3244B4817CC9A7200D7FAEA /* libGoogleAdMobAds.a in Frameworks */,
 				E3244B5317CCA0AC00D7FAEA /* SystemConfiguration.framework in Frameworks */,
 				E3244B5517CCA0ED00D7FAEA /* StoreKit.framework in Frameworks */,
 				E3244B5717CCA10600D7FAEA /* MessageUI.framework in Frameworks */,
+				E3244B5917CCA85500D7FAEA /* libGoogleAdMobAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,6 +533,7 @@
 		E3244AB217CC9A7200D7FAEA /* GoogleAdMobAdsSdkiOS-6.5.0 */ = {
 			isa = PBXGroup;
 			children = (
+				E3244B5817CCA85500D7FAEA /* libGoogleAdMobAds.a */,
 				E3244B0E17CC9A7200D7FAEA /* GADAdMobExtras.h */,
 				E3244B0F17CC9A7200D7FAEA /* GADAdNetworkExtras.h */,
 				E3244B1017CC9A7200D7FAEA /* GADAdSize.h */,
@@ -542,7 +543,6 @@
 				E3244B1417CC9A7200D7FAEA /* GADInterstitialDelegate.h */,
 				E3244B1517CC9A7200D7FAEA /* GADRequest.h */,
 				E3244B1617CC9A7200D7FAEA /* GADRequestError.h */,
-				E3244B1717CC9A7200D7FAEA /* libGoogleAdMobAds.a */,
 			);
 			path = "GoogleAdMobAdsSdkiOS-6.5.0";
 			sourceTree = "<group>";
@@ -1074,10 +1074,7 @@
 				INFOPLIST_FILE = "App-info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -1107,10 +1104,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "App-info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
