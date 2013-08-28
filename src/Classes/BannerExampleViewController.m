@@ -72,7 +72,7 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
     
     // Make the request for a test ad. Put in an identifier for the simulator as
     // well as any devices you want to receive test ads.
-    request.testDevices = [NSArray arrayWithObjects:@"a65bcdc085aebcbd4e5f04cfe8f7e23c", nil];
+//    request.testDevices = [NSArray arrayWithObjects:@"a65bcdc085aebcbd4e5f04cfe8f7e23c", nil];
     return request;
 }
 
