@@ -26,27 +26,54 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    // 在畫面下方建立標準廣告大小的畫面。
-    bannerView_ = [[GADBannerView alloc]
-                   initWithFrame:CGRectMake(0.0,
-                                            self.view.frame.size.height -
-                                            GAD_SIZE_320x50.height,
-                                            GAD_SIZE_320x50.width,
-                                            GAD_SIZE_320x50.height)];
-    bannerView_.adUnitID = @"a1521c629207880";
+	//@"a1521c629207880";
     
-    bannerView_.rootViewController = self;
-    [self.view addSubview:bannerView_];
+    interstitial_ = [[GADInterstitial alloc] init] ;
+    interstitial_.delegate = self;
     
-
-    [bannerView_ loadRequest:[GADRequest request]];
+    // Note: Edit InterstitialExampleAppDelegate.m to update
+    // INTERSTITIAL_AD_UNIT_ID with your interstitial ad unit id.
+    
+    interstitial_.adUnitID = @"a1521c629207880";
+    
+    [interstitial_ loadRequest: [self createRequest]];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (void)interstitial:(GADInterstitial *)interstitial
+didFailToReceiveAdWithError:(GADRequestError *)error {
+    // Alert the error.
+    UIAlertView *alert = [[UIAlertView alloc]
+                           initWithTitle:@"GADRequestError"
+                           message:[error localizedDescription]
+                           delegate:nil cancelButtonTitle:@"Drat"
+                           otherButtonTitles:nil] ;
+    [alert show];
+    
+ 
+}
+
+- (void)interstitialDidReceiveAd:(GADInterstitial *)interstitial {
+    [interstitial presentFromRootViewController:self];
+ 
+}
+
+#pragma mark GADRequest generation
+
+// Here we're creating a simple GADRequest and whitelisting the application
+// for test ads. You should request test ads during development to avoid
+// generating invalid impressions and clicks.
+- (GADRequest *)createRequest {
+    GADRequest *request = [GADRequest request];
+    
+    // Make the request for a test ad. Put in an identifier for the simulator as
+    // well as any devices you want to receive test ads.
+    request.testDevices = [NSArray arrayWithObjects:@"a65bcdc085aebcbd4e5f04cfe8f7e23c", nil];
+    return request;
 }
 
 @end

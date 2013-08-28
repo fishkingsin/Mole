@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GADBannerView.h"
-@interface BannerExampleViewController : SPViewController
+#import "GADInterstitial.h"
+#import "GADInterstitialDelegate.h"
+@interface BannerExampleViewController : SPViewController<GADInterstitialDelegate>
 {
-    GADBannerView *bannerView_;
+
+    GADInterstitial *interstitial_;
 }
 @end

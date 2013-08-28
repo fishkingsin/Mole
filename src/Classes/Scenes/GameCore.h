@@ -18,7 +18,7 @@
 #define GAME_STATE_TOUCHMOLE 0x12
 #define GAME_STATE_SHOWDESCRITPION 0x13
 #define GAME_STATE_END 0x14
-#define DEBUG
+//#define DEBUG
 #import "Scene.h"
 #import "TouchSheet.h"
 @interface GameCore : Scene
