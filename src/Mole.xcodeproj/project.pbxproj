@@ -32,6 +32,7 @@
 		DE5C4E6E138ED109004892CA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE5C4E6D138ED109004892CA /* libz.dylib */; };
 		DEAAF3DF16BC114D004EB9D5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */; };
 		E308C48E1785735C0084A937 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E308C4881785735C0084A937 /* Localizable.strings */; };
+		E310A4E017CD86D200D53191 /* BannerExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E310A4DE17CD86D200D53191 /* BannerExampleViewController.m */; };
 		E31AF2A81786BE8A0018E837 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E31AF2A71786BE8A0018E837 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E31AF2AA1786BE8E0018E837 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E31AF2A91786BE8E0018E837 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E31AF2AE1786BED80018E837 /* FacebookShare.m in Sources */ = {isa = PBXBuildFile; fileRef = E31AF2AD1786BED80018E837 /* FacebookShare.m */; };
@@ -40,7 +41,6 @@
 		E32205F01790FA4200566D23 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E32205EE1790FA4200566D23 /* FacebookSDKResources.bundle */; };
 		E32205F11790FA4200566D23 /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E32205EF1790FA4200566D23 /* FBUserSettingsViewResources.bundle */; };
 		E32205F31790FA6900566D23 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E32205F21790FA6900566D23 /* FacebookSDK.framework */; };
-		E3244B5117CC9ABF00D7FAEA /* BannerExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3244B5017CC9ABF00D7FAEA /* BannerExampleViewController.m */; };
 		E3244B5317CCA0AC00D7FAEA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3244B5217CCA0AC00D7FAEA /* SystemConfiguration.framework */; };
 		E3244B5517CCA0ED00D7FAEA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3244B5417CCA0ED00D7FAEA /* StoreKit.framework */; };
 		E3244B5717CCA10600D7FAEA /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3244B5617CCA10600D7FAEA /* MessageUI.framework */; };
@@ -207,6 +207,8 @@
 		E308C4891785735C0084A937 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		E308C491178573D00084A937 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E308C492178573DF0084A937 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		E310A4DE17CD86D200D53191 /* BannerExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerExampleViewController.m; sourceTree = "<group>"; };
+		E310A4DF17CD86D200D53191 /* BannerExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerExampleViewController.h; sourceTree = "<group>"; };
 		E31AF2A71786BE8A0018E837 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		E31AF2A91786BE8E0018E837 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		E31AF2AC1786BED80018E837 /* FacebookShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookShare.h; sourceTree = "<group>"; };
@@ -225,8 +227,6 @@
 		E3244B1417CC9A7200D7FAEA /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
 		E3244B1517CC9A7200D7FAEA /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
 		E3244B1617CC9A7200D7FAEA /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
-		E3244B4F17CC9ABF00D7FAEA /* BannerExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerExampleViewController.h; sourceTree = "<group>"; };
-		E3244B5017CC9ABF00D7FAEA /* BannerExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerExampleViewController.m; sourceTree = "<group>"; };
 		E3244B5217CCA0AC00D7FAEA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E3244B5417CCA0ED00D7FAEA /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		E3244B5617CCA10600D7FAEA /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -397,8 +397,8 @@
 				DE4F80D714E153EA00655D44 /* Game */,
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
-				E3244B4F17CC9ABF00D7FAEA /* BannerExampleViewController.h */,
-				E3244B5017CC9ABF00D7FAEA /* BannerExampleViewController.m */,
+				E310A4DE17CD86D200D53191 /* BannerExampleViewController.m */,
+				E310A4DF17CD86D200D53191 /* BannerExampleViewController.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -987,7 +987,7 @@
 				E3D234341759A72B001C4836 /* OBShapedButton.m in Sources */,
 				E3D234381759AA5D001C4836 /* UIImage+ColorAtPixel.m in Sources */,
 				E31AF2AE1786BED80018E837 /* FacebookShare.m in Sources */,
-				E3244B5117CC9ABF00D7FAEA /* BannerExampleViewController.m in Sources */,
+				E310A4E017CD86D200D53191 /* BannerExampleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
