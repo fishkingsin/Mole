@@ -5,7 +5,10 @@
 
 #import "AppDelegate.h"
 #import "Game.h"
+//#define USE_BANNER
+#ifdef USE_BANNER
 #import "BannerExampleViewController.h"
+#endif
 #import <FacebookSDK/FacebookSDK.h>
 // --- c functions ---
 
@@ -18,7 +21,13 @@ void onUncaughtException(NSException *exception)
 
 @implementation AppDelegate
 {
-    BannerExampleViewController *_viewController;
+#ifndef USE_BANNER
+    SPViewController *_viewController;
+#else
+    BannerExampleViewController *_viewController;    
+#endif
+    
+
     UIWindow *_window;
 //    BannerExampleViewController * banner;
 }
@@ -29,10 +38,14 @@ void onUncaughtException(NSException *exception)
     
     CGRect screenBounds = [UIScreen mainScreen].bounds;
     _window = [[UIWindow alloc] initWithFrame:screenBounds];
-    
+    #ifndef USE_BANNER
+    _viewController = [[SPViewController alloc] init];
+    [_viewController startWithRoot:[Game class] supportHighResolutions:YES doubleOnPad:YES];
+
+    #else
     _viewController = [[BannerExampleViewController alloc] init];
     [_viewController startWithRoot:[Game class] supportHighResolutions:YES doubleOnPad:YES];
-    
+    #endif
     [_window setRootViewController:_viewController];
     [_window makeKeyAndVisible];
     

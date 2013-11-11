@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>20BAE5D8-E287-4158-8180-0E0F492EEED3</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Mole</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>810A5E1F-709D-48D5-AA69-AF7C94E58BFE</key>
+		<string>https://github.com/Gamua/Sparrow-Framework.git</string>
+		<key>AEE2FB88-D75D-4957-B75E-2942DA460373</key>
+		<string>https://www.github.com/facebook/facebook-ios-sdk.git</string>
+		<key>B3080DFA-9447-4144-A498-E20A5949DF1D</key>
+		<string>https://github.com/fishkingsin/Mole.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>projects/Mole/src/Mole.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>810A5E1F-709D-48D5-AA69-AF7C94E58BFE</key>
+		<string>../../../../..</string>
+		<key>AEE2FB88-D75D-4957-B75E-2942DA460373</key>
+		<string>../../../../../../FacebookSDK</string>
+		<key>B3080DFA-9447-4144-A498-E20A5949DF1D</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/fishkingsin/Mole.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>810A5E1F-709D-48D5-AA69-AF7C94E58BFE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AEE2FB88-D75D-4957-B75E-2942DA460373</string>
+			<key>IDESourceControlWCCName</key>
+			<string>FacebookSDK</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B3080DFA-9447-4144-A498-E20A5949DF1D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Mole</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>810A5E1F-709D-48D5-AA69-AF7C94E58BFE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Sparrow-Framework</string>
+		</dict>
+	</array>
+</dict>
+</plist>

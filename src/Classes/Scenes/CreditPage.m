@@ -74,7 +74,7 @@
     [headerTV setBackgroundColor:[UIColor clearColor]];
     [headerTV setEditable:NO];
     [headerTV setTextColor:[UIColor whiteColor]];
-    UIFont *headerTF = [UIFont fontWithName:@"Apple SD Gothic Neo" size:28.0];
+    UIFont *headerTF = [UIFont fontWithName:@"Helvetica Neue Light" size:28.0];
     [headerTV setFont:headerTF];
     headerTV.text = NSLocalizedString(@"Credit", nil);
     headerTV.textAlignment = NSTextAlignmentCenter;
@@ -89,7 +89,7 @@
     [textView setEditable:NO];
     [textView setTextColor:[UIColor whiteColor]];
     textView.textAlignment = NSTextAlignmentCenter;
-    UIFont *textFont = [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
+    UIFont *textFont = [UIFont fontWithName:@"Helvetica Neue Light" size:14.0];
     [textView setFont:textFont];
     
     NSString *txtPath = [[NSBundle mainBundle] pathForResource:@"credit" ofType:@"txt"];
