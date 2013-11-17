@@ -374,7 +374,6 @@
 		E3DEB28E1830785800E6CED0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		E3DEB28F1830785800E6CED0 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		E3DEB297183078D600E6CED0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		E3DEB29F18307BA100E6CED0 /* Icon~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon~iphone.png"; path = "../../../../../Downloads/icon 2/ios7/Icon~iphone.png"; sourceTree = "<group>"; };
 		E3DEB2A018307BD800E6CED0 /* Icon~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon~iphone.png"; sourceTree = "<group>"; };
 		E3DEB2A118307BE700E6CED0 /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
 		E3DEB2A218307C0000E6CED0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Mole/Images.xcassets; sourceTree = "<group>"; };
@@ -444,7 +443,6 @@
 			children = (
 				E3DEB2A118307BE700E6CED0 /* Icon-60@2x.png */,
 				E3DEB2A018307BD800E6CED0 /* Icon~iphone.png */,
-				E3DEB29F18307BA100E6CED0 /* Icon~iphone.png */,
 				DE4A3DA210FFB0D400FDA492 /* Sparrow.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -1080,7 +1078,7 @@
 					"\"$(SRCROOT)/../../../../FacebookSDK\"",
 				);
 				INFOPLIST_FILE = "App-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\"$(SRCROOT)/Classes/GoogleAdMobAdsSdkiOS-6.5.0/Add-ons/GoogleAnalyticsiOS_2.0beta4/Library\\\"",
@@ -1088,8 +1086,8 @@
 					"/Users/jameskong/Development/Sparrow-Framework/projects/Mole/src/Classes/GoogleAdMobAdsSdkiOS-6.5.0",
 				);
 				PRODUCT_NAME = Mole;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "5FE5356A-B0CE-4C0F-AF4B-0C5721BC950C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5FE5356A-B0CE-4C0F-AF4B-0C5721BC950C";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "../../../sparrow/src/Classes/**";
 			};
@@ -1107,7 +1105,7 @@
 					"\"$(SRCROOT)/../../../../FacebookSDK\"",
 				);
 				INFOPLIST_FILE = "App-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\"$(SRCROOT)/Classes/GoogleAdMobAdsSdkiOS-6.5.0/Add-ons/GoogleAnalyticsiOS_2.0beta4/Library\\\"",
@@ -1115,7 +1113,7 @@
 					"/Users/jameskong/Development/Sparrow-Framework/projects/Mole/src/Classes/GoogleAdMobAdsSdkiOS-6.5.0",
 				);
 				PRODUCT_NAME = Mole;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "5FE5356A-B0CE-4C0F-AF4B-0C5721BC950C";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "../../../sparrow/src/Classes/**";
 			};
