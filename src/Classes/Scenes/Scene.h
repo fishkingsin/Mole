@@ -6,7 +6,7 @@
 //
 //
 
-#import "SPSprite.h"
+#import "Sparrow.h"
 #define KEY_BACK @"Back"
 #define KEY_CONFIRM @"Confirm"
 #define KEY_FACEBOOK @"Facebook"

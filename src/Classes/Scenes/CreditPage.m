@@ -53,16 +53,16 @@
 //    float offSetWidth = 0;
 //    float offSetHeight = 0;
     
-    baseView = [[UIView alloc] initWithFrame:CGRectMake(offSetX, offSetY+50, Sparrow.stage.width, Sparrow.stage.height-offSetY-50)];
+    baseView = [[UIView alloc] initWithFrame:CGRectMake(offSetX, offSetY+50, Sparrow.stage.width, Sparrow.stage.height - offSetY-50)];
     baseView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
     
-//    UIScrollView* _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(25, 0, Sparrow.stage.width-50, Sparrow.stage.height-50)];
+//    UIScrollView* _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(25, 0, Sparrow.stage.width-50, Sparrow.stage.height - 50)];
 //    [_scroll setBackgroundColor:[UIColor clearColor]];
 
 //    NSInteger numberOfViews = 3;
 //    for (int i = 0; i < numberOfViews; i++) {
-//        CGFloat yOrigin = i * (Sparrow.stage.height-offSetWidth);
-//        UIView *awesomeView = [[UIView alloc    ] initWithFrame:CGRectMake(0, yOrigin, Sparrow.stage.width-offSetWidth, Sparrow.stage.height-offSetHeight)];
+//        CGFloat yOrigin = i * (Sparrow.stage.height - offSetWidth);
+//        UIView *awesomeView = [[UIView alloc    ] initWithFrame:CGRectMake(0, yOrigin, Sparrow.stage.width-offSetWidth, Sparrow.stage.height - offSetHeight)];
 //        awesomeView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1];
 //        [_scroll addSubview:awesomeView];
 //
@@ -81,7 +81,7 @@
     [baseView addSubview:headerTV];
     
     CGRect textViewFrame = CGRectMake(0,headerTV.frame.origin.y+headerTV.frame.size.height,
-                                      Sparrow.stage.width,Sparrow.stage.height-(headerTV.frame.origin.y+headerTV.frame.size.height));
+                                      Sparrow.stage.width,Sparrow.stage.height - (headerTV.frame.origin.y+headerTV.frame.size.height));
 //                                      _scroll.frame.size.width,
 //                                      _scroll.frame.size.height);
     UITextView *textView = [[UITextView alloc] initWithFrame:textViewFrame];

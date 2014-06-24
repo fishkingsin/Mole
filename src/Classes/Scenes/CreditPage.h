@@ -6,7 +6,7 @@
 //
 //
 
-#import "SPSprite.h"
+#import "Sparrow.h"
 #define EVENT_TYPE_CREDIT_CLOSING @"credit_closing"
 @interface CreditPage : SPSprite
 

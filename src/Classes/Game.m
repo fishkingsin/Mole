@@ -41,7 +41,7 @@
     OverlayAnimation* overlayAnimation;
 }
 
-- (id)init
+- (instancetype)init
 {
     if ((self = [super init]))
     {
@@ -74,7 +74,9 @@
     [Media initAtlas];      // loads your texture atlas -> see Media.h/Media.m
     [Media initSound];      // loads all your sounds    -> see Media.h/Media.m
     
-    
+    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
+    [self addChild:background];
+
     // Create some placeholder content: a background image, the Sparrow logo, and a text field.
     // The positions are updated when the device is rotated. To make that easy, we put all objects
     // in one sprite (_contents): it will simply be rotated to be upright when the device rotates.
@@ -88,14 +90,12 @@
     
     _creditButton = [[SPButton alloc] initWithUpState:buttonTexture text:NSLocalizedString(@"Credit", nil)];
     _creditButton.x = Sparrow.stage.width - _creditButton.width;
-    _creditButton.y = Sparrow.stage.height - _creditButton.height;
+    _creditButton.y = Sparrow.stage.height - _creditButton.height - OFFSET_Y;
     _creditButton.name = @"credit";
     [_creditButton addEventListener:@selector(onCreditButtonTriggered:) atObject:self
                             forType:SP_EVENT_TYPE_TRIGGERED];
-    [_menu addChild:_creditButton];
+    [self addChild:_creditButton];
     
-    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
-    [_contents addChild:background];
     [self updateLocations];
     
     scenesToCreate = @[[NameInput class],

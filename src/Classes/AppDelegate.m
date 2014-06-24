@@ -38,23 +38,33 @@ void onUncaughtException(NSException *exception)
     
     CGRect screenBounds = [UIScreen mainScreen].bounds;
     _window = [[UIWindow alloc] initWithFrame:screenBounds];
-    #ifndef USE_BANNER
+    
+    [SPAudioEngine start];
+    
     _viewController = [[SPViewController alloc] init];
+    _viewController.multitouchEnabled = YES;
     [_viewController startWithRoot:[Game class] supportHighResolutions:YES doubleOnPad:YES];
-
-    #else
-    _viewController = [[BannerExampleViewController alloc] init];
-    [_viewController startWithRoot:[Game class] supportHighResolutions:YES doubleOnPad:YES];
-    #endif
+    
     [_window setRootViewController:_viewController];
     [_window makeKeyAndVisible];
     
-//    banner = [[BannerExampleViewController alloc] init];
+    // What follows is a very simple approach to support the iPad:
+    // we just center the stage on the screen!
+    //
+    // (Beware: to support autorotation, this would need a little more work.)
     
-//    [_viewController.view addSubview:banner.view];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
+        _viewController.view.frame = CGRectMake(64, 32, 640, 960);
+        _viewController.stage.width = 320;
+        _viewController.stage.height = 568;
+    }
+
     
     return YES;
 }
+
+
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // We need to properly handle activation of the application with regards to Facebook Login

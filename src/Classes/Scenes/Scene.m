@@ -26,10 +26,10 @@
         
         _backButton = [[SPButton alloc] initWithUpState:buttonTexture text:NSLocalizedString(KEY_BACK, nil)];
         _backButton.x = 0;
-        _backButton.y = Sparrow.stage.height - _backButton.height ;
+        _backButton.y = Sparrow.stage.height - _backButton.height  - OFFSET_Y;
         _backButton.name = KEY_BACK;
         [_backButton addEventListener:@selector(onBackButtonTriggered:) atObject:self
-                              forType:SP_EVENT_TYPE_TRIGGERED];
+                              forType:SPEventTypeTriggered];
         [self addChild:_backButton];
         [self addEventListener:@selector(onSceneClosing:) atObject:self
                        forType:EVENT_TYPE_SCENE_CLOSING];
@@ -42,7 +42,7 @@
 {
     
     [Media playSound:@"sound.caf"];
-    [_backButton removeEventListenersAtObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    [_backButton removeEventListenersAtObject:self forType:SPEventTypeTriggered];
     
     SPTween *tween = [SPTween tweenWithTarget:self time:0.5f transition:SP_TRANSITION_LINEAR];
     //Delay the tween for two seconds, so that we can see the

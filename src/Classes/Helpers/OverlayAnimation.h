@@ -6,7 +6,7 @@
 //
 //
 
-#import "SPSprite.h"
+#import "Sparrow.h"
 
 @interface OverlayAnimation : SPSprite
 

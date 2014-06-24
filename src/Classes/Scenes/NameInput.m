@@ -65,9 +65,9 @@
     //
     
     
-    //    startY = ((Sparrow.stage.height-Sparrow.stage.height)*0.5) - 40 - 315;
+    //    startY = ((Sparrow.stage.height - Sparrow.stage.height)*0.5) - 40 - 315;
     //    startY = (Sparrow.stage.height*0.5)-Sparrow.stage.height*0.3;
-    float startY = ((Sparrow.stage.height-Sparrow.stage.height)*0.5)+Sparrow.stage.height - 40 - SCROLL_SIZE;
+    float startY = ((Sparrow.stage.height - Sparrow.stage.height)*0.5)+Sparrow.stage.height - 40 - SCROLL_SIZE;
     _baseView = [[UIView alloc]initWithFrame:CGRectMake(Sparrow.stage.width, startY, Sparrow.stage.width, 25)];
     _textField = [[UITextField alloc] initWithFrame:CGRectMake((Sparrow.stage.width*0.5)-80,0,160,25)];//(Sparrow.stage.width,startY-12.5, 160, 25)];
     _textField.borderStyle = UITextBorderStyleRoundedRect;
@@ -101,7 +101,7 @@
     
     _okButton = [[SPButton alloc] initWithUpState:buttonTexture text:NSLocalizedString(KEY_OK, nil)];
     _okButton.x = (Sparrow.stage.width*0.5) - _okButton.width / 2.0f ;
-    _okButton.y = startY +_textField.frame.size.height - ((Sparrow.stage.height-Sparrow.stage.height)*0.5);
+    _okButton.y = startY +_textField.frame.size.height - ((Sparrow.stage.height - Sparrow.stage.height)*0.5);
     _okButton.name = NSLocalizedString(KEY_OK, nil);
     if([_textField.text isEqualToString:@""])
     {
